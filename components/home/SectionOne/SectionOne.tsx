@@ -17,7 +17,7 @@ const SectionOne = () => {
           alt="paper cut"
           height={816}
           priority
-          className="absolute bottom-[-76px] left-[-230px] drop-shadow-image"
+          className="absolute bottom-[-76px] left-[-230px] drop-shadow-image z-10"
         />
         <div className="absolute top-[117px] right-[93px] w-[564px] text-black">
           <h1
