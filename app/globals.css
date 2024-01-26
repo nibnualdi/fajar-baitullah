@@ -16,6 +16,21 @@
   }
 }
 
+::-webkit-scrollbar {
+  height: 5px;
+  width: 5px;
+  background: #005F59;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #DDD;
+  -webkit-border-radius: 1ex;
+}
+
+::-webkit-scrollbar-corner {
+  background: #005F59;
+}
+
 body {
   overflow-x: hidden;
   color: rgb(var(--foreground-rgb));
