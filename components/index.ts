@@ -5,5 +5,6 @@ import SectionTwo from "./home/SectionTwo/SectionTwo";
 import Swiper from "./Swiper/Swiper";
 import AnimatedIcon from "./AnimatedIcon/AnimatedIcon";
 import ParallaxText from "./home/SectionTwo/ScrollRunningText";
+import Footer from "./Footer/Footer";
 
-export { SectionOne, Circles, Navbar, SectionTwo, Swiper, AnimatedIcon, ParallaxText };
+export { SectionOne, Circles, Navbar, SectionTwo, Swiper, AnimatedIcon, ParallaxText, Footer };
