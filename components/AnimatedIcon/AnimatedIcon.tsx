@@ -1,11 +1,12 @@
 "use client";
 
 import { Player } from "@lordicon/react";
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 type AnimatedIconProps = {
   icon: any;
   className?: string;
+  children?: React.ReactNode;
 };
 
 const AnimatedIcon = (props: AnimatedIconProps) => {
@@ -26,6 +27,7 @@ const AnimatedIcon = (props: AnimatedIconProps) => {
       onMouseLeave={() => setHover(false)}
     >
       <Player ref={playerRef} size={30} icon={props.icon} />
+      {props.children}
     </div>
   );
 };
