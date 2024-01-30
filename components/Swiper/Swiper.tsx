@@ -95,14 +95,14 @@ const Swiper = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1.8, type: "spring" }}
-          key={page}
+          key={`div ${page}`}
         >
           <motion.h1
             className={`${openSans800.className} text-[64px] text-white max-w-md leading-[55px] uppercase line-clamp-2`}
             initial={{ y: 100, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 1.5, type: "spring" }}
-            key={page}
+            key={`h1 ${page}`}
           >
             {content[contentIndex].title}
           </motion.h1>
@@ -111,7 +111,7 @@ const Swiper = () => {
             initial={{ y: 100, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 1.5, type: "spring" }}
-            key={page}
+            key={`p ${page}`}
           >
             {content[contentIndex].desc}
           </motion.p>
@@ -120,7 +120,7 @@ const Swiper = () => {
       <AnimatePresence initial={false} custom={direction}>
         <motion.img
           className="absolute w-[1056px] max-h-[487px] rounded-[15px]"
-          key={page}
+          key={`img ${page}`}
           src={content[contentIndex].image}
           custom={direction}
           variants={variants}
