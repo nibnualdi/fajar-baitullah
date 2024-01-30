@@ -1,7 +1,5 @@
-import { SectionOne, SectionTwo, Footer } from "@/components";
-import dynamic from "next/dynamic";
+import { Navbar, SectionOne, SectionTwo, Footer } from "@/components";
 
-const Navbar = dynamic(() => import("@/components/Navbar/Navbar"), { ssr: false });
 export default function Home() {
   return (
     <main>
