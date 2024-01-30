@@ -7,6 +7,7 @@ import { Open_Sans } from "next/font/google";
 import dynamic from "next/dynamic";
 
 import arrow from "@/assets/icons/arrow.json";
+import Image from "next/image";
 
 const AnimatedIcon = dynamic(() => import("@/components/AnimatedIcon/AnimatedIcon"), {
   ssr: false,
@@ -42,7 +43,28 @@ const content: SwiperContentType[] = [
   },
 ];
 
-const variants = {
+const variantsImg = {
+  enter: (direction: number) => {
+    return {
+      x: direction > 0 ? 1000 : -1000,
+      opacity: 0,
+    };
+  },
+  center: {
+    zIndex: 1,
+    x: 0,
+    opacity: 1,
+  },
+  exit: (direction: number) => {
+    return {
+      zIndex: 0,
+      x: direction < 0 ? 1000 : -1000,
+      opacity: 0,
+    };
+  },
+};
+
+const variantsDiv = {
   enter: (direction: number) => {
     return {
       x: direction > 0 ? 1000 : -1000,
@@ -91,39 +113,10 @@ const Swiper = () => {
     <>
       <AnimatePresence initial={false} custom={direction}>
         <motion.div
-          className="w-[1056px] max-h-[487px] h-[487px] flex flex-col gap-[88px] py-[104px] px-[182px] rounded-[15px] bg-[rgba(34,34,34,0.50)] text-white absolute z-20"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1.8, type: "spring" }}
+          className="w-[1056px] max-h-[487px] h-[487px] flex flex-col gap-[88px] py-[104px] px-[182px] rounded-[15px] text-white absolute z-20"
           key={`div ${page}`}
-        >
-          <motion.h1
-            className={`${openSans800.className} text-[64px] text-white max-w-md leading-[55px] uppercase line-clamp-2`}
-            initial={{ y: 100, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 1.5, type: "spring" }}
-            key={`h1 ${page}`}
-          >
-            {content[contentIndex].title}
-          </motion.h1>
-          <motion.p
-            className={`${openSans600.className} text-[20px] text-white max-w-32 line-clamp-3`}
-            initial={{ y: 100, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 1.5, type: "spring" }}
-            key={`p ${page}`}
-          >
-            {content[contentIndex].desc}
-          </motion.p>
-        </motion.div>
-      </AnimatePresence>
-      <AnimatePresence initial={false} custom={direction}>
-        <motion.img
-          className="absolute w-[1056px] max-h-[487px] rounded-[15px]"
-          key={`img ${page}`}
-          src={content[contentIndex].image}
           custom={direction}
-          variants={variants}
+          variants={variantsDiv}
           initial="enter"
           animate="center"
           exit="exit"
@@ -143,7 +136,37 @@ const Swiper = () => {
               paginate(-1);
             }
           }}
-        />
+        >
+          <div className="w-[1056px] max-h-[487px] h-[487px] flex flex-col gap-[88px] py-[104px] px-[182px] rounded-[15px] bg-[rgba(34,34,34,0.50)] text-white absolute top-0 left-0 z-20">
+            <motion.h1
+              className={`${openSans800.className} text-[64px] text-white max-w-md leading-[55px] uppercase line-clamp-2`}
+              initial={{ y: 100, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 1.5, type: "spring" }}
+              key={`h1 ${page}`}
+            >
+              {content[contentIndex].title}
+            </motion.h1>
+            <motion.p
+              className={`${openSans600.className} text-[20px] text-white max-w-32 line-clamp-3`}
+              initial={{ y: 100, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 1.5, type: "spring" }}
+              key={`p ${page}`}
+            >
+              {content[contentIndex].desc}
+            </motion.p>
+          </div>
+          <Image
+            draggable={false}
+            width={1056}
+            height={487}
+            src={content[contentIndex].image}
+            loader={({ src, width, quality }) => `${src}?w=${width}&q=${quality || 75}`}
+            alt={content[contentIndex].image}
+            className="absolute top-0 left-0 w-[1056px] max-h-[487px] h-[487px] rounded-[15px]"
+          />
+        </motion.div>
       </AnimatePresence>
       <div
         className="right-[10px] absolute top-[calc(50%-20px)] w-10 h-10 flex justify-center items-center cursor-pointer"
