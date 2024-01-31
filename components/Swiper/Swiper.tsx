@@ -3,18 +3,15 @@
 import * as React from "react";
 import { useState } from "react";
 import { wrap, motion, AnimatePresence } from "framer-motion";
-import { Open_Sans } from "next/font/google";
 import dynamic from "next/dynamic";
 
 import arrow from "@/assets/icons/arrow.json";
 import Image from "next/image";
+import { openSans600, openSans800 } from "@/assets/fonts";
 
 const AnimatedIcon = dynamic(() => import("@/components/AnimatedIcon/AnimatedIcon"), {
   ssr: false,
 });
-
-const openSans800 = Open_Sans({ weight: "800", subsets: ["latin"] });
-const openSans600 = Open_Sans({ weight: "600", subsets: ["latin"] });
 
 type SwiperContentType = {
   title: string;

@@ -6,15 +6,11 @@ import logo from "@/assets/logo.png";
 import cellphone from "@/assets/icons/call-phone-white.json";
 import location from "@/assets/icons/location-pin-white.json";
 import email from "@/assets/icons/email-white.json";
-import { Open_Sans } from "next/font/google";
+import { openSans300, openSans400, openSans700 } from "@/assets/fonts";
 
 const AnimatedIcon = dynamic(() => import("@/components/AnimatedIcon/AnimatedIcon"), {
   ssr: false,
 });
-
-const openSans300 = Open_Sans({ weight: "300", subsets: ["latin"] });
-const openSans400 = Open_Sans({ weight: "400", subsets: ["latin"] });
-const openSans700 = Open_Sans({ weight: "700", subsets: ["latin"] });
 
 const Footer = () => {
   return (

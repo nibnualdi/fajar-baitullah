@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
-import { Open_Sans } from "next/font/google";
+import { openSans400 } from "@/assets/fonts";
 import "./globals.css";
-
-const openSans = Open_Sans({ weight: "400", subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Fajar Baitullah",
@@ -16,7 +14,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="id">
-      <body className={openSans.className}>{children}</body>
+      <body className={openSans400.className}>{children}</body>
     </html>
   );
 }

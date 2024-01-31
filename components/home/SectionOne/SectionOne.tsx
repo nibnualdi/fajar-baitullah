@@ -3,9 +3,7 @@ import Image from "next/image";
 
 import Circles from "./DragableCircles";
 import paperCutImg from "@/assets/paper cut mosque.svg";
-import { Permanent_Marker } from "next/font/google";
-
-const permanentMarker = Permanent_Marker({ weight: "400", subsets: ["latin"] });
+import { permanentMarker400 } from "@/assets/fonts";
 
 const SectionOne = () => {
   return (
@@ -21,7 +19,7 @@ const SectionOne = () => {
         />
         <div className="absolute top-[117px] right-[93px] w-[564px] text-black">
           <h1
-            className={`${permanentMarker.className} text-[96px] leading-[110px] drop-shadow-header`}
+            className={`${permanentMarker400.className} text-[96px] leading-[110px] drop-shadow-header`}
           >
             FAJAR BAITULLAH
           </h1>

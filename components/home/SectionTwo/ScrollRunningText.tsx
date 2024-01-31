@@ -11,9 +11,8 @@ import {
   useAnimationFrame,
 } from "framer-motion";
 import { wrap } from "framer-motion";
-import { Open_Sans } from "next/font/google";
+import { openSans800 } from "@/assets/fonts";
 
-const openSans = Open_Sans({ weight: "800", subsets: ["latin"] });
 
 interface ParallaxProps {
   children: string;
@@ -70,7 +69,7 @@ function ParallaxText({ children, baseVelocity = 100 }: ParallaxProps) {
    */
   return (
     <div
-      className={`text-dark-green overflow-hidden tracking-[-2px] m-0 whitespace-nowrap flex flex-nowrap uppercase text-[64px] ${openSans.className}`}
+      className={`text-dark-green overflow-hidden tracking-[-2px] m-0 whitespace-nowrap flex flex-nowrap uppercase text-[64px] ${openSans800.className}`}
     >
       <motion.div className="flex whitespace-nowrap flex-nowrap" style={{ x }}>
         {[...arrayOfWords].map((_, index) => (
