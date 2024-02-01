@@ -7,7 +7,6 @@ import dynamic from "next/dynamic";
 
 import arrow from "@/assets/icons/arrow.json";
 import Image from "next/image";
-import { openSans600, openSans800 } from "@/assets/fonts";
 
 const AnimatedIcon = dynamic(() => import("@/components/AnimatedIcon/AnimatedIcon"), {
   ssr: false,
