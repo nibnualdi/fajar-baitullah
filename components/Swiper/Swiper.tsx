@@ -19,6 +19,13 @@ type SwiperContentType = {
   image: string;
 };
 
+type SwiperProps = React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement> & {
+  containerClassName: string;
+  overlayClassName: string;
+  h1ClassName: string;
+  pClassName: string;
+};
+
 const content: SwiperContentType[] = [
   {
     title: "Pertama Contoh Blablablabla",
@@ -93,7 +100,7 @@ const swipePower = (offset: number, velocity: number) => {
   return Math.abs(offset) * velocity;
 };
 
-const Swiper = () => {
+const Swiper = (props: SwiperProps) => {
   const [[page, direction], setPage] = useState([0, 0]);
 
   // We only have 3 images, but we paginate them absolutely (ie 1, 2, 3, 4, 5...) and
@@ -110,7 +117,7 @@ const Swiper = () => {
     <>
       <AnimatePresence initial={false} custom={direction}>
         <motion.div
-          className="w-[1056px] max-h-[487px] h-[487px] flex flex-col gap-[88px] py-[104px] px-[182px] rounded-[15px] text-white absolute z-20"
+          className={`absolute z-20 overflow-hidden ${props.containerClassName}`}
           key={`div ${page}`}
           custom={direction}
           variants={variantsDiv}
@@ -134,9 +141,9 @@ const Swiper = () => {
             }
           }}
         >
-          <div className="w-[1056px] max-h-[487px] h-[487px] flex flex-col gap-[88px] py-[104px] px-[182px] rounded-[15px] bg-[rgba(34,34,34,0.50)] text-white absolute top-0 left-0 z-20">
+          <div className={`absolute z-20 ${props.overlayClassName}`}>
             <motion.h1
-              className={`${openSans800.className} text-[64px] text-white max-w-md leading-[55px] uppercase line-clamp-2`}
+              className={props.h1ClassName}
               initial={{ y: 100, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 1.5, type: "spring" }}
@@ -145,7 +152,7 @@ const Swiper = () => {
               {content[contentIndex].title}
             </motion.h1>
             <motion.p
-              className={`${openSans600.className} text-[20px] text-white max-w-32 line-clamp-3`}
+              className={props.pClassName}
               initial={{ y: 100, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 1.5, type: "spring" }}
@@ -161,7 +168,7 @@ const Swiper = () => {
             src={content[contentIndex].image}
             loader={({ src, width, quality }) => `${src}?w=${width}&q=${quality || 75}`}
             alt={content[contentIndex].image}
-            className="absolute top-0 left-0 w-[1056px] max-h-[487px] h-[487px] rounded-[15px]"
+            className="absolute top-0 left-0 w-full h-full"
           />
         </motion.div>
       </AnimatePresence>
