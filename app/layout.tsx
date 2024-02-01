@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { openSans400 } from "@/assets/fonts";
+import { Footer, Navbar } from "@/components";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -14,7 +15,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="id">
-      <body className={openSans400.className}>{children}</body>
+      <body className={openSans400.className}>
+        <Navbar />
+        {children}
+        <Footer />
+      </body>
     </html>
   );
 }
