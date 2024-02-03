@@ -5,62 +5,11 @@ import dynamic from "next/dynamic";
 
 import flatIcon from "@/assets/icons/flat-arrow.json";
 import Link from "next/link";
+import { articles } from "@/constans/dummyData";
 
 const AnimatedIcon = dynamic(() => import("@/components/AnimatedIcon/AnimatedIcon"), {
   ssr: false,
 });
-
-const articles = [
-  {
-    id: "1",
-    title: "Lorem Ipsum Color Sit Amet.",
-    image:
-      "https://static.republika.co.id/uploads/images/inpicture_slide/aktivitas-warga-saat-shalat-subuh-_150302073711-146.jpg",
-    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac pretium turpis. Vivamus tincidunt enim dapibus urna ultrices imperdiet. Integer viverra, felis sed mollis aliquet, nisl lorem imperdiet erat, in malesuada urna mauris ut nunc. Vestibulum tristique enim nisl, sit amet bibendum justo molestie nec. Donec porttitor dignissim leo eget sollicitudin. Donec at interdum tortor. Pellentesque vel eleifend nibh. Curabitur imperdiet, lectus in mollis placerat, justo ligula venenatis odio, sit amet mattis dui lorem at nisi. Duis sit amet velit tortor.",
-  },
-  {
-    id: "2",
-    title: "Lorem Ipsum Color Sit Amet.",
-    image:
-      "https://static.republika.co.id/uploads/images/inpicture_slide/aktivitas-warga-saat-shalat-subuh-_150302073711-146.jpg",
-    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac pretium turpis. Vivamus tincidunt enim dapibus urna ultrices imperdiet. Integer viverra, felis sed mollis aliquet, nisl lorem imperdiet erat, in malesuada urna mauris ut nunc. Vestibulum tristique enim nisl, sit amet bibendum justo molestie nec. Donec porttitor dignissim leo eget sollicitudin. Donec at interdum tortor. Pellentesque vel eleifend nibh. Curabitur imperdiet, lectus in mollis placerat, justo ligula venenatis odio, sit amet mattis dui lorem at nisi. Duis sit amet velit tortor.",
-  },
-  {
-    id: "3",
-    title: "Lorem Ipsum Color Sit Amet.",
-    image:
-      "https://static.republika.co.id/uploads/images/inpicture_slide/aktivitas-warga-saat-shalat-subuh-_150302073711-146.jpg",
-    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac pretium turpis. Vivamus tincidunt enim dapibus urna ultrices imperdiet. Integer viverra, felis sed mollis aliquet, nisl lorem imperdiet erat, in malesuada urna mauris ut nunc. Vestibulum tristique enim nisl, sit amet bibendum justo molestie nec. Donec porttitor dignissim leo eget sollicitudin. Donec at interdum tortor. Pellentesque vel eleifend nibh. Curabitur imperdiet, lectus in mollis placerat, justo ligula venenatis odio, sit amet mattis dui lorem at nisi. Duis sit amet velit tortor.",
-  },
-  {
-    id: "4",
-    title: "Lorem Ipsum Color Sit Amet.",
-    image:
-      "https://static.republika.co.id/uploads/images/inpicture_slide/aktivitas-warga-saat-shalat-subuh-_150302073711-146.jpg",
-    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac pretium turpis. Vivamus tincidunt enim dapibus urna ultrices imperdiet. Integer viverra, felis sed mollis aliquet, nisl lorem imperdiet erat, in malesuada urna mauris ut nunc. Vestibulum tristique enim nisl, sit amet bibendum justo molestie nec. Donec porttitor dignissim leo eget sollicitudin. Donec at interdum tortor. Pellentesque vel eleifend nibh. Curabitur imperdiet, lectus in mollis placerat, justo ligula venenatis odio, sit amet mattis dui lorem at nisi. Duis sit amet velit tortor.",
-  },
-  {
-    id: "5",
-    title: "Lorem Ipsum Color Sit Amet.",
-    image:
-      "https://static.republika.co.id/uploads/images/inpicture_slide/aktivitas-warga-saat-shalat-subuh-_150302073711-146.jpg",
-    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac pretium turpis. Vivamus tincidunt enim dapibus urna ultrices imperdiet. Integer viverra, felis sed mollis aliquet, nisl lorem imperdiet erat, in malesuada urna mauris ut nunc. Vestibulum tristique enim nisl, sit amet bibendum justo molestie nec. Donec porttitor dignissim leo eget sollicitudin. Donec at interdum tortor. Pellentesque vel eleifend nibh. Curabitur imperdiet, lectus in mollis placerat, justo ligula venenatis odio, sit amet mattis dui lorem at nisi. Duis sit amet velit tortor.",
-  },
-  {
-    id: "6",
-    title: "Lorem Ipsum Color Sit Amet.",
-    image:
-      "https://static.republika.co.id/uploads/images/inpicture_slide/aktivitas-warga-saat-shalat-subuh-_150302073711-146.jpg",
-    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac pretium turpis. Vivamus tincidunt enim dapibus urna ultrices imperdiet. Integer viverra, felis sed mollis aliquet, nisl lorem imperdiet erat, in malesuada urna mauris ut nunc. Vestibulum tristique enim nisl, sit amet bibendum justo molestie nec. Donec porttitor dignissim leo eget sollicitudin. Donec at interdum tortor. Pellentesque vel eleifend nibh. Curabitur imperdiet, lectus in mollis placerat, justo ligula venenatis odio, sit amet mattis dui lorem at nisi. Duis sit amet velit tortor.",
-  },
-  {
-    id: "7",
-    title: "Lorem Ipsum Color Sit Amet.",
-    image:
-      "https://static.republika.co.id/uploads/images/inpicture_slide/aktivitas-warga-saat-shalat-subuh-_150302073711-146.jpg",
-    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac pretium turpis. Vivamus tincidunt enim dapibus urna ultrices imperdiet. Integer viverra, felis sed mollis aliquet, nisl lorem imperdiet erat, in malesuada urna mauris ut nunc. Vestibulum tristique enim nisl, sit amet bibendum justo molestie nec. Donec porttitor dignissim leo eget sollicitudin. Donec at interdum tortor. Pellentesque vel eleifend nibh. Curabitur imperdiet, lectus in mollis placerat, justo ligula venenatis odio, sit amet mattis dui lorem at nisi. Duis sit amet velit tortor.",
-  },
-];
 
 export default function Activity() {
   return (

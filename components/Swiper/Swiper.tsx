@@ -7,16 +7,11 @@ import dynamic from "next/dynamic";
 
 import arrow from "@/assets/icons/arrow.json";
 import Image from "next/image";
+import { articles } from "@/constans/dummyData";
 
 const AnimatedIcon = dynamic(() => import("@/components/AnimatedIcon/AnimatedIcon"), {
   ssr: false,
 });
-
-type SwiperContentType = {
-  title: string;
-  desc: string;
-  image: string;
-};
 
 type SwiperProps = React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement> & {
   containerClassName: string;
@@ -24,27 +19,6 @@ type SwiperProps = React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>,
   h1ClassName: string;
   pClassName: string;
 };
-
-const content: SwiperContentType[] = [
-  {
-    title: "Pertama Contoh Blablablabla",
-    desc: "Satu lorem ipsum dolor, sit amet consectetur adipisicing elit. Vitae autem obcaecati voluptas dicta soluta. Laudantium tempora aliquid provident soluta excepturi!",
-    image:
-      "https://d33wubrfki0l68.cloudfront.net/dd23708ebc4053551bb33e18b7174e73b6e1710b/dea24/static/images/wallpapers/shared-colors@2x.png",
-  },
-  {
-    title: "Kedua Contoh Blablablabla",
-    desc: "Dua lorem ipsum dolor, sit amet consectetur adipisicing elit. Vitae autem obcaecati voluptas dicta soluta. Laudantium tempora aliquid provident soluta excepturi!",
-    image:
-      "https://d33wubrfki0l68.cloudfront.net/49de349d12db851952c5556f3c637ca772745316/cfc56/static/images/wallpapers/bridge-02@2x.png",
-  },
-  {
-    title: "Ketiga Contoh Blablablabla",
-    desc: "Tiga lorem ipsum dolor, sit amet consectetur adipisicing elit. Vitae autem obcaecati voluptas dicta soluta. Laudantium tempora aliquid provident soluta excepturi!",
-    image:
-      "https://d33wubrfki0l68.cloudfront.net/594de66469079c21fc54c14db0591305a1198dd6/3f4b1/static/images/wallpapers/bridge-01@2x.png",
-  },
-];
 
 const variantsDiv = {
   enter: (direction: number) => {
@@ -85,7 +59,7 @@ const Swiper = (props: SwiperProps) => {
   // then wrap that within 0-2 to find our image ID in the array below. By passing an
   // absolute page index as the `motion` component's `key` prop, `AnimatePresence` will
   // detect it as an entirely new image. So you can infinitely paginate as few as 1 images.
-  const contentIndex = wrap(0, content.length, page);
+  const contentIndex = wrap(0, articles.length, page);
 
   const paginate = (newDirection: number) => {
     setPage([page + newDirection, newDirection]);
@@ -127,7 +101,7 @@ const Swiper = (props: SwiperProps) => {
               transition={{ duration: 1.5, type: "spring" }}
               key={`h1 ${page}`}
             >
-              {content[contentIndex].title}
+              {articles[contentIndex].title}
             </motion.h1>
             <motion.p
               className={props.pClassName}
@@ -136,16 +110,16 @@ const Swiper = (props: SwiperProps) => {
               transition={{ duration: 1.5, type: "spring" }}
               key={`p ${page}`}
             >
-              {content[contentIndex].desc}
+              {articles[contentIndex].desc}
             </motion.p>
           </div>
           <Image
             draggable={false}
             width={1056}
             height={487}
-            src={content[contentIndex].image}
+            src={articles[contentIndex].image}
             loader={({ src, width, quality }) => `${src}?w=${width}&q=${quality || 75}`}
-            alt={content[contentIndex].image}
+            alt={articles[contentIndex].image}
             className="absolute top-0 left-0 w-full h-full"
           />
         </motion.div>

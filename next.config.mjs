@@ -7,6 +7,11 @@ const nextConfig = {
         hostname: "static.republika.co.id",
         port: "",
       },
+      {
+        protocol: "https",
+        hostname: "d33wubrfki0l68.cloudfront.net",
+        port: "",
+      },
     ],
   },
 };
