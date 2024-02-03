@@ -31,6 +31,11 @@
   background: #005F59;
 }
 
+html, body {
+  height: 100%;
+  position: relative;
+}
+
 body {
   overflow-x: hidden;
   color: rgb(var(--foreground-rgb));
