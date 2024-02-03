@@ -8,6 +8,7 @@ import dynamic from "next/dynamic";
 import arrow from "@/assets/icons/arrow.json";
 import Image from "next/image";
 import { articles } from "@/constans/dummyData";
+import Link from "next/link";
 
 const AnimatedIcon = dynamic(() => import("@/components/AnimatedIcon/AnimatedIcon"), {
   ssr: false,
@@ -94,24 +95,28 @@ const Swiper = (props: SwiperProps) => {
           }}
         >
           <div className={`absolute z-20 ${props.overlayClassName}`}>
-            <motion.h1
-              className={props.h1ClassName}
-              initial={{ y: 100, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 1.5, type: "spring" }}
-              key={`h1 ${page}`}
-            >
-              {articles[contentIndex].title}
-            </motion.h1>
-            <motion.p
-              className={props.pClassName}
-              initial={{ y: 100, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 1.5, type: "spring" }}
-              key={`p ${page}`}
-            >
-              {articles[contentIndex].desc}
-            </motion.p>
+            <Link href={`activity/detail/${articles[contentIndex].id}`}>
+              <motion.h1
+                className={props.h1ClassName}
+                initial={{ y: 100, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 1.5, type: "spring" }}
+                key={`h1 ${page}`}
+              >
+                {articles[contentIndex].title}
+              </motion.h1>
+            </Link>
+            <Link href={`activity/detail/${articles[contentIndex].id}`}>
+              <motion.p
+                className={props.pClassName}
+                initial={{ y: 100, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 1.5, type: "spring" }}
+                key={`p ${page}`}
+              >
+                {articles[contentIndex].desc}
+              </motion.p>
+            </Link>
           </div>
           <Image
             draggable={false}
