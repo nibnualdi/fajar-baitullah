@@ -130,13 +130,13 @@ const Swiper = (props: SwiperProps) => {
         </motion.div>
       </AnimatePresence>
       <div
-        className="right-[10px] absolute top-[calc(50%-20px)] w-10 h-10 flex justify-center items-center cursor-pointer"
+        className="right-[10px] absolute z-10 top-[calc(50%-20px)] w-10 h-10 flex justify-center items-center cursor-pointer"
         onClick={() => paginate(1)}
       >
         <AnimatedIcon icon={arrow} className="rotate-90" />
       </div>
       <div
-        className="left-[10px] rotate-180 absolute top-[calc(50%-20px)] w-10 h-10 flex justify-center items-center cursor-pointer"
+        className="left-[10px] rotate-180 absolute z-10 top-[calc(50%-20px)] w-10 h-10 flex justify-center items-center cursor-pointer"
         onClick={() => paginate(-1)}
       >
         <AnimatedIcon icon={arrow} className="rotate-90" />
