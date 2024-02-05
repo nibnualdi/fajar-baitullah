@@ -6,7 +6,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
-const page = ({ params }: { params: { id: string } }) => {
+const Page = ({ params }: { params: { id: string } }) => {
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({ target: ref });
   const scroll = useTransform(scrollYProgress, [0, 1], [0, 100]);
@@ -49,4 +49,4 @@ const page = ({ params }: { params: { id: string } }) => {
   );
 };
 
-export default page;
+export default Page;
