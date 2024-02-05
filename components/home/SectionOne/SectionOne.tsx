@@ -7,7 +7,7 @@ import { permanentMarker400 } from "@/assets/fonts";
 
 const SectionOne = () => {
   return (
-    <section className="min-h-screen bg-[url('../assets/bg1.jpg')]">
+    <section className="min-h-screen bg-[url('../assets/bg1.webp')]">
       <div className="relative h-screen max-w-[1440px] max-h-[1150px] ml-auto mr-auto">
         <Circles />
         <Image
