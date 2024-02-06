@@ -19,6 +19,26 @@ type SquareProps = {
   y: MotionValue<number>;
 };
 
+const variants = {
+  animate: {
+    transition: {
+      delayChildren: 0.4,
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+const circleAnimation = {
+  initial: { scale: 0 },
+  animate: {
+    scale: 1,
+    transition: {
+      ease: [0.6, 0.01, -0.05, 0.95],
+      duration: 1,
+    },
+  },
+};
+
 const grid = [
   [0, 1, 2, 3],
   [4, 5, 6, 7],
@@ -60,6 +80,7 @@ const Circle = ({ active, setActive, colIndex, rowIndex, x, y }: SquareProps) =>
         zIndex: isDragging ? 1 : 0,
         cursor: "pointer",
       }}
+      variants={circleAnimation}
     />
   );
 };
@@ -88,6 +109,9 @@ function Circles() {
             position: "relative",
             perspective: 500,
           }}
+          variants={variants}
+          initial="initial"
+          animate="animate"
         >
           {grid.map((row, rowIndex) =>
             row.map((_item, colIndex) => (
