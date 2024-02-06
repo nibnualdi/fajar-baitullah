@@ -7,6 +7,7 @@ import article from "@/assets/icons/article.json";
 import cellPhone from "@/assets/icons/call-phone.json";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { motion } from "framer-motion";
 
 const AnimatedIcon = dynamic(() => import("@/components/AnimatedIcon/AnimatedIcon"), {
   ssr: false,
@@ -29,7 +30,17 @@ const Navbar = () => {
 
   return (
     <header className="w-full absolute bg-transparent flex justify-between pl-[69px] pr-[93px] pt-[34px] z-50">
-      <div className="w-[68px] h-[68px] bg-black rounded-full" />
+      <motion.div
+        initial={{ y: -400 }}
+        animate={{
+          y: 0,
+          transition: {
+            ease: [0.6, 0.01, -0.05, 0.95],
+            duration: 1,
+          },
+        }}
+        className="w-[68px] h-[68px] bg-black rounded-full"
+      />
       <div className="text-black flex gap-10">
         {nav.map((item) => (
           <Link
