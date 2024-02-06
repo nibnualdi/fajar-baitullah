@@ -81,6 +81,7 @@ const Circle = ({ active, setActive, colIndex, rowIndex, x, y }: SquareProps) =>
         cursor: "pointer",
       }}
       variants={circleAnimation}
+      whileHover={{ scale: 1.1 }}
     />
   );
 };
