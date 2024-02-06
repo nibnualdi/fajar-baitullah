@@ -35,7 +35,7 @@ const AnimatedLetters = ({ letters, ...props }: AnimatedLettersProps) => {
   return (
     <motion.h1
       {...props}
-      className={`${props.className} relative overflow-hidden`}
+      className={`${props.className} relative overflow-hidden z-30`}
       variants={variants}
       initial="initial"
       animate="animate"
@@ -44,6 +44,7 @@ const AnimatedLetters = ({ letters, ...props }: AnimatedLettersProps) => {
         <motion.span
           className={`${letter === " " ? "block" : "inline-block"}`}
           variants={letterAnimation}
+          whileHover={{ scale: .5 }}
           key={letter + index}
         >
           {letter}
