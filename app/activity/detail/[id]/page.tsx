@@ -16,7 +16,6 @@ const Page = ({ params }: { params: { id: string } }) => {
 
   useEffect(() => {
     scroll.on("change", (v) => setNumber(Math.round(v)));
-    // scroll.onChange((v) => setNumber(Math.round(v)));
   }, [scrollYProgress]);
 
   return (
