@@ -1,15 +1,7 @@
 import { openSans700, openSans400 } from "@/assets/fonts";
-import { Swiper } from "@/components";
-import Image from "next/image";
-import dynamic from "next/dynamic";
+import { Card, Swiper } from "@/components";
 
-import flatIcon from "@/assets/icons/flat-arrow.json";
-import Link from "next/link";
 import { articles } from "@/constans/dummyData";
-
-const AnimatedIcon = dynamic(() => import("@/components/AnimatedIcon/AnimatedIcon"), {
-  ssr: false,
-});
 
 export default function Activity() {
   return (
@@ -25,26 +17,7 @@ export default function Activity() {
 
       <div className="w-[1278px] m-auto flex flex-wrap gap-[37px]">
         {articles.map((item) => (
-          <div key={item.id} className="max-w-[401px] text-black">
-            <Image
-              src={item.image}
-              alt={item.id}
-              width={401}
-              height={267}
-              className="rounded-[25px] mb-[25px] w-full h-auto"
-            />
-            <Link href={`activity/detail/${item.id}`}>
-              <div className="flex justify-between">
-                <h3 className={`mb-[9px] text-[24px] ${openSans700.className} line-clamp-1`}>
-                  {item.title}
-                </h3>
-                <div className="w-[13.96px] h-[30px] -rotate-45 overflow-hidden relative">
-                  <AnimatedIcon icon={flatIcon} className="absolute top-[5px] left-[-17px]" />
-                </div>
-              </div>
-              <h3 className={`text-[20px] ${openSans400.className} line-clamp-3`}>{item.desc}</h3>
-            </Link>
-          </div>
+          <Card item={item} key={item.id} />
         ))}
       </div>
     </main>

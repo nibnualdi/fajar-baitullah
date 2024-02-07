@@ -7,6 +7,7 @@ import AnimatedIcon from "./AnimatedIcon/AnimatedIcon";
 import ParallaxText from "./home/SectionTwo/ScrollRunningText";
 import Footer from "./Footer/Footer";
 import AnimatedLetters from "./AnimatedLetters/AnimatedLetters";
+import Card from "./Card/Card";
 
 export {
   SectionOne,
@@ -18,4 +19,5 @@ export {
   ParallaxText,
   Footer,
   AnimatedLetters,
+  Card,
 };
