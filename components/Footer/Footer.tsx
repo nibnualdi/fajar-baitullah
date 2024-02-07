@@ -14,22 +14,31 @@ const AnimatedIcon = dynamic(() => import("@/components/AnimatedIcon/AnimatedIco
 
 const Footer = () => {
   return (
-    <footer className="text-[20px]">
+    <footer className="text-[20px] lg:text-left text-center">
       <div
-        className={`min-h-[302px] w-full bg-black flex items-center justify-center gap-56 ${openSans300.className}`}
+        className={`min-h-[302px] w-full bg-black flex flex-col lg:flex-row items-center justify-center lg:gap-56 gap-12 lg:pt-0 py-12 ${openSans300.className}`}
       >
         <Image src={logo} alt="logo" width={154} />
         <div className="flex flex-col gap-3">
           <h3 className={openSans700.className}>KONTAK</h3>
-          <AnimatedIcon icon={cellphone} className="flex items-center gap-[7px]">
+          <AnimatedIcon
+            icon={cellphone}
+            className="flex items-center lg:justify-normal justify-center gap-[7px]"
+          >
             <p>+62 8123456789</p>
           </AnimatedIcon>
-          <AnimatedIcon icon={email} className="flex items-center gap-[7px]">
+          <AnimatedIcon
+            icon={email}
+            className="flex items-center lg:justify-normal justify-center gap-[7px]"
+          >
             <p>fajarbaitullah@gmail.com</p>
           </AnimatedIcon>
         </div>
         <div className="max-w-[302px] flex flex-col gap-3">
-          <AnimatedIcon icon={location} className="flex items-center gap-[7px]">
+          <AnimatedIcon
+            icon={location}
+            className="flex items-center lg:justify-normal justify-center gap-[7px]"
+          >
             <h3 className={openSans700.className}>ALAMAT</h3>
           </AnimatedIcon>
           <p>
@@ -37,13 +46,20 @@ const Footer = () => {
             Barat 16920
           </p>
         </div>
+        <a
+          href="https://lordicon.com/"
+          target="_blank"
+          className={`lg:hidden block ${openSans300.className}`}
+        >
+          Icons by Lordicon.com
+        </a>
       </div>
       <div className="relative min-h-[42px] w-full bg-white flex items-center justify-center text-black">
         <p className={openSans400.className}>© 2024 | Fajar Baitullah</p>
         <a
           href="https://lordicon.com/"
           target="_blank"
-          className={`absolute right-8 ${openSans300.className}`}
+          className={`absolute right-8 lg:block hidden ${openSans300.className}`}
         >
           Icons by Lordicon.com
         </a>
