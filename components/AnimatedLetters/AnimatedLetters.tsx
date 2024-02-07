@@ -4,6 +4,7 @@ import { HTMLMotionProps, motion } from "framer-motion";
 
 type AnimatedLettersProps = HTMLMotionProps<"h1"> & {
   letters: string;
+  breakEachSpace?: boolean;
 };
 
 const variants = {
@@ -26,7 +27,7 @@ const letterAnimation = {
   },
 };
 
-const AnimatedLetters = ({ letters, ...props }: AnimatedLettersProps) => {
+const AnimatedLetters = ({ letters, breakEachSpace, ...props }: AnimatedLettersProps) => {
   return (
     <motion.h1
       {...props}
@@ -35,16 +36,31 @@ const AnimatedLetters = ({ letters, ...props }: AnimatedLettersProps) => {
       initial="initial"
       animate="animate"
     >
-      {letters.split("").map((letter, index) => (
-        <motion.span
-          className={`${letter === " " ? "block" : "inline-block"}`}
-          variants={letterAnimation}
-          whileHover={{ scale: 0.5 }}
-          key={letter + index}
-        >
-          {letter}
-        </motion.span>
-      ))}
+      {letters.split("").map((letter, index) => {
+        if (letter !== " ") {
+          return (
+            <motion.span
+              className="inline-block"
+              variants={letterAnimation}
+              whileHover={{ scale: 0.5 }}
+              key={letter + index}
+            >
+              {letter}
+            </motion.span>
+          );
+        } else {
+          return (
+            <motion.span
+              className={breakEachSpace ? "block" : "inline-block"}
+              variants={letterAnimation}
+              whileHover={{ scale: 0.5 }}
+              key={letter + index}
+            >
+              {breakEachSpace ? <p></p> : <p>&nbsp;</p>}
+            </motion.span>
+          );
+        }
+      })}
     </motion.h1>
   );
 };

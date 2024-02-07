@@ -32,6 +32,7 @@ const SectionOne = () => {
         <div className="absolute top-[117px] right-[93px] w-[564px] text-black">
           <AnimatedLetters
             letters="FAJAR BAITULLAH"
+            breakEachSpace
             className={`${permanentMarker400.className} text-[96px] leading-[110px] drop-shadow-header`}
           />
           <motion.p
