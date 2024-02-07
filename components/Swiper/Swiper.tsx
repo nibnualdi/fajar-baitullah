@@ -68,7 +68,7 @@ const Swiper = (props: SwiperProps) => {
 
   return (
     <>
-      <AnimatePresence initial={false} custom={direction}>
+      <AnimatePresence initial={true} custom={direction}>
         <motion.div
           className={`absolute z-20 overflow-hidden ${props.containerClassName}`}
           key={`div ${page}`}
