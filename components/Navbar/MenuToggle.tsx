@@ -136,7 +136,6 @@ const MenuToggleNav = ({ navItem, pathname, ...props }: MenuToggleNavProps) => {
                   <motion.li
                     variants={variantsMenuItem}
                     whileHover={{ backgroundColor: "rgba(1,1,1,.2)" }}
-                    // whileTap={{ scale: 0.95 }}
                     className={`w-full p-3 cursor-pointer text-center ${
                       pathname === item.to ? "bg-[rgba(1,1,1,.2)]" : "bg-white"
                     }`}
@@ -149,7 +148,7 @@ const MenuToggleNav = ({ navItem, pathname, ...props }: MenuToggleNavProps) => {
           </>
         )}
       </AnimatePresence>
-      <motion.nav initial={true} animate={isOpen ? "open" : "closed"} ref={containerRef} {...props}>
+      <motion.nav initial={false} animate={isOpen ? "open" : "closed"} ref={containerRef} {...props}>
         <MenuToggle toggle={() => toggleOpen()} />
       </motion.nav>
     </>
