@@ -13,6 +13,10 @@ const AnimatedIcon = dynamic(() => import("@/components/AnimatedIcon/AnimatedIco
   ssr: false,
 });
 
+const MenuToggleNav = dynamic(() => import("@/components/Navbar/MenuToggle"), {
+  ssr: false,
+});
+
 type navType = {
   name: string;
   icon?: any;
@@ -41,7 +45,7 @@ const Navbar = () => {
         }}
         className="w-[68px] h-[68px] bg-black rounded-full"
       />
-      <div className="text-black flex gap-10">
+      <div className="text-black gap-10 hidden lg:flex">
         {nav.map((item) => (
           <Link
             href={item.to}
@@ -57,6 +61,7 @@ const Navbar = () => {
           </Link>
         ))}
       </div>
+      <MenuToggleNav className="lg:hidden flex items-center" navItem={nav} pathname={pathname} />
     </header>
   );
 };

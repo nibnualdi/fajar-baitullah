@@ -8,6 +8,7 @@ import ParallaxText from "./home/SectionTwo/ScrollRunningText";
 import Footer from "./Footer/Footer";
 import AnimatedLetters from "./AnimatedLetters/AnimatedLetters";
 import Card from "./Card/Card";
+import MenuToggleNav from "./Navbar/MenuToggle";
 
 export {
   SectionOne,
@@ -20,4 +21,5 @@ export {
   Footer,
   AnimatedLetters,
   Card,
+  MenuToggleNav,
 };
