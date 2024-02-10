@@ -69,7 +69,7 @@ const Page = ({ params }: { params: { id: string } }) => {
             letters={selectedActivity[0].title}
             className={`${permanentMarker400.className} text-[96px] leading-[100px] mb-[32px]`}
           />
-          <motion.p variants={childVariants} className={`${openSans400.className} text-[24px]`}>
+          <motion.p variants={childVariants} className={`${openSans400.className} text-[24px] whitespace-pre`}>
             {selectedActivity[0].desc}
           </motion.p>
         </div>
