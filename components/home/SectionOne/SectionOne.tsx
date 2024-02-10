@@ -20,14 +20,16 @@ const SectionOne = () => {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1, transition: { ease: "easeIn", duration: 1.5 } }}
+          className="absolute bottom-[-76px] left-[-290px] drop-shadow-image z-10 max-h-[816px] h-full w-full"
         >
-          <Image
+          <Image src={paperCutImg} alt="paper cut" layout="fill" objectFit="contain" priority />
+          {/* <Image
             src={paperCutImg}
             alt="paper cut"
             height={816}
             priority
             className="absolute bottom-[-76px] left-[-230px] drop-shadow-image z-10"
-          />
+          /> */}
         </motion.div>
         <div className="absolute top-[117px] right-[93px] w-[564px] text-black">
           <AnimatedLetters
