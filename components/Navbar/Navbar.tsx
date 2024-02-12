@@ -6,8 +6,10 @@ import home from "@/assets/icons/home.json";
 import article from "@/assets/icons/article.json";
 import cellPhone from "@/assets/icons/call-phone.json";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
+import logo from "@/assets/logo2.png";
 
 const AnimatedIcon = dynamic(() => import("@/components/AnimatedIcon/AnimatedIcon"), {
   ssr: false,
@@ -43,8 +45,10 @@ const Navbar = () => {
             duration: 1,
           },
         }}
-        className="w-[68px] h-[68px] bg-black rounded-full"
-      />
+        className="w-[68px] h-[68px] bg-white rounded-full shadow-md flex justify-center items-center pb-2"
+      >
+        <Image alt="logo" src={logo} width={50} height={50} />
+      </motion.div>
       <div className="text-black gap-10 hidden lg:flex">
         {nav.map((item) => (
           <Link
