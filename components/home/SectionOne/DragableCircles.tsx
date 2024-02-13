@@ -97,7 +97,7 @@ function Circles() {
         animate={{ "--base-hue": 360 } as any}
         initial={{ "--base-hue": 0 } as any}
         transition={{ duration: 10, loop: Infinity, ease: "linear" }}
-        style={{ position: "absolute", bottom: 50, right: 100, zIndex: 10 }}
+        style={{ position: "absolute", bottom: 270, right: 250, zIndex: 10 }}
       >
         <motion.div
           style={{
@@ -107,7 +107,7 @@ function Circles() {
             top: "50%",
             left: "50%",
             transform: "translate(-50%, -50%)",
-            position: "relative",
+            position: "absolute",
             perspective: 500,
           }}
           variants={variants}
