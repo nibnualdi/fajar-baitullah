@@ -16,35 +16,39 @@ const Footer = () => {
   return (
     <footer className="text-[20px] lg:text-left text-center">
       <div
-        className={`min-h-[302px] w-full bg-black flex flex-col lg:flex-row items-center justify-center lg:gap-56 gap-12 lg:pt-0 py-12 ${openSans300.className}`}
+        className={`min-h-[302px] w-full bg-black flex flex-col lg:flex-row items-center justify-evenly lg:gap-0 gap-7 lg:py-0 py-12 ${openSans300.className}`}
       >
-        <Image src={logo} alt="logo" width={154} />
-        <div className="flex flex-col gap-3">
-          <h3 className={openSans700.className}>KONTAK</h3>
-          <AnimatedIcon
-            icon={cellphone}
-            className="flex items-center lg:justify-normal justify-center gap-[7px]"
-          >
-            <p>+62 8123456789</p>
-          </AnimatedIcon>
-          <AnimatedIcon
-            icon={email}
-            className="flex items-center lg:justify-normal justify-center gap-[7px]"
-          >
-            <p>fajarbaitullah@gmail.com</p>
-          </AnimatedIcon>
+        <div className="xl:max-w-[500px] max-w-[200px] w-full flex justify-center">
+          <Image src={logo} alt="logo" width={154} />
         </div>
-        <div className="max-w-[302px] flex flex-col gap-3">
-          <AnimatedIcon
-            icon={location}
-            className="flex items-center lg:justify-normal justify-center gap-[7px]"
-          >
-            <h3 className={openSans700.className}>ALAMAT</h3>
-          </AnimatedIcon>
-          <p>
-            Jl. Perum Lipi No.B7, RW.8, Rw. Panjang, Kecamatan Bojonggede, Kabupaten Bogor, Jawa
-            Barat 16920
-          </p>
+        <div className="flex flex-col md:flex-row gap-12">
+          <div className="flex flex-col gap-3">
+            <h3 className={openSans700.className}>KONTAK</h3>
+            <AnimatedIcon
+              icon={cellphone}
+              className="flex items-center lg:justify-normal justify-center gap-[7px]"
+            >
+              <p>+62 8123456789</p>
+            </AnimatedIcon>
+            <AnimatedIcon
+              icon={email}
+              className="flex items-center lg:justify-normal justify-center gap-[7px]"
+            >
+              <p>fajarbaitullah@gmail.com</p>
+            </AnimatedIcon>
+          </div>
+          <div className="max-w-[302px] flex flex-col gap-3">
+            <AnimatedIcon
+              icon={location}
+              className="flex items-center lg:justify-normal justify-center gap-[7px]"
+            >
+              <h3 className={openSans700.className}>ALAMAT</h3>
+            </AnimatedIcon>
+            <p>
+              Jl. Perum Lipi No.B7, RW.8, Rw. Panjang, Kecamatan Bojonggede, Kabupaten Bogor, Jawa
+              Barat 16920
+            </p>
+          </div>
         </div>
         <a
           href="https://lordicon.com/"
