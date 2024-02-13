@@ -94,7 +94,7 @@ const Swiper = (props: SwiperProps) => {
             }
           }}
         >
-          <div className={`absolute z-20 ${props.overlayClassName}`}>
+          <div className={`absolute z-20 w-full h-full ${props.overlayClassName}`}>
             <Link href={`activity/detail/${articles[contentIndex].id}`}>
               <motion.h1
                 className={props.h1ClassName}
@@ -120,8 +120,10 @@ const Swiper = (props: SwiperProps) => {
           </div>
           <Image
             draggable={false}
-            width={1056}
-            height={487}
+            // width={1056}
+            // height={487}
+            layout="fill"
+            objectFit="cover"
             src={articles[contentIndex].image}
             loader={({ src, width, quality }) => `${src}?w=${width}&q=${quality || 75}`}
             alt={articles[contentIndex].image}
