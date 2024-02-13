@@ -1,6 +1,7 @@
 "use client";
 
-import Image from "next/image";
+// import Image from "next/image";
+import Image from "next/legacy/image";
 
 import Circles from "./DragableCircles";
 import paperCutImg from "@/assets/paper cut mosque.svg";
