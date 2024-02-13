@@ -21,7 +21,7 @@ const SectionOne = () => {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1, transition: { ease: "easeIn", duration: 1.5 } }}
-          className="absolute bottom-[-76px] left-[-290px] drop-shadow-image z-10 max-h-[816px] h-full w-full"
+          className="absolute md:bottom-[-76px] lg:left-[-290px] md:left-[-190px] bottom-[-130px] left-[-30px] drop-shadow-image z-10 max-h-[816px] h-full w-full"
         >
           <Image src={paperCutImg} alt="paper cut" layout="fill" objectFit="contain" priority />
           {/* <Image
@@ -32,16 +32,16 @@ const SectionOne = () => {
             className="absolute bottom-[-76px] left-[-230px] drop-shadow-image z-10"
           /> */}
         </motion.div>
-        <div className="absolute top-[117px] right-[93px] w-[564px] text-black">
+        <div className="absolute lg:top-[117px] top-[170px] lg:right-[93px] lg:m-0 m-auto lg:left-auto left-0 right-0 md:w-[564px] w-fit text-black">
           <AnimatedLetters
             letters="FAJAR BAITULLAH"
             breakEachSpace
-            className={`${permanentMarker400.className} text-[96px] leading-[110px] drop-shadow-header`}
+            className={`${permanentMarker400.className} lg:text-[96px] md:text-[80px] text-[48px] lg:leading-[110px] md:leading-[74px] leading-[42px] drop-shadow-header`}
           />
           <motion.p
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1, transition: { duration: 1 } }}
-            className="text-[20px]"
+            className="md:text-[20px] text-[16px] md:w-full w-[274px]"
           >
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil, iste!
           </motion.p>
