@@ -15,7 +15,7 @@ export default function Activity() {
         />
       </div>
 
-      <div className="w-[1278px] m-auto flex flex-wrap gap-[37px]">
+      <div className="max-w-[1278px] w-full m-auto flex flex-wrap justify-center gap-[37px] md:px-0 px-4">
         {articles.map((item) => (
           <Card item={item} key={item.id} />
         ))}
