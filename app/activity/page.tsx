@@ -6,7 +6,7 @@ import { articles } from "@/constans/dummyData";
 export default function Activity() {
   return (
     <main className="bg-white py-[141px]">
-      <div className="lg:max-w-[1278px] md:max-w-[600px] max-w-[300px] w-full h-[712px] m-auto mb-[59px]">
+      <div className="relative lg:max-w-[1278px] md:max-w-[600px] max-w-[300px] w-full h-[712px] m-auto mb-[59px]">
         <Swiper
           containerClassName="lg:max-w-[1278px] md:max-w-[600px] max-w-[300px] w-full h-[712px] rounded-[32px]"
           overlayClassName="backdrop-blur-[32.2px] bg-white/10 max-w-[1245px] w-full !h-[300px] rounded-[26px] absolute bottom-[15px] m-auto left-0 right-0 py-[50px] px-[76px] flex flex-col lg:gap-[28px] gap-5"
