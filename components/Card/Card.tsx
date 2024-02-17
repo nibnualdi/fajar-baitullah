@@ -51,7 +51,7 @@ const Card = ({ item, className, ...props }: CardProps) => {
           <h3 className={`mb-[9px] text-[24px] ${openSans700.className} line-clamp-1`}>
             {item.title}
           </h3>
-          <div className="w-[13.96px] h-[30px] -rotate-45 overflow-hidden relative">
+          <div className="max-w-[13.96px] w-full h-[30px] -rotate-45 overflow-hidden relative">
             <AnimatedIcon icon={flatIcon} className="absolute top-[5px] left-[-17px]" />
           </div>
         </div>
