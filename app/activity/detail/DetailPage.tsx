@@ -55,21 +55,21 @@ const DetailPage = ({ params }: { params: { id: string } }) => {
         />
       </motion.div>
       <div className="h-[calc(100%-575px)] flex">
-        <motion.div variants={childVariants} className="relative h-full max-w-[456px] w-full">
-          <div className="sticky top-[150px] left-[206px] z-10 h-[62.5px] w-fit flex items-center bg-white">
+        <motion.div variants={childVariants} className="relative h-full hidden sm:block lg:w-[556px] md:w-[356px] w-[200px]">
+          <div className="sticky top-[150px] lg:left-[206px] md:left-[106px] left-[66px] z-10 h-[62.5px] w-fit flex items-center bg-white">
             <p>{number}%</p>
           </div>
           <motion.div
             style={{ scaleY: scrollYProgress }}
-            className="bg-black h-full w-[1px] absolute top-[0px] left-[217px] origin-top"
+            className="bg-black h-full w-[1px] absolute top-[0px] lg:left-[217px] md:left-[117px] left-[77px] origin-top"
           />
         </motion.div>
-        <div className="max-w-[901px] w-full mt-[10px]">
+        <div className="w-full mt-[10px] pr-9 sm:pl-0 pl-9">
           <AnimatedLetters
             letters={selectedActivity[0].title}
-            className={`${permanentMarker400.className} text-[96px] leading-[100px] mb-[32px]`}
+            className={`${permanentMarker400.className} md:text-[96px] text-[40px] md:leading-[100px] leading-[-1000px] mb-[32px]`}
           />
-          <motion.p variants={childVariants} className={`${openSans400.className} text-[24px] whitespace-pre`}>
+          <motion.p variants={childVariants} className={`${openSans400.className} md:text-[24px] text-[20px] whitespace-pre-wrap`}>
             {selectedActivity[0].desc}
           </motion.p>
         </div>
