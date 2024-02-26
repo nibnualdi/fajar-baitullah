@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
-import { openSans400 } from "@/assets/fonts";
-import "./globals.css";
+import { Footer, Navbar } from "@/components";
 
 export const metadata: Metadata = {
   title: {
@@ -16,8 +15,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="id">
-      <body className={openSans400.className}>{children}</body>
-    </html>
+    <>
+      <Navbar />
+      {children}
+      <Footer />
+    </>
   );
 }
