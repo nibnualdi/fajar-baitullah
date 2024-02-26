@@ -9,6 +9,7 @@ import Footer from "./Footer/Footer";
 import AnimatedLetters from "./AnimatedLetters/AnimatedLetters";
 import Card from "./Card/Card";
 import MenuToggleNav from "./Navbar/MenuToggle";
+import Sidebar from "./Admin/Layout/Sidebar";
 
 export {
   SectionOne,
@@ -22,4 +23,5 @@ export {
   AnimatedLetters,
   Card,
   MenuToggleNav,
+  Sidebar,
 };
