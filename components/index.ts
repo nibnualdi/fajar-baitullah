@@ -10,6 +10,7 @@ import AnimatedLetters from "./AnimatedLetters/AnimatedLetters";
 import Card from "./Card/Card";
 import MenuToggleNav from "./Navbar/MenuToggle";
 import Sidebar from "./Admin/Layout/Sidebar";
+import Overlay from "./Admin/Layout/Overlay";
 
 export {
   SectionOne,
@@ -24,4 +25,5 @@ export {
   Card,
   MenuToggleNav,
   Sidebar,
+  Overlay,
 };

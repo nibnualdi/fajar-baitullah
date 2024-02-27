@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { openSans400 } from "@/assets/fonts";
-import { Sidebar } from "@/components";
+import { Overlay, Sidebar } from "@/components";
 
 export const metadata: Metadata = {
   title: {
@@ -21,6 +21,7 @@ export default function RootLayout({
       className={`${openSans400.className} bg-gray-100 text-black h-screen overflow-hidden relative lg:p-4`}
     >
       <div className="flex items-start">
+        <Overlay />
         <Sidebar mobileOrientation="end" />
         <div
           className={`flex flex-col w-full h-screen pl-0 lg:space-y-4 
