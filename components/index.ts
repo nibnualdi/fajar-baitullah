@@ -11,6 +11,7 @@ import Card from "./Card/Card";
 import MenuToggleNav from "./Navbar/MenuToggle";
 import Sidebar from "./Admin/Layout/Sidebar";
 import Overlay from "./Admin/Layout/Overlay";
+import TopBar from "./Admin/Layout/TopBar";
 
 export {
   SectionOne,
@@ -26,4 +27,5 @@ export {
   MenuToggleNav,
   Sidebar,
   Overlay,
+  TopBar,
 };

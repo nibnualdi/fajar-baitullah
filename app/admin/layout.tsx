@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { openSans400 } from "@/assets/fonts";
-import { Overlay, Sidebar } from "@/components";
+import { Overlay, Sidebar, TopBar } from "@/components";
 
 export const metadata: Metadata = {
   title: {
@@ -27,6 +27,7 @@ export default function RootLayout({
           className={`flex flex-col w-full h-screen pl-0 lg:space-y-4 
              ${sidebarOpen ? "lg:w-full" : "lg:pl-4 lg:lg:w-[calc(100%-16rem)]"}`}
         >
+          <TopBar />
           <main className="h-screen overflow-auto pb-36 pt-8 px-2 md:pb-8 md:pt-4 lg:pt-0">
             {children}
           </main>
