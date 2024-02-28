@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import { openSans400 } from "@/assets/fonts";
-import { Overlay, Sidebar, TopBar } from "@/components";
+import dynamic from "next/dynamic";
+
+const Overlay = dynamic(() => import("@/components/Admin/Layout/Overlay"));
+const Sidebar = dynamic(() => import("@/components/Admin/Layout/Sidebar"));
+const TopBar = dynamic(() => import("@/components/Admin/Layout/TopBar"));
 
 export const metadata: Metadata = {
   title: {
