@@ -17,7 +17,6 @@ export function SidebarItems() {
       {routes.map((item) => (
         <li key={item.title}>
           <Link href={item.link}>
-            {console.log(item.link, pathname) as any}
             <span
               className={`duration-200 flex font-thin items-center justify-start my-2 p-4 transition-colors text-gray-500 uppercase w-full lg:hover:text-blue-500 
               ${
