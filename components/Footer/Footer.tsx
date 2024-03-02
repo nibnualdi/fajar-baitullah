@@ -28,13 +28,13 @@ const Footer = () => {
               icon={cellphone}
               className="flex items-center lg:justify-normal justify-center gap-[7px]"
             >
-              <p>+62 8123456789</p>
+              <p>+62  85219966021</p>
             </AnimatedIcon>
             <AnimatedIcon
               icon={email}
               className="flex items-center lg:justify-normal justify-center gap-[7px]"
             >
-              <p>fajarbaitullah@gmail.com</p>
+              <p>dkmfajarbaitullah.lipi1@gmail.com</p>
             </AnimatedIcon>
           </div>
           <div className="max-w-[302px] flex flex-col gap-3">
