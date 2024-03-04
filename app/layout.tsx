@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { openSans400 } from "@/assets/fonts";
+import StoreProvider from "./StoreProvider";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -17,7 +18,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="id">
-      <body className={openSans400.className}>{children}</body>
+      <body className={openSans400.className}>
+        <StoreProvider>{children}</StoreProvider>
+      </body>
     </html>
   );
 }
