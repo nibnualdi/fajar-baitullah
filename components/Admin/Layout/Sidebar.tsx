@@ -5,6 +5,8 @@ import { routes } from "@/constans/adminSidebar";
 import { usePathname } from "next/navigation";
 import logo from "@/assets/logo2.png";
 import Image from "next/image";
+import { useAppSelector } from "@/lib/hooks";
+import { selectUtil } from "@/lib/features/util/utilSlice";
 
 interface SidebarProps {
   mobileOrientation: "start" | "end";
@@ -35,13 +37,14 @@ export function SidebarItems() {
 }
 
 export default function Sidebar(props: SidebarProps) {
-  const sidebarOpen = false;
+  const util = useAppSelector(selectUtil);
+  
   return (
     <aside
       className={`bg-gray-200 h-screen overflow-y-auto top-0 lg:relative 
         ${props.mobileOrientation === "start" ? "left-0" : "right-0"} 
         ${
-          sidebarOpen
+          util.sidebarOpen
             ? "w-8/12 absolute z-40 sm:w-5/12 lg:hidden"
             : "hidden lg:block lg:w-64 lg:z-auto"
         }`}
