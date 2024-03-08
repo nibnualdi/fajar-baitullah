@@ -36,13 +36,15 @@ const AnimatedLetters = ({ letters, breakEachSpace, ...props }: AnimatedLettersP
       initial="initial"
       animate="animate"
     >
+      {/* '/' is used for a custom new line */}
+      {/* 'breakEachSpace' is also used for a custom new line for every space */}
       {letters.split("").map((letter, index) => {
-        if (letter !== " ") {
+        if (letter !== " " && letter !== "/") {
           return (
             <motion.span
               className="inline-block"
               variants={letterAnimation}
-              whileHover={{ scale: 0.5 }}
+              // whileHover={{ scale: 0.5 }}
               key={letter + index}
             >
               {letter}
@@ -51,12 +53,12 @@ const AnimatedLetters = ({ letters, breakEachSpace, ...props }: AnimatedLettersP
         } else {
           return (
             <motion.span
-              className={breakEachSpace ? "block" : "inline-block"}
+              className={breakEachSpace || letter === "/" ? "block" : "inline-block"}
               variants={letterAnimation}
-              whileHover={{ scale: 0.5 }}
+              // whileHover={{ scale: 0.5 }}
               key={letter + index}
             >
-              {breakEachSpace ? <p></p> : <p>&nbsp;</p>}
+              {breakEachSpace || letter === "/" ? <p></p> : <p>&nbsp;</p>}
             </motion.span>
           );
         }

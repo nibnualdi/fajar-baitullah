@@ -1,6 +1,6 @@
 "use client";
 
-import { openSans400, permanentMarker400 } from "@/assets/fonts";
+import { openSans400, philosopher700 } from "@/assets/fonts";
 import { articles } from "@/constans/dummyData";
 import { Variants, motion, useScroll, useTransform } from "framer-motion";
 import dynamic from "next/dynamic";
@@ -67,7 +67,7 @@ const DetailPage = ({ params }: { params: { id: string } }) => {
         <div className="w-full mt-[10px] pr-9 sm:pl-0 pl-9">
           <AnimatedLetters
             letters={selectedActivity[0].title}
-            className={`${permanentMarker400.className} md:text-[96px] text-[40px] md:leading-[100px] leading-[-1000px] mb-[32px]`}
+            className={`${philosopher700.className} md:text-[96px] text-[40px] md:leading-[100px] leading-[-1000px] mb-[32px]`}
           />
           <motion.p variants={childVariants} className={`${openSans400.className} md:text-[24px] text-[20px] whitespace-pre-wrap`}>
             {selectedActivity[0].desc}

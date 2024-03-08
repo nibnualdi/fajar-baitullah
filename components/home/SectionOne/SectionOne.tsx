@@ -5,7 +5,7 @@ import Image from "next/legacy/image";
 
 import Circles from "./DragableCircles";
 import paperCutImg from "@/assets/paper cut mosque.svg";
-import { permanentMarker400 } from "@/assets/fonts";
+import { philosopher700 } from "@/assets/fonts";
 import { motion } from "framer-motion";
 import dynamic from "next/dynamic";
 
@@ -32,11 +32,11 @@ const SectionOne = () => {
             className="absolute bottom-[-76px] left-[-230px] drop-shadow-image z-10"
           /> */}
         </motion.div>
-        <div className="absolute lg:top-[117px] top-[170px] lg:right-[93px] lg:m-0 m-auto lg:left-auto left-0 right-0 md:w-[564px] w-fit text-black">
+        <div className="absolute lg:top-[117px] top-[170px] lg:right-[93px] lg:m-0 m-auto lg:left-auto left-0 right-0 md:w-[613px] w-fit text-black">
           <AnimatedLetters
-            letters="FAJAR BAITULLAH"
-            breakEachSpace
-            className={`${permanentMarker400.className} lg:text-[96px] md:text-[80px] text-[48px] lg:leading-[110px] md:leading-[74px] leading-[42px] drop-shadow-header`}
+            letters="Masjid Jami' /Fajar Baitullah"
+            // breakEachSpace
+            className={`${philosopher700.className} lg:text-[96px] md:text-[80px] text-[48px] lg:leading-[110px] md:leading-[74px] leading-[42px] drop-shadow-header`}
           />
           <motion.p
             initial={{ y: 20, opacity: 0 }}
