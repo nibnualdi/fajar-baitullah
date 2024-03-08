@@ -14,6 +14,7 @@ import Overlay from "./Admin/Layout/Overlay";
 import TopBar from "./Admin/Layout/TopBar";
 import UserCardsContainer from "./Admin/Cards/UserCardsContainer";
 import UserCard from "./Admin/Cards/UserCard";
+import Breadcrumb from "./Breadcrumb/Breadcrumb";
 
 export {
   SectionOne,
@@ -32,4 +33,5 @@ export {
   TopBar,
   UserCardsContainer,
   UserCard,
+  Breadcrumb,
 };
