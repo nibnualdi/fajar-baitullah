@@ -15,6 +15,8 @@ import TopBar from "./Admin/Layout/TopBar";
 import UserCardsContainer from "./Admin/Cards/UserCardsContainer";
 import UserCard from "./Admin/Cards/UserCard";
 import Breadcrumb from "./Breadcrumb/Breadcrumb";
+import Mosque from "./Mosque/Mosque";
+import Scene from "./Scene/Scene";
 
 export {
   SectionOne,
@@ -34,4 +36,6 @@ export {
   UserCardsContainer,
   UserCard,
   Breadcrumb,
+  Mosque,
+  Scene,
 };

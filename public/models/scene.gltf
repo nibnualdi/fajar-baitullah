@@ -1,0 +1,231 @@
+{
+    "asset" : {
+        "generator" : "Khronos glTF Blender I/O v1.6.16",
+        "version" : "2.0"
+    },
+    "scene" : 0,
+    "scenes" : [
+        {
+            "name" : "Scene",
+            "nodes" : [
+                3,
+                4
+            ]
+        }
+    ],
+    "nodes" : [
+        {
+            "mesh" : 0,
+            "name" : "defaultMaterial",
+            "scale" : [
+                0.050000011920928955,
+                0.050000011920928955,
+                0.050000011920928955
+            ]
+        },
+        {
+            "children" : [
+                0
+            ],
+            "name" : "polySurface547"
+        },
+        {
+            "children" : [
+                1
+            ],
+            "name" : "Collada visual scene group",
+            "rotation" : [
+                0.7071068286895752,
+                0,
+                0,
+                0.7071068286895752
+            ]
+        },
+        {
+            "children" : [
+                2
+            ],
+            "name" : "Sketchfab_model",
+            "rotation" : [
+                -0.7071068286895752,
+                0,
+                0,
+                0.7071068286895752
+            ]
+        },
+        {
+            "name" : "Camera",
+            "rotation" : [
+                0.5328956842422485,
+                0.0673176497220993,
+                -0.05054905638098717,
+                0.8419829607009888
+            ],
+            "scale" : [
+                1.059999942779541,
+                1,
+                1
+            ],
+            "translation" : [
+                4.480163097381592,
+                24.125247955322266,
+                36.33366012573242
+            ]
+        }
+    ],
+    "materials" : [
+        {
+            "alphaMode" : "BLEND",
+            "doubleSided" : true,
+            "emissiveFactor" : [
+                1,
+                1,
+                1
+            ],
+            "emissiveTexture" : {
+                "index" : 0
+            },
+            "name" : "lambert2",
+            "normalTexture" : {
+                "index" : 1
+            },
+            "occlusionTexture" : {
+                "index" : 2
+            },
+            "pbrMetallicRoughness" : {
+                "baseColorTexture" : {
+                    "index" : 3
+                },
+                "metallicRoughnessTexture" : {
+                    "index" : 2
+                }
+            }
+        }
+    ],
+    "meshes" : [
+        {
+            "name" : "defaultMaterial",
+            "primitives" : [
+                {
+                    "attributes" : {
+                        "POSITION" : 0,
+                        "NORMAL" : 1,
+                        "TEXCOORD_0" : 2
+                    },
+                    "indices" : 3,
+                    "material" : 0
+                }
+            ]
+        }
+    ],
+    "textures" : [
+        {
+            "sampler" : 0,
+            "source" : 0
+        },
+        {
+            "sampler" : 0,
+            "source" : 1
+        },
+        {
+            "sampler" : 0,
+            "source" : 2
+        },
+        {
+            "sampler" : 0,
+            "source" : 3
+        }
+    ],
+    "images" : [
+        {
+            "mimeType" : "image/jpeg",
+            "name" : "lambert2_emissive",
+            "uri" : "lambert2_emissive.jpg"
+        },
+        {
+            "mimeType" : "image/png",
+            "name" : "lambert2_normal",
+            "uri" : "lambert2_normal.png"
+        },
+        {
+            "mimeType" : "image/png",
+            "name" : "lambert2_metallicRoughness",
+            "uri" : "lambert2_metallicRoughness.png"
+        },
+        {
+            "mimeType" : "image/png",
+            "name" : "lambert2_baseColor",
+            "uri" : "lambert2_baseColor.png"
+        }
+    ],
+    "accessors" : [
+        {
+            "bufferView" : 0,
+            "componentType" : 5126,
+            "count" : 78340,
+            "max" : [
+                179.83860778808594,
+                310.6307373046875,
+                109.97112274169922
+            ],
+            "min" : [
+                -144.9403076171875,
+                -8.328689575195312,
+                -110.21273040771484
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 1,
+            "componentType" : 5126,
+            "count" : 78340,
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 2,
+            "componentType" : 5126,
+            "count" : 78340,
+            "type" : "VEC2"
+        },
+        {
+            "bufferView" : 3,
+            "componentType" : 5125,
+            "count" : 105588,
+            "type" : "SCALAR"
+        }
+    ],
+    "bufferViews" : [
+        {
+            "buffer" : 0,
+            "byteLength" : 940080,
+            "byteOffset" : 0
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 940080,
+            "byteOffset" : 940080
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 626720,
+            "byteOffset" : 1880160
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 422352,
+            "byteOffset" : 2506880
+        }
+    ],
+    "samplers" : [
+        {
+            "magFilter" : 9729,
+            "minFilter" : 9987
+        }
+    ],
+    "buffers" : [
+        {
+            "byteLength" : 2929232,
+            "uri" : "scene.bin"
+        }
+    ]
+}
