@@ -28,7 +28,8 @@ type navType = {
 const nav: navType[] = [
   { name: "home", icon: home, to: "/" },
   { name: "activity", icon: article, to: "/activity" },
-  { name: "contact", icon: cellPhone, to: "/contact" },
+  { name: "about", to: "/about" },
+  // { name: "contact", icon: cellPhone, to: "/contact" },
 ];
 
 const Navbar = () => {
@@ -56,12 +57,16 @@ const Navbar = () => {
             key={item.name}
             className={`my-auto drop-shadow opacity-50 ${pathname === item.to && "!opacity-100"}`}
           >
-            <AnimatedIcon
-              icon={item.icon}
-              className="flex items-center gap-1 font-semibold capitalize cursor-pointer"
-            >
-              <p className="hover:scale-95 duration-75">{item.name}</p>
-            </AnimatedIcon>
+            {item.icon ? (
+              <AnimatedIcon
+                icon={item.icon}
+                className="flex items-center gap-1 font-semibold capitalize cursor-pointer"
+              >
+                <p className="hover:scale-95 duration-75">{item.name}</p>
+              </AnimatedIcon>
+            ) : (
+              <p className="hover:scale-95 duration-75 font-semibold capitalize cursor-pointer">{item.name}</p>
+            )}
           </Link>
         ))}
       </div>
