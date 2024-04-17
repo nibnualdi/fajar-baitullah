@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   description: "Admin page for Fajar Baitull",
 };
 
-export default function RootLayout({
+export default function AdminLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;

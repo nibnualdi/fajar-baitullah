@@ -17,6 +17,7 @@ import UserCard from "./Admin/Cards/UserCard";
 import Breadcrumb from "./Breadcrumb/Breadcrumb";
 import Mosque from "./Mosque/Mosque";
 import Scene from "./Scene/Scene";
+import OverlayAbout from "./OverlayAbout/OverlayAbout";
 
 export {
   SectionOne,
@@ -38,4 +39,5 @@ export {
   Breadcrumb,
   Mosque,
   Scene,
+  OverlayAbout,
 };
