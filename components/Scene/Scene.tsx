@@ -24,7 +24,7 @@ export default function Scene({ content }: { content?: { title: string; desc: st
       <OrbitControls enableZoom={false} enablePan={false} enableRotate={atBuildPage} />
         <CameraRig active={!atBuildPage}>
           <ScrollControls pages={content?.length ? content.length + 1 : 1} damping={0.1}>
-            {content && <OverlayAbout content={content} />}
+            {content && <OverlayAbout content={content} setAtBuildPage={setAtBuildPage} />}
             <Mosque atBuildPage={atBuildPage} setAtBuildPage={setAtBuildPage} />
           </ScrollControls>
         </CameraRig>
