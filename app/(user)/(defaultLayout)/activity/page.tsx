@@ -2,6 +2,11 @@ import { openSans700, openSans400 } from "@/assets/fonts";
 import { Card, Swiper } from "@/components";
 
 import { articles } from "@/constans/dummyData";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Artikel",
+};
 
 export default function Activity() {
   return (
