@@ -11,11 +11,11 @@ export const metadata: Metadata = {
 export default function Activity() {
   return (
     <main className="bg-white py-[141px]">
-      <div className="relative lg:max-w-[1278px] md:max-w-[600px] max-w-[300px] w-full h-[712px] m-auto mb-[59px]">
+      <div className="relative mid-xl:max-w-[1278px] mid-lg:max-w-[840px] max-w-[401px] w-full h-[712px] m-auto mb-[59px]">
         <Swiper
-          containerClassName="lg:max-w-[1278px] md:max-w-[600px] max-w-[300px] w-full h-[712px] rounded-[32px]"
+          containerClassName="mid-xl:max-w-[1278px] mid-lg:max-w-[840px] max-w-[401px] w-full h-[712px] rounded-[32px]"
           overlayClassName="backdrop-blur-[32.2px] bg-white/10 max-w-[1245px] w-full !h-[300px] rounded-[26px] absolute bottom-[15px] m-auto left-0 right-0 py-[50px] px-[76px] flex flex-col lg:gap-[28px] gap-5"
-          h1ClassName={`${openSans700.className} md:text-[48px] text-[20px] max-w-[1106px] lg:leading-0 md:leading-10 leading-0 md:line-clamp-none line-clamp-3`}
+          h1ClassName={`${openSans700.className} mid-lg:text-[48px] text-[20px] max-w-[1106px] lg:leading-0 mid-lg:leading-10 leading-0 mid-lg:line-clamp-none line-clamp-3`}
           pClassName={`${openSans400.className} text-[20px] max-w-[1106px] line-clamp-3`}
         />
       </div>
