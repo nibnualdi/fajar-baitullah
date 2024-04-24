@@ -9,8 +9,8 @@ const UserCard = () => {
             <a href="#" className="relative block">
               <img
                 alt="profil"
-                src="https://res.cloudinary.com/beloved/image/upload/v1623196231/Assets/person/8_yfarwk.jpg"
-                className="mx-auto h-10 w-10 rounded-full object-cover "
+                src="https://i1.wp.com/hechingerreport.org/wp-content/uploads/2018/04/Jennifer-Heller-Buckley-PHOTO1.jpg?ssl=1"
+                className="mx-auto h-10 w-10 rounded-full object-cover"
               />
             </a>
           </div>
