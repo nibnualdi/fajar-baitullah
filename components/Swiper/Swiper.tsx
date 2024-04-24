@@ -7,7 +7,7 @@ import dynamic from "next/dynamic";
 
 import arrow from "@/assets/icons/arrow.json";
 import Image from "next/legacy/image";
-import { articles } from "@/constans/dummyData";
+// import { articles } from "@/constans/dummyData";
 import Link from "next/link";
 
 const AnimatedIcon = dynamic(() => import("@/components/AnimatedIcon/AnimatedIcon"), {
@@ -15,6 +15,7 @@ const AnimatedIcon = dynamic(() => import("@/components/AnimatedIcon/AnimatedIco
 });
 
 type SwiperProps = React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement> & {
+  articles: any;
   containerClassName: string;
   overlayClassName: string;
   h1ClassName: string;
@@ -60,7 +61,7 @@ const Swiper = (props: SwiperProps) => {
   // then wrap that within 0-2 to find our image ID in the array below. By passing an
   // absolute page index as the `motion` component's `key` prop, `AnimatePresence` will
   // detect it as an entirely new image. So you can infinitely paginate as few as 1 images.
-  const contentIndex = wrap(0, articles.length, page);
+  const contentIndex = wrap(0, props.articles.length, page);
 
   const paginate = (newDirection: number) => {
     setPage([page + newDirection, newDirection]);
@@ -95,7 +96,7 @@ const Swiper = (props: SwiperProps) => {
           }}
         >
           <div className={`absolute z-20 w-full h-full ${props.overlayClassName}`}>
-            <Link href={`activity/detail/${articles[contentIndex].id}`}>
+            <Link href={`activity/detail/${props.articles[contentIndex].Id}`}>
               <motion.h1
                 className={props.h1ClassName}
                 initial={{ y: 100, opacity: 0 }}
@@ -103,10 +104,10 @@ const Swiper = (props: SwiperProps) => {
                 transition={{ duration: 1.5, type: "spring" }}
                 key={`h1 ${page}`}
               >
-                {articles[contentIndex].title}
+                {props.articles[contentIndex].Title}
               </motion.h1>
             </Link>
-            <Link href={`activity/detail/${articles[contentIndex].id}`}>
+            <Link href={`activity/detail/${props.articles[contentIndex].Id}`}>
               <motion.p
                 className={props.pClassName}
                 initial={{ y: 100, opacity: 0 }}
@@ -114,7 +115,7 @@ const Swiper = (props: SwiperProps) => {
                 transition={{ duration: 1.5, type: "spring" }}
                 key={`p ${page}`}
               >
-                {articles[contentIndex].desc}
+                {props.articles[contentIndex].Content}
               </motion.p>
             </Link>
           </div>
@@ -124,9 +125,9 @@ const Swiper = (props: SwiperProps) => {
             // height={487}
             layout="fill"
             objectFit="cover"
-            src={articles[contentIndex].image}
+            src="https://qplubbchutomkyebvvxj.supabase.co/storage/v1//object/public/ArticleImage/PXL_20240207_183610713.jpg"
             loader={({ src, width, quality }) => `${src}?w=${width}&q=${quality || 75}`}
-            alt={articles[contentIndex].image}
+            alt="https://qplubbchutomkyebvvxj.supabase.co/storage/v1//object/public/ArticleImage/PXL_20240207_183610713.jpg"
             className="absolute top-0 left-0 w-full h-full"
           />
         </motion.div>
