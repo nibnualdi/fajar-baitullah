@@ -34,10 +34,6 @@ const Auth = ({ inputs, handleSubmit }: AuthProps) => {
     setErrMessageInputs(arrInputs);
   }, []);
 
-  useEffect(() => {
-    console.log("ErrMessageInputs", ErrMessageInputs);
-  }, [ErrMessageInputs]);
-
   const createHandleChange = (data: formInput) => {
     const handleChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
       e.preventDefault();
@@ -47,7 +43,7 @@ const Auth = ({ inputs, handleSubmit }: AuthProps) => {
       if (data.pattern && inputState[data.name]?.length) {
         const regex = new RegExp(data.pattern, "g");
         const res = regex.test(e.target.value);
-        console.log(e.target.value, res);
+
         if (!res) {
           setErrMessageInputs((val) => ({
             ...val,
