@@ -13,12 +13,12 @@ export type formInput = {
 
 export type formInputs = formInput[];
 
+export type InputState = { [x: string]: string };
+
 type AuthProps = {
   inputs: formInputs;
-  handleSubmit: React.FormEventHandler<HTMLFormElement>;
+  handleSubmit: (inputState: InputState, event: React.FormEvent<HTMLFormElement>) => void;
 };
-
-type InputState = { [x: string]: string };
 
 const Auth = ({ inputs, handleSubmit }: AuthProps) => {
   const [inputState, setInputState] = useState<InputState>({});
@@ -63,6 +63,11 @@ const Auth = ({ inputs, handleSubmit }: AuthProps) => {
     return handleChange;
   };
 
+  const createHandleSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
+    e.preventDefault();
+    handleSubmit(inputState, e);
+  };
+
   return (
     <div>
       <div className="bg-white text-dark-green">
@@ -72,7 +77,7 @@ const Auth = ({ inputs, handleSubmit }: AuthProps) => {
               <p className="text-xl font-semibold">{inputs.length > 2 ? "Signup" : "Login"}</p>
             </div>
 
-            <form className="w-full group" onSubmit={handleSubmit} noValidate>
+            <form className="w-full group" onSubmit={createHandleSubmit} noValidate>
               <div className="mb-10 space-y-3">
                 <div className="space-y-1">
                   {inputs.map((e) => (

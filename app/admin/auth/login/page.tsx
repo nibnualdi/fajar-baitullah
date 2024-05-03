@@ -1,6 +1,7 @@
 "use client";
 
-import { formInputs } from "@/components/Auth/Auth";
+import { InputState, formInputs } from "@/components/Auth/Auth";
+import { FetchAPI } from "@/lib/api";
 import dynamic from "next/dynamic";
 import React from "react";
 
@@ -22,15 +23,19 @@ const Login = () => {
       type: "password",
       placeholder: "********",
       require: true,
-      pattern: ".{8,}",
+      pattern: ".{6,}",
       customErrMessage: "Please input Password at least 8 character",
     },
   ];
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (inputState: InputState, e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    console.log("login");
+    await FetchAPI({
+      endpoint: "/api/user/login",
+      method: "POST",
+      body: JSON.stringify(inputState),
+    });
   };
   return <Auth inputs={inputs} handleSubmit={handleSubmit} />;
 };
