@@ -20,6 +20,7 @@ import Scene from "./Scene/Scene";
 import OverlayAbout from "./OverlayAbout/OverlayAbout";
 import ArticleCard from "./Admin/Cards/ArticleCard";
 import ArticleCardSContainer from "./Admin/Cards/ArticleCardSContainer";
+import Auth from "./Auth/Auth";
 
 export {
   SectionOne,
@@ -44,4 +45,5 @@ export {
   OverlayAbout,
   ArticleCard,
   ArticleCardSContainer,
+  Auth,
 };
