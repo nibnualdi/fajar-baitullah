@@ -1,11 +1,11 @@
 "use client";
 
-import { InputState, formInputs } from "@/components/Auth/Auth";
+import { InputState, formInputs } from "@/components/Form/Form";
 import { FetchAPI } from "@/lib/api";
 import dynamic from "next/dynamic";
 import React from "react";
 
-const Auth = dynamic(() => import("@/components/Auth/Auth"), {
+const Form = dynamic(() => import("@/components/Form/Form"), {
   ssr: false,
 });
 
@@ -37,7 +37,7 @@ const Login = () => {
       body: JSON.stringify(inputState),
     });
   };
-  return <Auth inputs={inputs} handleSubmit={handleSubmit} />;
+  return <Form inputs={inputs} handleSubmit={handleSubmit} />;
 };
 
 export default Login;

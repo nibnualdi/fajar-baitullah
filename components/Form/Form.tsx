@@ -15,12 +15,12 @@ export type formInputs = formInput[];
 
 export type InputState = { [x: string]: string };
 
-type AuthProps = {
+type FormProps = {
   inputs: formInputs;
   handleSubmit: (inputState: InputState, event: React.FormEvent<HTMLFormElement>) => void;
 };
 
-const Auth = ({ inputs, handleSubmit }: AuthProps) => {
+const Form = ({ inputs, handleSubmit }: FormProps) => {
   const [inputState, setInputState] = useState<InputState>({});
   const [ErrMessageInputs, setErrMessageInputs] = useState<InputState>({});
 
@@ -145,4 +145,4 @@ const Auth = ({ inputs, handleSubmit }: AuthProps) => {
   );
 };
 
-export default Auth;
+export default Form;
