@@ -37,7 +37,17 @@ const Login = () => {
       body: JSON.stringify(inputState),
     });
   };
-  return <Form inputs={inputs} handleSubmit={handleSubmit} />;
+  return (
+    <div className="bg-white text-dark-green flex h-screen flex-col items-center justify-center">
+      <Form
+        inputs={inputs}
+        handleSubmit={handleSubmit}
+        buttonName="Login"
+        title="Login"
+        className="max-h-auto mx-auto w-full max-w-md bg-white p-4 rounded-lg shadow-xl"
+      />
+    </div>
+  );
 };
 
 export default Login;
