@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 
 export type formInput = {
   name: string;
-  type?: React.HTMLInputTypeAttribute | undefined;
+  type?: (React.HTMLInputTypeAttribute | "textarea") | undefined;
   placeholder: string;
   require?: boolean;
   pattern?: string;
@@ -14,7 +14,7 @@ export type formInput = {
 
 export type formInputs = formInput[];
 
-export type InputState = { [x: string]: string };
+export type InputState = { [x: string]: string | File };
 
 type FormProps = {
   title?: string;
@@ -48,12 +48,19 @@ const Form = ({
   }, []);
 
   const createHandleChange = (data: formInput) => {
-    const handleChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
       e.preventDefault();
 
-      setInputState((input) => ({ ...input, [e.target.name]: e.target.value }));
+      if (data.type === "file") {
+        const targetInput = e.target as HTMLInputElement;
+        const file = (targetInput.files as FileList)[0];
 
-      if (data.pattern && inputState[data.name]?.length) {
+        setInputState((input) => ({ ...input, [e.target.name]: file }));
+      } else {
+        setInputState((input) => ({ ...input, [e.target.name]: e.target.value }));
+      }
+
+      if (data.pattern && (inputState[data.name] as string)?.length) {
         const regex = new RegExp(data.pattern, "g");
         const res = regex.test(e.target.value);
 
@@ -86,6 +93,40 @@ const Form = ({
     router.back();
   };
 
+  const handleInputTypes = (e: formInput) => {
+    if (e.type === "textarea") {
+      return (
+        <textarea
+          className={`border-input bg-background placeholder:text-muted-foreground focus-visible:ring-ring flex w-full rounded-md border px-3 py-2 text-sm file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 ${
+            e.require && "invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500 peer"
+          } ${(ErrMessageInputs[e.name] as string)?.length && "border-red-500"}`}
+          placeholder={e.placeholder}
+          rows={8}
+          id={e.name}
+          name={e.name}
+          required={e.require}
+          onChange={createHandleChange(e)}
+        ></textarea>
+      );
+    }
+    return (
+      <input
+        className={`border-input bg-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-10 w-full rounded-md border px-3 py-2 text-sm file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 ${
+          e.require && "invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500 peer"
+        } ${(ErrMessageInputs[e.name] as string)?.length && "border-red-500"}`}
+        type={e.type}
+        id={e.name}
+        placeholder={e.placeholder}
+        name={e.name}
+        autoComplete="on"
+        required={e.require}
+        formNoValidate
+        pattern={e.pattern}
+        onChange={createHandleChange(e)}
+      />
+    );
+  };
+
   return (
     <div {...props}>
       <div className="mb-8 space-y-3">
@@ -103,21 +144,7 @@ const Form = ({
                 >
                   {e.name}
                 </label>
-                <input
-                  className={`border-input bg-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-10 w-full rounded-md border px-3 py-2 text-sm file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 ${
-                    e.require &&
-                    "invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500 peer"
-                  } ${ErrMessageInputs[e.name]?.length && "border-red-500"}`}
-                  type={e.type}
-                  id={e.name}
-                  placeholder={e.placeholder}
-                  name={e.name}
-                  autoComplete="on"
-                  required={e.require}
-                  formNoValidate
-                  pattern={e.pattern}
-                  onChange={createHandleChange(e)}
-                />
+                {handleInputTypes(e)}
                 {e.require && (
                   <p
                     className={`peer-[&:not(:placeholder-shown):not(:focus):invalid]:block mt-2 text-sm hidden text-red-500`}
