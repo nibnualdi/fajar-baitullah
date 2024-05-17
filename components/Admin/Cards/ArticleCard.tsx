@@ -12,7 +12,7 @@ type PropsArticleCard = {
 
 const ArticleCard = ({ id, image, category, desc, title }: PropsArticleCard) => {
   return (
-    <div className="relative flex flex-col bg-clip-border rounded-xl bg-transparent text-gray-700 shadow-none">
+    <div className="relative flex flex-col bg-clip-border rounded-xl bg-transparent text-gray-700 shadow p-5 mb-5">
       <div className="relative bg-clip-border rounded-xl overflow-hidden bg-gray-900 text-white shadow-gray-900/20 shadow-lg mx-0 mt-0 mb-4 h-64 xl:h-40">
         <img src={image} alt="Scandinavian" className="h-full w-full object-cover" />
       </div>
@@ -20,10 +20,10 @@ const ArticleCard = ({ id, image, category, desc, title }: PropsArticleCard) => 
         <p className="block antialiased font-sans text-sm leading-normal font-normal text-blue-gray-500">
           {category}
         </p>
-        <h5 className="block antialiased tracking-normal font-sans text-xl font-semibold leading-snug text-blue-gray-900 mt-1 mb-2">
+        <h5 className="antialiased tracking-normal font-sans text-xl font-semibold leading-snug text-blue-gray-900 mt-1 mb-2 line-clamp-2">
           {title}
         </h5>
-        <p className="block antialiased font-sans text-sm leading-normal font-normal text-blue-gray-500">
+        <p className="antialiased font-sans text-sm leading-normal font-normal text-blue-gray-500 line-clamp-3">
           {desc}
         </p>
       </div>
