@@ -2,6 +2,7 @@
 
 import { EditIcon, UserIcon } from "@/assets/icons/admin";
 import dynamic from "next/dynamic";
+import Link from "next/link";
 import React from "react";
 
 const UserCardsContainer = dynamic(() => import("@/components/Admin/Cards/UserCardsContainer"), {
@@ -26,13 +27,13 @@ const page = () => {
                 <span className="ml-2 text-sm text-gray-500">Manage Articles</span>
               </div>
             </div>
-            <div className="flex items-center">
-              <button className="text-gray-400">
-                <EditIcon />
+            <Link href="/admin/activity" className="flex items-center">
+              <button className="text-gray-500 hover:text-gray-900 border rounded-lg border-gray-500 p-2 text-sm">
+                View more
               </button>
-            </div>
+            </Link>
           </div>
-          <ArticleCardSContainer />
+          <ArticleCardSContainer limit={1} />
         </div>
       </div>
 
