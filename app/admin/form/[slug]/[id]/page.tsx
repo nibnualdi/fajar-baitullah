@@ -42,6 +42,19 @@ const Page = ({ params }: { params: { slug: string; id: string } }) => {
   const handleSubmit = async (inputState: InputState, e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log("inputState :", inputState);
+    if (params.slug === "article") {
+      if (params.id === "create") {
+        const formData = new FormData();
+        formData.append("title", inputState.title);
+        formData.append("content", inputState.content);
+        formData.append("image", inputState.image);
+        formData.append("user_id", "21"); // don't forget to change it when api's ready
+        formData.append("category_id", inputState.category);
+        return;
+      }
+
+      // code edit article here
+    }
   };
   return (
     <div className="bg-white text-dark-green mx-auto max-w-screen min-h-screen px-4 py-4 sm:px-6 lg:px-8">
