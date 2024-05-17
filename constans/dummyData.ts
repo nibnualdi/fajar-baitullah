@@ -1,6 +1,7 @@
 type articleType = {
   id: string;
   title: string;
+  category: string;
   desc: string;
   image: string;
 };
@@ -9,6 +10,7 @@ export const articles: articleType[] = [
   {
     id: "1",
     title: "Lorem Ipsum Color Sit Amet.",
+    category: "development",
     image:
       "https://d33wubrfki0l68.cloudfront.net/dd23708ebc4053551bb33e18b7174e73b6e1710b/dea24/static/images/wallpapers/shared-colors@2x.png",
     desc: `
@@ -20,6 +22,7 @@ export const articles: articleType[] = [
   {
     id: "2",
     title: "Lorem Ipsum Color Sit Amet.",
+    category: "development",
     image:
       "https://d33wubrfki0l68.cloudfront.net/49de349d12db851952c5556f3c637ca772745316/cfc56/static/images/wallpapers/bridge-02@2x.png",
     desc: `
@@ -31,6 +34,7 @@ export const articles: articleType[] = [
   {
     id: "3",
     title: "Lorem Ipsum Color Sit Amet.",
+    category: "development",
     image:
       "https://d33wubrfki0l68.cloudfront.net/594de66469079c21fc54c14db0591305a1198dd6/3f4b1/static/images/wallpapers/bridge-01@2x.png",
     desc: `
@@ -42,6 +46,7 @@ export const articles: articleType[] = [
   {
     id: "4",
     title: "Lorem Ipsum Color Sit Amet.",
+    category: "development",
     image:
       "https://d33wubrfki0l68.cloudfront.net/dd23708ebc4053551bb33e18b7174e73b6e1710b/dea24/static/images/wallpapers/shared-colors@2x.png",
     desc: `
@@ -53,6 +58,7 @@ export const articles: articleType[] = [
   {
     id: "5",
     title: "Lorem Ipsum Color Sit Amet.",
+    category: "development",
     image:
       "https://d33wubrfki0l68.cloudfront.net/49de349d12db851952c5556f3c637ca772745316/cfc56/static/images/wallpapers/bridge-02@2x.png",
     desc: `
@@ -64,6 +70,7 @@ export const articles: articleType[] = [
   {
     id: "6",
     title: "Lorem Ipsum Color Sit Amet.",
+    category: "development",
     image:
       "https://d33wubrfki0l68.cloudfront.net/594de66469079c21fc54c14db0591305a1198dd6/3f4b1/static/images/wallpapers/bridge-01@2x.png",
     desc: `
@@ -75,6 +82,7 @@ export const articles: articleType[] = [
   {
     id: "7",
     title: "Lorem Ipsum Color Sit Amet.",
+    category: "development",
     image:
       "https://d33wubrfki0l68.cloudfront.net/dd23708ebc4053551bb33e18b7174e73b6e1710b/dea24/static/images/wallpapers/shared-colors@2x.png",
     desc: `

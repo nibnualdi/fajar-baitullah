@@ -1,5 +1,6 @@
-import dynamic from 'next/dynamic';
-import React from 'react'
+import { articles } from "@/constans/dummyData";
+import dynamic from "next/dynamic";
+import React from "react";
 const ArticleCard = dynamic(() => import("@/components/Admin/Cards/ArticleCard"), {
   ssr: false,
 });
@@ -7,9 +8,11 @@ const ArticleCard = dynamic(() => import("@/components/Admin/Cards/ArticleCard")
 const ArticleCardSContainer = () => {
   return (
     <div>
-      <ArticleCard />
+      {articles.map(({ image, category, desc, title, id }) => (
+        <ArticleCard image={image} category={category} desc={desc} title={title} id={id} key={id} />
+      ))}
     </div>
-  )
-}
+  );
+};
 
-export default ArticleCardSContainer
+export default ArticleCardSContainer;

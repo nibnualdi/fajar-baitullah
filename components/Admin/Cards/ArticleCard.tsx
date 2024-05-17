@@ -1,25 +1,30 @@
 import { EditIcon } from "@/assets/icons/admin";
+import Link from "next/link";
 import React from "react";
 
-const ArticleCard = () => {
+type PropsArticleCard = {
+  id: string;
+  image: string;
+  title: string;
+  category: string;
+  desc: string;
+};
+
+const ArticleCard = ({ id, image, category, desc, title }: PropsArticleCard) => {
   return (
     <div className="relative flex flex-col bg-clip-border rounded-xl bg-transparent text-gray-700 shadow-none">
       <div className="relative bg-clip-border rounded-xl overflow-hidden bg-gray-900 text-white shadow-gray-900/20 shadow-lg mx-0 mt-0 mb-4 h-64 xl:h-40">
-        <img
-          src="https://i1.wp.com/hechingerreport.org/wp-content/uploads/2018/04/Jennifer-Heller-Buckley-PHOTO1.jpg?ssl=1"
-          alt="Scandinavian"
-          className="h-full w-full object-cover"
-        />
+        <img src={image} alt="Scandinavian" className="h-full w-full object-cover" />
       </div>
       <div className="p-6 py-0 px-1">
         <p className="block antialiased font-sans text-sm leading-normal font-normal text-blue-gray-500">
-          Project #2
+          {category}
         </p>
         <h5 className="block antialiased tracking-normal font-sans text-xl font-semibold leading-snug text-blue-gray-900 mt-1 mb-2">
-          Scandinavian
+          {title}
         </h5>
         <p className="block antialiased font-sans text-sm leading-normal font-normal text-blue-gray-500">
-          Music is something that every person has his or her own specific opinion about.
+          {desc}
         </p>
       </div>
       <div className="p-6 mt-6 flex items-center justify-between py-0 px-1">
@@ -31,9 +36,9 @@ const ArticleCard = () => {
             view project
           </button>
         </a>
-        <div>
+        <Link href={`/admin/form/article/${id}`}>
           <EditIcon />
-        </div>
+        </Link>
       </div>
     </div>
   );
