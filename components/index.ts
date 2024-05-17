@@ -21,6 +21,7 @@ import OverlayAbout from "./OverlayAbout/OverlayAbout";
 import ArticleCard from "./Admin/Cards/ArticleCard";
 import ArticleCardSContainer from "./Admin/Cards/ArticleCardSContainer";
 import Form from "./Form/Form";
+import SpeedDial from "./SpeedDial/SpeedDial";
 
 export {
   SectionOne,
@@ -46,4 +47,5 @@ export {
   ArticleCard,
   ArticleCardSContainer,
   Form,
+  SpeedDial,
 };

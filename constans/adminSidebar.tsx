@@ -10,10 +10,12 @@ export const routes = [
     title: "Article",
     icon: <ArticleIcon />,
     link: "/admin/activity",
+    speedDial: true,
   },
   {
     title: "User",
     icon: <UserIcon />,
     link: "/admin/user",
+    speedDial: true,
   },
 ];

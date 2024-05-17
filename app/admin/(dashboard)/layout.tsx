@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { openSans400 } from "@/assets/fonts";
 import dynamic from "next/dynamic";
+import { SpeedDial } from "@/components";
 
 const Overlay = dynamic(() => import("@/components/Admin/Layout/Overlay"));
 const Sidebar = dynamic(() => import("@/components/Admin/Layout/Sidebar"));
@@ -40,6 +41,7 @@ export default function AdminLayout({
             {children}
           </main>
         </div>
+        <SpeedDial />
       </div>
     </div>
   );
