@@ -1,6 +1,6 @@
 "use client";
 
-import { InputState, formInputs } from "@/components/Form/Form";
+import { InputState, formInputs, radioInput } from "@/components/Form/Form";
 import dynamic from "next/dynamic";
 import React from "react";
 
@@ -8,7 +8,7 @@ const Form = dynamic(() => import("@/components/Form/Form"), { ssr: false });
 const Breadcrumb = dynamic(() => import("@/components/Breadcrumb/Breadcrumb"), { ssr: false });
 
 const Page = ({ params }: { params: { slug: string; id: string } }) => {
-  const inputs: formInputs = [
+  const inputs: formInputs | radioInput = [
     {
       name: "title",
       placeholder: "title",
@@ -28,6 +28,14 @@ const Page = ({ params }: { params: { slug: string; id: string } }) => {
     {
       name: "category",
       placeholder: "category",
+      type: "radio",
+      values: [
+        { id: "1", value: "option1" },
+        { id: "2", value: "option2" },
+        { id: "3", value: "option3" },
+        { id: "4", value: "option4" },
+        { id: "5", value: "option5" },
+      ],
     },
   ];
 

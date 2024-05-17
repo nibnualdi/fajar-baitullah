@@ -12,7 +12,11 @@ export type formInput = {
   customErrMessage?: string;
 };
 
-export type formInputs = formInput[];
+export type radioInput = {
+  values?: {id: string, value: string}[];
+} & formInput;
+
+export type formInputs = formInput[] | radioInput[];
 
 export type InputState = { [x: string]: string | File };
 
@@ -93,7 +97,38 @@ const Form = ({
     router.back();
   };
 
-  const handleInputTypes = (e: formInput) => {
+  const handleInputTypes = (e: formInput | radioInput) => {
+    if (e.type === "radio") {
+      if ("values" in e) {
+        return (
+          <div className="flex gap-3 flex-wrap w-full">
+            {e.values?.map((each) => (
+              <span key={each.value}>
+                <input
+                  type="radio"
+                  id={each.id}
+                  name={e.name}
+                  value={each.id}
+                  className="hidden"
+                  onChange={createHandleChange(e)}
+                />
+                <label
+                  htmlFor={each.id}
+                  className={`text-xs font-medium px-2.5 py-0.5 rounded border cursor-pointer ${
+                    inputState[e.name] === each.id
+                      ? "text-gray-100 bg-dark-green"
+                      : "border-dark-green text-dark-green bg-gray-100 bg-opacity-20 hover:text-gray-600 hover:bg-transparent"
+                  }`}
+                >
+                  {each.value}
+                </label>
+              </span>
+            ))}
+          </div>
+        );
+      }
+      return;
+    }
     if (e.type === "textarea") {
       return (
         <textarea
