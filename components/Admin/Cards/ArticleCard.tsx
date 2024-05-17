@@ -28,14 +28,14 @@ const ArticleCard = ({ id, image, category, desc, title }: PropsArticleCard) => 
         </p>
       </div>
       <div className="p-6 mt-6 flex items-center justify-between py-0 px-1">
-        <a href="#/dashboard/profile">
+        <Link href={`/activity/detail/${id}`}>
           <button
             className="align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-2 px-4 rounded-lg border border-gray-900 text-gray-900 hover:opacity-75 focus:ring focus:ring-gray-300 active:opacity-[0.85]"
             type="button"
           >
             view project
           </button>
-        </a>
+        </Link>
         <Link href={`/admin/form/article/${id}`}>
           <EditIcon />
         </Link>
