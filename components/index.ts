@@ -22,6 +22,7 @@ import ArticleCard from "./Admin/Cards/ArticleCard";
 import ArticleCardSContainer from "./Admin/Cards/ArticleCardSContainer";
 import Form from "./Form/Form";
 import SpeedDial from "./SpeedDial/SpeedDial";
+import Dropdown from "./Dropdown/Dropdown";
 
 export {
   SectionOne,
@@ -48,4 +49,5 @@ export {
   ArticleCardSContainer,
   Form,
   SpeedDial,
+  Dropdown,
 };

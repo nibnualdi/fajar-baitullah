@@ -1,6 +1,6 @@
 "use client";
 
-import { AvatarIcon } from "@/assets/icons/admin";
+import Dropdown from "@/components/Dropdown/Dropdown";
 import { toggleSidebar } from "@/lib/features/util/utilSlice";
 import { useAppDispatch } from "@/lib/hooks";
 
@@ -58,13 +58,8 @@ function TopBar() {
               </div>
             </div>
           </div>
-          <div className="relative ml-5 flex w-1/4 items-center justify-end p-1 sm:right-auto sm:mr-0">
-            <a href="#" className="relative block">
-              <div className="h-10 w-10 rounded-full object-cover bg-white flex justify-center items-center text-dark-green">
-                <AvatarIcon />
-              </div>
-            </a>
-          </div>
+
+          <Dropdown />
         </div>
       </div>
     </header>
