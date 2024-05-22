@@ -39,11 +39,11 @@ export default function Mosque({ atBuildPage, setAtBuildPage, ...props }: PropsM
     map: baseColorTexture,
   });
 
-  const ref: any = useRef();
+  const ref: React.Ref<THREE.Group> | null = useRef(null);
 
   const variants: Variants = {
     initial: { x: 0, y: 0, z: 0, rotateY: 0, rotateX: 0, rotateZ: 0 },
-    animate: { x: -9, y: 1, z: 5, rotateY: (360 * Math.PI) / 180, rotateX: 0, rotateZ: 0 },
+    animate: { x: -9, y: 1, z: 5, rotateY: (50 * Math.PI) / 180, rotateX: 0, rotateZ: 0 },
   };
 
   return (
