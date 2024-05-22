@@ -1,10 +1,10 @@
 "use client";
 
-import { roboto400, roboto700 } from "@/assets/fonts";
+import { roboto400, roboto700, openSans400 } from "@/assets/fonts";
 import { Scroll } from "@react-three/drei";
 import React, { useEffect, useRef } from "react";
 import { Navbar } from "@/components";
-import { useInView } from "framer-motion";
+import { useInView, motion } from "framer-motion";
 
 type PropsOverlayAbout = {
   content: { title: string; desc: string }[];
@@ -16,7 +16,7 @@ const OverlayAbout = ({ content, setAtBuildPage }: PropsOverlayAbout) => {
   const isInView = useInView(refDevelopmentMosque);
 
   useEffect(() => {
-      setAtBuildPage(isInView);
+    setAtBuildPage(isInView);
   }, [isInView]);
 
   return (
@@ -24,11 +24,11 @@ const OverlayAbout = ({ content, setAtBuildPage }: PropsOverlayAbout) => {
       <div className="w-screen">
         <Navbar />
       </div>
-      <section className="ml-[10vw] flex">
+      <section className="flex">
         <div className="flex flex-col">
           {content.map((e, index) => (
             <div
-              className="max-w-[442px] h-screen flex flex-col gap-[30px] justify-center"
+              className="max-w-[442px] h-screen ml-[10vw] flex flex-col gap-[30px] justify-center"
               key={`${e.title} ${index}`}
             >
               <h1 className={`text-dark-green text-[36px] ${roboto700.className}`}>{e.title}</h1>
@@ -36,12 +36,32 @@ const OverlayAbout = ({ content, setAtBuildPage }: PropsOverlayAbout) => {
             </div>
           ))}
           <div
-            className="max-w-[442px] h-screen flex flex-col gap-[30px] justify-center"
+            className="w-screen h-screen relative select-none grid grid-cols-2 grid-rows-2 place-content-around place-items-center gap-32 hover:cursor-grab"
             id="development-mosque"
             ref={refDevelopmentMosque}
           >
-            <h1 className={`text-dark-green text-[36px] ${roboto700.className}`}>Pembangunan</h1>
-            <p className={`text-black text-[20px] ${roboto400.className}`}>Masjid</p>
+            <div />
+            <div />
+
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0, transition: { type: "spring", duration: 2.5 } }}
+            >
+              <p className={`text-black text-[15px] mb-3 ${openSans400.className}`}>
+                dalam proses - 30%
+              </p>
+              <div className="w-full rounded-full h-1 mb-1 bg-gray-400">
+                <div className="h-1 rounded-full bg-dark-green w-1/3" />
+              </div>
+              <div className="flex gap-[19px] items-center flex-wrap">
+                <h1 className={`text-black text-[36px] ${roboto700.className}`}>Rp.300.000.000</h1>
+                <p className={`text-dark-green text-[16px] ${openSans400.className}`}>
+                  total donasi
+                </p>
+              </div>
+            </motion.div>
+
+            <div />
           </div>
         </div>
       </section>
