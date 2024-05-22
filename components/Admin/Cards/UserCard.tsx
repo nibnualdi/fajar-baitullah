@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 
 const UserCard = () => {
@@ -7,9 +8,13 @@ const UserCard = () => {
         <div className="flex items-center">
           <div className="shrink-0">
             <a href="#" className="relative block">
-              <img
+              <Image
                 alt="profil"
                 src="https://i1.wp.com/hechingerreport.org/wp-content/uploads/2018/04/Jennifer-Heller-Buckley-PHOTO1.jpg?ssl=1"
+                width={0}
+                height={0}
+                sizes="100%"
+                style={{ width: "40px", height: "40px" }}
                 className="mx-auto h-10 w-10 rounded-full object-cover"
               />
             </a>

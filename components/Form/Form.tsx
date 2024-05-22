@@ -49,7 +49,7 @@ const Form = ({
 
     setInputState(arrInputs);
     setErrMessageInputs(arrInputs);
-  }, []);
+  }, [inputs]);
 
   const createHandleChange = (data: formInput) => {
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {

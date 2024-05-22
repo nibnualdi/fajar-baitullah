@@ -17,7 +17,7 @@ const OverlayAbout = ({ content, setAtBuildPage }: PropsOverlayAbout) => {
 
   useEffect(() => {
     setAtBuildPage(isInView);
-  }, [isInView]);
+  }, [isInView, setAtBuildPage]);
 
   return (
     <Scroll html>

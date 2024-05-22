@@ -1,4 +1,5 @@
 import { EditIcon } from "@/assets/icons/admin";
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
@@ -14,7 +15,15 @@ const ArticleCard = ({ id, image, category, desc, title }: PropsArticleCard) => 
   return (
     <div className="relative flex flex-col bg-clip-border rounded-xl bg-transparent text-gray-700 shadow p-5 mb-5">
       <div className="relative bg-clip-border rounded-xl overflow-hidden bg-gray-900 text-white shadow-gray-900/20 shadow-lg mx-0 mt-0 mb-4 h-64 xl:h-40">
-        <img src={image} alt="Scandinavian" className="h-full w-full object-cover" />
+        <Image
+          src={image}
+          alt="Scandinavian"
+          width={0}
+          height={0}
+          sizes="100%"
+          style={{ width: "100%", height: "100%" }}
+          className="h-full w-full object-cover"
+        />
       </div>
       <div className="p-6 py-0 px-1">
         <p className="block antialiased font-sans text-sm leading-normal font-normal text-blue-gray-500">

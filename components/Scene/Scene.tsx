@@ -20,63 +20,62 @@ export default function Scene({ content }: { content?: { title: string; desc: st
   const targetAzimuthalAngle = 0.4241944079037666; // Set your target azimuthal angle here
   const targetPolarAngle = (Math.PI / 2) * -0.11705858608589903; // Set your target polar angle here
 
-  const doSmoothReset = () => {
+  useEffect(() => {
     if (!refOrbitControls.current) return;
-
-    let alpha = refOrbitControls.current.getAzimuthalAngle();
-    let beta = refOrbitControls.current.getPolarAngle() - Math.PI / 2;
-
-    if (
-      Math.abs(alpha - targetAzimuthalAngle) < 0.001 &&
-      Math.abs(beta - targetPolarAngle) < 0.001
-    ) {
-      refOrbitControls.current.minAzimuthAngle = -Infinity;
-      refOrbitControls.current.maxAzimuthAngle = Infinity;
-      refOrbitControls.current.minPolarAngle = 0;
-      refOrbitControls.current.maxPolarAngle = Math.PI;
-      return;
-    }
-
-    // Animate using requestAnimationFrame
-    const animate = () => {
+    const doSmoothReset = () => {
       if (!refOrbitControls.current) return;
-
-      // Linear interpolation
-      alpha += (targetAzimuthalAngle - alpha) * 0.1;
-      beta += (targetPolarAngle - beta) * 0.1;
-
-      // Set the new min and max angles to force the OrbitControls to update
-      refOrbitControls.current.minAzimuthAngle = alpha;
-      refOrbitControls.current.maxAzimuthAngle = alpha;
-
-      refOrbitControls.current.minPolarAngle = beta + Math.PI / 2;
-      refOrbitControls.current.maxPolarAngle = refOrbitControls.current.minPolarAngle;
-
-      refOrbitControls.current.update();
-
-      // Check if the angles are close to the target
+  
+      let alpha = refOrbitControls.current.getAzimuthalAngle();
+      let beta = refOrbitControls.current.getPolarAngle() - Math.PI / 2;
+  
       if (
-        Math.abs(alpha - targetAzimuthalAngle) > 0.001 ||
-        Math.abs(beta - targetPolarAngle) > 0.001
+        Math.abs(alpha - targetAzimuthalAngle) < 0.001 &&
+        Math.abs(beta - targetPolarAngle) < 0.001
       ) {
-        requestAnimationFrame(animate);
-      } else {
-        // Reset limits once we are close to the target
         refOrbitControls.current.minAzimuthAngle = -Infinity;
         refOrbitControls.current.maxAzimuthAngle = Infinity;
         refOrbitControls.current.minPolarAngle = 0;
         refOrbitControls.current.maxPolarAngle = Math.PI;
-        refOrbitControls.current.update();
+        return;
       }
+  
+      // Animate using requestAnimationFrame
+      const animate = () => {
+        if (!refOrbitControls.current) return;
+  
+        // Linear interpolation
+        alpha += (targetAzimuthalAngle - alpha) * 0.1;
+        beta += (targetPolarAngle - beta) * 0.1;
+  
+        // Set the new min and max angles to force the OrbitControls to update
+        refOrbitControls.current.minAzimuthAngle = alpha;
+        refOrbitControls.current.maxAzimuthAngle = alpha;
+  
+        refOrbitControls.current.minPolarAngle = beta + Math.PI / 2;
+        refOrbitControls.current.maxPolarAngle = refOrbitControls.current.minPolarAngle;
+  
+        refOrbitControls.current.update();
+  
+        // Check if the angles are close to the target
+        if (
+          Math.abs(alpha - targetAzimuthalAngle) > 0.001 ||
+          Math.abs(beta - targetPolarAngle) > 0.001
+        ) {
+          requestAnimationFrame(animate);
+        } else {
+          // Reset limits once we are close to the target
+          refOrbitControls.current.minAzimuthAngle = -Infinity;
+          refOrbitControls.current.maxAzimuthAngle = Infinity;
+          refOrbitControls.current.minPolarAngle = 0;
+          refOrbitControls.current.maxPolarAngle = Math.PI;
+          refOrbitControls.current.update();
+        }
+      };
+  
+      animate();
     };
-
-    animate();
-  };
-
-  useEffect(() => {
-    if (!refOrbitControls.current) return;
     doSmoothReset();
-  }, [atBuildPage]);
+  }, [atBuildPage, targetPolarAngle]);
 
   return (
     <Canvas shadows camera={{ position: [7, 2, 15.5], fov: 60, aspect: 1, near: 1, far: 80 }}>

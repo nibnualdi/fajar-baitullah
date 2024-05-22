@@ -35,7 +35,7 @@ const DetailPage = ({ params }: { params: { id: string } }) => {
 
   useEffect(() => {
     scroll.on("change", (v) => setNumber(Math.round(v)));
-  }, [scrollYProgress]);
+  }, [scrollYProgress, scroll]);
 
   return (
     <motion.div
