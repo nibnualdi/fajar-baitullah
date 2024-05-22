@@ -51,7 +51,14 @@ const OverlayAbout = ({ content, setAtBuildPage }: PropsOverlayAbout) => {
                 dalam proses - 30%
               </p>
               <div className="w-full rounded-full h-1 mb-1 bg-gray-400">
-                <div className="h-1 rounded-full bg-dark-green w-1/3" />
+                <motion.div
+                  initial={{ width: "0%" }}
+                  whileInView={{
+                    width: `${50}%`,
+                    transition: { duration: .8, type: "spring", delay: .5 },
+                  }}
+                  className="h-1 rounded-full bg-dark-green w-full"
+                />
               </div>
               <div className="flex gap-[19px] items-center flex-wrap">
                 <h1 className={`text-black text-[36px] ${roboto700.className}`}>Rp.300.000.000</h1>
