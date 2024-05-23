@@ -19,11 +19,6 @@ export default function Scene() {
   const targetAzimuthalAngle = 0.4241944079037666; // Set your target azimuthal angle here
   const targetPolarAngle = (Math.PI / 2) * -0.11705858608589903; // Set your target polar angle here
 
-
-  useEffect(()=>{
-    console.log(atBuildPage)
-  }, [atBuildPage])
-
   useEffect(() => {
     if (!refOrbitControls.current) return;
     const doSmoothReset = () => {
