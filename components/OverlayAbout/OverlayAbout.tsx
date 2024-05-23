@@ -74,7 +74,25 @@ const OverlayAbout = () => {
             </div>
           </motion.div>
 
-          <div />
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0, transition: { type: "spring", duration: 2.5 } }}
+            className="text-right pointer-events-auto cursor-auto"
+          >
+            <p className={`text-black text-[15px] mb-1 ${openSans400.className}`}>
+              Donasi melalui:
+            </p>
+            <div className="flex flex-col">
+              <p className={`text-[#18918F] text-[16px]  ${openSans400.className}`}>
+                BSI - a/n Masjid Fajar Baitullah
+              </p>
+              <h1
+                className={`text-[#18918F] text-[36px] leading-none pointer-events-auto select-text  ${roboto700.className}`}
+              >
+                123 456 789 100
+              </h1>
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>
