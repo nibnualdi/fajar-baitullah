@@ -28,10 +28,9 @@ type GLTFResult = GLTF & {
 
 type PropsMosque = {
   atBuildPage: boolean;
-  setAtBuildPage: React.Dispatch<React.SetStateAction<boolean>>;
 } & JSX.IntrinsicElements["group"];
 
-export default function Mosque({ atBuildPage, setAtBuildPage, ...props }: PropsMosque) {
+export default function Mosque({ atBuildPage, ...props }: PropsMosque) {
   const { nodes, materials } = useGLTF("/models/scene.gltf") as GLTFResult;
   const baseColorTexture = useTexture("models/textures/lambert2_baseColor.png");
   baseColorTexture.flipY = false;

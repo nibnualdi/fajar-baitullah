@@ -3,12 +3,14 @@ import type { RootState } from "@/lib/store";
 
 export interface AdminState {
   sidebarOpen: boolean;
+  developmentAboutPageInView: boolean;
 }
 
 export interface UtilState extends AdminState {}
 
 const initialState: UtilState = {
   sidebarOpen: false,
+  developmentAboutPageInView: false,
 };
 
 export const utilSlice = createSlice({
@@ -18,10 +20,13 @@ export const utilSlice = createSlice({
     toggleSidebar: (state) => {
       state.sidebarOpen = !state.sidebarOpen;
     },
+    toggleDevelopmentAboutPageInView: (state, { payload }) => {
+      state.developmentAboutPageInView = payload;
+    },
   },
 });
 
-export const { toggleSidebar } = utilSlice.actions;
+export const { toggleSidebar, toggleDevelopmentAboutPageInView } = utilSlice.actions;
 
 export const selectUtil = (state: RootState) => state.rootReducer.util;
 
