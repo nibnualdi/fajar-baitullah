@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { AvatarIcon } from "@/assets/icons/admin";
 
 export type menus = {
   name: string;
