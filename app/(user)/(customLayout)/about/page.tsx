@@ -12,7 +12,7 @@ const OverlayAbout = dynamic(() => import("@/components/OverlayAbout/OverlayAbou
 
 const page = () => {
   return (
-    <div className={`relative w-screen bg-white`}>
+    <div className={`relative w-screen bg-white scroll-smooth`}>
       <Scene />
       <OverlayAbout />
     </div>

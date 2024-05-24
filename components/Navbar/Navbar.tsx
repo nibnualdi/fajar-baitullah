@@ -10,6 +10,7 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 import logo from "@/assets/logo2.png";
+import Dropdown, { menus } from "../Dropdown/Dropdown";
 
 const AnimatedIcon = dynamic(() => import("@/components/AnimatedIcon/AnimatedIcon"), {
   ssr: false,
@@ -23,12 +24,37 @@ type navType = {
   name: string;
   icon?: any;
   to: string;
+  menuDropdown?: boolean;
+  childMenus?: menus[];
+};
+
+const AboutMenu = () => {
+  return (
+    <p className="hover:scale-95 duration-75 font-semibold capitalize cursor-pointer">About</p>
+  );
 };
 
 const nav: navType[] = [
   { name: "home", icon: home, to: "/" },
   { name: "activity", icon: article, to: "/activity" },
-  { name: "about", to: "/about" },
+  {
+    name: "about",
+    to: "/about",
+    icon: AboutMenu,
+    menuDropdown: true,
+    childMenus: [
+      { name: "Tentang kami", href: "/about#tentang-kami", closeDropdownInAction: true },
+      { name: "Sejarah kami", href: "/about#sejarah-kami", closeDropdownInAction: true },
+      { name: "Kontak kami", href: "/about#kontak-kami", closeDropdownInAction: true },
+      { name: "Pembangunan", href: "/about#pembangunan", closeDropdownInAction: true },
+      {
+        name: "Struktur organisasi",
+        href: "/about#struktur-organisasi",
+        closeDropdownInAction: true,
+      },
+      { name: "Lorem ipsum", href: "/about#lorem-ipsum", closeDropdownInAction: true },
+    ],
+  },
   // { name: "contact", icon: cellPhone, to: "/contact" },
 ];
 
@@ -51,24 +77,39 @@ const Navbar = () => {
         <Image alt="logo" src={logo} width={50} height={50} />
       </motion.div>
       <div className="text-black gap-10 hidden lg:flex">
-        {nav.map((item) => (
-          <Link
-            href={item.to}
-            key={item.name}
-            className={`my-auto drop-shadow opacity-50 ${pathname === item.to && "!opacity-100"}`}
-          >
-            {item.icon ? (
-              <AnimatedIcon
-                icon={item.icon}
-                className="flex items-center gap-1 font-semibold capitalize cursor-pointer"
+        {nav.map((item) => {
+          return !item.menuDropdown ? (
+            <Link
+              href={item.to}
+              key={item.name}
+              className={`my-auto drop-shadow opacity-50 ${pathname === item.to && "!opacity-100"}`}
+            >
+              {item.icon ? (
+                <AnimatedIcon
+                  icon={item.icon}
+                  className="flex items-center gap-1 font-semibold capitalize cursor-pointer"
+                >
+                  <p className="hover:scale-95 duration-75">{item.name}</p>
+                </AnimatedIcon>
+              ) : (
+                <p className="hover:scale-95 duration-75 font-semibold capitalize cursor-pointer">
+                  {item.name}
+                </p>
+              )}
+            </Link>
+          ) : (
+            item.childMenus?.length && (
+              <div
+                key={item.name}
+                className={`my-auto drop-shadow opacity-50 ${
+                  pathname === item.to && "!opacity-100"
+                }`}
               >
-                <p className="hover:scale-95 duration-75">{item.name}</p>
-              </AnimatedIcon>
-            ) : (
-              <p className="hover:scale-95 duration-75 font-semibold capitalize cursor-pointer">{item.name}</p>
-            )}
-          </Link>
-        ))}
+                <Dropdown name="about" menus={item.childMenus} Icon={item.icon} />
+              </div>
+            )
+          );
+        })}
       </div>
       <MenuToggleNav className="lg:hidden flex items-center" navItem={nav} pathname={pathname} />
     </header>

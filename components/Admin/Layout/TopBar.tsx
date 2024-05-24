@@ -1,10 +1,32 @@
 "use client";
 
-import Dropdown from "@/components/Dropdown/Dropdown";
+import { AvatarIcon } from "@/assets/icons/admin";
+import Dropdown, { menus } from "@/components/Dropdown/Dropdown";
 import { toggleSidebar } from "@/lib/features/util/utilSlice";
 import { useAppDispatch } from "@/lib/hooks";
 
+const ButtonAccountOwner = () => {
+  return (
+    <div className="h-10 w-10 rounded-full object-cover bg-white flex justify-center items-center text-dark-green">
+      <AvatarIcon />
+    </div>
+  );
+};
+
+const AccountOwner = () => {
+  return (
+    <>
+      <div>Bonnie Green</div>
+      <div className="font-medium truncate">name@flowbite.com</div>
+    </>
+  );
+};
+
 function TopBar() {
+  const MENUS: menus[] = [
+    { name: "account owner", CustomElement: AccountOwner },
+    { name: "Sign out", href: "/admin/auth/login", closeDropdownInAction: true },
+  ];
   const dispatch = useAppDispatch();
 
   const toggleSidebarHandler = () => {
@@ -59,7 +81,7 @@ function TopBar() {
             </div>
           </div>
 
-          <Dropdown />
+          <Dropdown Icon={ButtonAccountOwner} name="admin account" menus={MENUS} />
         </div>
       </div>
     </header>

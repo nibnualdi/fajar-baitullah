@@ -51,7 +51,7 @@ const OverlayAbout = () => {
             !e.overlay && (
               <div
                 className="max-w-[442px] h-screen ml-[10vw] flex flex-col gap-[30px] justify-center pointer-events-auto"
-                id={e.title}
+                id={e.title.toLocaleLowerCase().split(" ")?.join("-")}
                 key={`${e.title} ${index}`}
               >
                 <h1 className={`text-dark-green text-[36px] ${roboto700.className}`}>{e.title}</h1>
@@ -63,7 +63,7 @@ const OverlayAbout = () => {
 
         <div
           className="w-screen h-screen relative select-none grid grid-cols-2 grid-rows-2 place-content-around place-items-center gap-32 cursor-grab"
-          id="development-mosque"
+          id="pembangunan"
           ref={refDevelopmentMosque}
         >
           <div />
@@ -113,10 +113,10 @@ const OverlayAbout = () => {
           </motion.div>
         </div>
 
-        {content.map((e, index) => {
+        {content.map((e) => {
           return (
             e.overlay && (
-              <div className="bg-white-500 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-10">
+              <div className="bg-white-500 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-10" key={e.title} id={e.title.toLocaleLowerCase().split(" ")?.join("-")}>
                 <div
                   className={`w-screen h-screen p-10 text-dark-green text-[36px] text-center ${roboto700.className} flex flex-col justify-center items-center gap-3 opacity-90`}
                 >
