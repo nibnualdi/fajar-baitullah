@@ -16,9 +16,10 @@ type PropsDropdown = {
   name: string;
   menus: menus[];
   Icon?: () => React.JSX.Element;
+  onOpen?: "click" | "hover";
 } & React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>;
 
-const Dropdown = ({ name, menus, Icon }: PropsDropdown) => {
+const Dropdown = ({ name, menus, Icon, onOpen = "click" }: PropsDropdown) => {
   const pathname = usePathname();
   const [toggle, setToggle] = useState(false);
 
@@ -30,18 +31,32 @@ const Dropdown = ({ name, menus, Icon }: PropsDropdown) => {
     setToggle((value) => !value);
   };
 
-  const handleblur: React.FocusEventHandler<
-    HTMLButtonElement | HTMLDivElement | HTMLAnchorElement
-  > = (e) => {
+  const handleblur: React.FocusEventHandler<HTMLElement> = (e) => {
     if (e.relatedTarget?.className.includes("dropdown")) return;
+    setToggle(false);
+  };
+
+  const handleMouseLeave: React.MouseEventHandler<HTMLElement> = (e) => {
+    if ((e.relatedTarget as Element)?.className.includes("dropdown")) return;
     setToggle(false);
   };
 
   return (
     <div className="relative ml-5 flex w-1/4 items-center justify-end p-1 sm:right-auto sm:mr-0">
-      <button className="relative block dropdown" onClick={handleToggle} onBlur={handleblur}>
-        {Icon ? <Icon /> : name}
-      </button>
+      {onOpen === "click" ? (
+        <button className="relative block dropdown" onClick={handleToggle} onBlur={handleblur}>
+          {Icon ? <Icon /> : name}
+        </button>
+      ) : (
+        <button
+          className="relative block dropdown"
+          onMouseEnter={handleToggle}
+          onMouseLeave={handleMouseLeave}
+          onClick={handleToggle}
+        >
+          {Icon ? <Icon /> : name}
+        </button>
+      )}
 
       <div
         id="dropdownAvatar"
@@ -52,25 +67,25 @@ const Dropdown = ({ name, menus, Icon }: PropsDropdown) => {
       >
         {menus.map((item, index) => {
           return item.closeDropdownInAction && item.href ? (
-            <div className="py-2" key={`${item.name} ${index}`}>
-              <Link
-                href={item.href}
-                data-dropdown
-                className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dropdown"
-                onBlur={handleblur}
-              >
-                {item.CustomElement ? (
-                  <item.CustomElement />
-                ) : item.icon ? (
-                  <span className="flex items-center gap-1">
-                    <item.icon />
-                    <p>{item.name}</p>
-                  </span>
-                ) : (
-                  item.name
-                )}
-              </Link>
-            </div>
+            <Link
+              href={item.href}
+              data-dropdown
+              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dropdown"
+              onBlur={handleblur}
+              onMouseLeave={handleMouseLeave}
+              key={`${item.name} ${index}`}
+            >
+              {item.CustomElement ? (
+                <item.CustomElement />
+              ) : item.icon ? (
+                <span className="flex items-center gap-1">
+                  <item.icon />
+                  <p>{item.name}</p>
+                </span>
+              ) : (
+                item.name
+              )}
+            </Link>
           ) : (
             <div
               className="px-4 py-3 text-sm text-gray-900 dropdown"

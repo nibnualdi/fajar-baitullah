@@ -4,7 +4,7 @@ import dynamic from "next/dynamic";
 
 import home from "@/assets/icons/home.json";
 import article from "@/assets/icons/article.json";
-import cellPhone from "@/assets/icons/call-phone.json";
+// import cellPhone from "@/assets/icons/call-phone.json";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
@@ -76,7 +76,7 @@ const Navbar = () => {
       >
         <Image alt="logo" src={logo} width={50} height={50} />
       </motion.div>
-      <div className="text-black gap-10 hidden lg:flex">
+      <div className="text-black gap-10 hidden lg:flex dropdown">
         {nav.map((item) => {
           return !item.menuDropdown ? (
             <Link
@@ -101,11 +101,11 @@ const Navbar = () => {
             item.childMenus?.length && (
               <div
                 key={item.name}
-                className={`my-auto drop-shadow opacity-50 ${
+                className={`my-auto drop-shadow opacity-50 dropdown ${
                   pathname === item.to && "!opacity-100"
                 }`}
               >
-                <Dropdown name="about" menus={item.childMenus} Icon={item.icon} />
+                <Dropdown name="about" menus={item.childMenus} Icon={item.icon} onOpen="hover" />
               </div>
             )
           );
