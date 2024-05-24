@@ -76,13 +76,13 @@ const Navbar = () => {
       >
         <Image alt="logo" src={logo} width={50} height={50} />
       </motion.div>
-      <div className="text-black gap-10 hidden lg:flex dropdown">
+      <div className="text-black gap-10 hidden lg:flex">
         {nav.map((item) => {
           return !item.menuDropdown ? (
             <Link
               href={item.to}
               key={item.name}
-              className={`my-auto drop-shadow opacity-50 ${pathname === item.to && "!opacity-100"}`}
+              className={`my-auto drop-shadow opacity-50 hover:opacity-100 ${pathname === item.to && "!opacity-100"}`}
             >
               {item.icon ? (
                 <AnimatedIcon
@@ -101,7 +101,7 @@ const Navbar = () => {
             item.childMenus?.length && (
               <div
                 key={item.name}
-                className={`my-auto drop-shadow opacity-50 dropdown ${
+                className={`my-auto drop-shadow opacity-50 hover:opacity-100 ${
                   pathname === item.to && "!opacity-100"
                 }`}
               >

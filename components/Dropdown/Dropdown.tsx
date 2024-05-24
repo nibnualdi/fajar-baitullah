@@ -60,7 +60,7 @@ const Dropdown = ({ name, menus, Icon, onOpen = "click" }: PropsDropdown) => {
 
       <div
         id="dropdownAvatar"
-        className={`absolute right-2 top-11 z-10 bg-white rounded-lg shadow w-44 dropdown transition ease-in-out text-right ${
+        className={`absolute right-2 ${onOpen === "click" ? "top-11" : "top-7"} z-10 bg-white rounded-lg shadow w-44 dropdown transition ease-in-out text-right ${
           toggle ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"
         }`}
         onBlur={handleblur}
