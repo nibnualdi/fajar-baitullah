@@ -23,7 +23,6 @@ export default function AdminLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const sidebarOpen = false;
   return (
     <div
       className={`${openSans400.className} bg-gray-100 text-black h-screen overflow-hidden relative lg:p-4`}
@@ -31,10 +30,7 @@ export default function AdminLayout({
       <div className="flex items-start">
         <Overlay />
         <Sidebar mobileOrientation="end" />
-        <div
-          className={`flex flex-col w-full h-screen pl-0 lg:space-y-4 
-             ${sidebarOpen ? "lg:w-full" : "lg:pl-4 lg:lg:w-[calc(100%-16rem)]"}`}
-        >
+        <div className={`flex flex-col w-full h-screen pl-0 lg:space-y-4 lg:pl-4`}>
           <TopBar />
           <main className="h-screen overflow-auto pb-36 pt-8 px-2 md:pb-8 md:pt-4 lg:pt-0">
             <Breadcrumb />

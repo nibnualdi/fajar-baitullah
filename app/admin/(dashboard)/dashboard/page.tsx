@@ -14,8 +14,8 @@ const ArticleCardSContainer = dynamic(() => import("@/components/Admin/Cards/Art
 
 const page = () => {
   return (
-    <div className="grid grid-cols-5 gap-3">
-      <div className="mb-4 col-span-3">
+    <div className="grid md:grid-cols-5 grid-rows-5 gap-3">
+      <div className="mb-4 md:col-span-3 row-span-3">
         <div className="w-full rounded-2xl bg-gray-200 p-4 shadow-lg">
           <div className="mb-6 flex items-center justify-between">
             <div className="flex items-center">
@@ -37,7 +37,7 @@ const page = () => {
         </div>
       </div>
 
-      <div className="mb-4 col-span-2">
+      <div className="mb-4 md:col-span-2 row-span-2">
         <div className="w-full rounded-2xl bg-gray-200 p-4 shadow-lg">
           <div className="mb-6 flex items-center justify-between">
             <div className="flex items-center">

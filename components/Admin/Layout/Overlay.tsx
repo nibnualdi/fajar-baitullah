@@ -9,7 +9,6 @@ function Overlay() {
   const dispatch = useAppDispatch();
 
   const closeSidebar = () => {
-    console.log("hmmm")
     dispatch(toggleSidebar());
   };  
   return (
