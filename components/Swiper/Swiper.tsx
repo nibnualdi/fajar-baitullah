@@ -125,9 +125,9 @@ const Swiper = (props: SwiperProps) => {
             // height={487}
             layout="fill"
             objectFit="cover"
-            src="https://qplubbchutomkyebvvxj.supabase.co/storage/v1//object/public/ArticleImage/PXL_20240207_183610713.jpg"
+            src={props.articles[contentIndex].Image}
             loader={({ src, width, quality }) => `${src}?w=${width}&q=${quality || 75}`}
-            alt="https://qplubbchutomkyebvvxj.supabase.co/storage/v1//object/public/ArticleImage/PXL_20240207_183610713.jpg"
+            alt={props.articles[contentIndex].Image}
             className="absolute top-0 left-0 w-full h-full"
           />
         </motion.div>
