@@ -1,7 +1,7 @@
 "use client";
 
 import { InputState, formInputs, radioInput } from "@/components/Form/Form";
-import { addArticle, articleType, getArticleByID } from "@/lib/api/articlesAPI";
+import { addArticle, getArticleByID } from "@/lib/api/articlesAPI";
 import dynamic from "next/dynamic";
 import React, { useEffect, useState } from "react";
 
