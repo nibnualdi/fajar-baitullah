@@ -1,6 +1,7 @@
 "use client";
 
 import { InputState, formInputs, radioInput } from "@/components/Form/Form";
+import { addArticle } from "@/lib/api/articlesAPI";
 import dynamic from "next/dynamic";
 import React from "react";
 
@@ -48,8 +49,9 @@ const Page = ({ params }: { params: { slug: string; id: string } }) => {
         formData.append("title", inputState.title);
         formData.append("content", inputState.content);
         formData.append("image", inputState.image);
-        formData.append("user_id", "21"); // don't forget to change it when api's ready
+        formData.append("user_id", "1"); // don't forget to change it when api's ready
         formData.append("category_id", inputState.category);
+        await addArticle(formData);
         return;
       }
 

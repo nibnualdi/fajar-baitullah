@@ -4,10 +4,10 @@ import Link from "next/link";
 import React from "react";
 
 type PropsArticleCard = {
-  id: string;
+  id: number;
   image: string;
   title: string;
-  category: string;
+  category: number;
   desc: string;
 };
 

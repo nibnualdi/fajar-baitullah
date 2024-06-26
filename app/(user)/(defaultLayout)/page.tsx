@@ -1,8 +1,8 @@
 import { SectionOne, SectionTwo } from "@/components";
-import { FetchAPI } from "@/lib/api";
+import { getArticle } from "@/lib/api/articlesAPI";
 
 export default async function Home() {
-  const articles = await FetchAPI({ endpoint: "/api/article/list" });
+  const articles = await getArticle();
 
   return (
     <main>

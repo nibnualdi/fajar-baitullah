@@ -1,4 +1,5 @@
-import { articles } from "@/constans/dummyData";
+// import { articles } from "@/constans/dummyData";
+import { getArticle } from "@/lib/api/articlesAPI";
 import dynamic from "next/dynamic";
 import React from "react";
 
@@ -10,24 +11,28 @@ type PropsArticleCardSContainer = {
   limit?: number;
 };
 
-const ArticleCardSContainer = ({ limit }: PropsArticleCardSContainer) => {
+const ArticleCardSContainer = async ({ limit }: PropsArticleCardSContainer) => {
+  const articles = await getArticle();
+  // console.log(articles, "lalalala")
+
   if (!limit) {
-    return articles.map(({ image, category, desc, title, id }) => (
-      <ArticleCard image={image} category={category} desc={desc} title={title} id={id} key={id} />
+    return articles.map(({ ID, Title, Content, Image, CategoryID }) => (
+      <ArticleCard image={Image} category={CategoryID} desc={Content} title={Title} id={ID} key={ID} />
     ));
   }
+
   return (
     <div>
-      {articles.map(({ image, category, desc, title, id }, index) => {
+      {articles.map(({ ID, Title, Content, Image, CategoryID }, index) => {
         return (
           index < limit && (
             <ArticleCard
-              image={image}
-              category={category}
-              desc={desc}
-              title={title}
-              id={id}
-              key={id}
+              image={Image}
+              category={CategoryID}
+              desc={Content}
+              title={Title}
+              id={ID}
+              key={ID}
             />
           )
         );

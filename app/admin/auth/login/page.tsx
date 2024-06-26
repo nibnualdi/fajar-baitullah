@@ -12,14 +12,14 @@ const Form = dynamic(() => import("@/components/Form/Form"), {
 const Login = () => {
   const inputs: formInputs = [
     {
-      name: "Email",
+      name: "email",
       type: "email",
       placeholder: "mail@example.com",
       require: true,
       pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,}$",
     },
     {
-      name: "Password",
+      name: "password",
       type: "password",
       placeholder: "********",
       require: true,
