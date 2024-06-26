@@ -17,6 +17,11 @@ const nextConfig = {
         hostname: "i1.wp.com",
         port: "",
       },
+      {
+        protocol: "https",
+        hostname: "qplubbchutomkyebvvxj.supabase.co",
+        port: "",
+      },
     ],
   },
 };
