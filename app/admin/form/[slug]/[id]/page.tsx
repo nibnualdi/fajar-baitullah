@@ -1,14 +1,16 @@
 "use client";
 
 import { InputState, formInputs, radioInput } from "@/components/Form/Form";
-import { addArticle } from "@/lib/api/articlesAPI";
+import { addArticle, articleType, getArticleByID } from "@/lib/api/articlesAPI";
 import dynamic from "next/dynamic";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 const Form = dynamic(() => import("@/components/Form/Form"), { ssr: false });
 const Breadcrumb = dynamic(() => import("@/components/Breadcrumb/Breadcrumb"), { ssr: false });
 
 const Page = ({ params }: { params: { slug: string; id: string } }) => {
+  const [defaultForm, setDefaultForm] = useState<any>()
+
   const inputs: formInputs | radioInput = [
     {
       name: "title",
@@ -40,10 +42,20 @@ const Page = ({ params }: { params: { slug: string; id: string } }) => {
     },
   ];
 
+  useEffect(()=>{
+    if(params.id === "create") return
+    const getArticle = async () => {
+      const article = await getArticleByID(params.id)
+      setDefaultForm(article)
+    }
+    getArticle()
+  }, [])
+
   const handleSubmit = async (inputState: InputState, e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log("inputState :", inputState);
     if (params.slug === "article") {
+      // Add article
       if (params.id === "create") {
         const formData = new FormData();
         formData.append("title", inputState.title);
@@ -54,15 +66,22 @@ const Page = ({ params }: { params: { slug: string; id: string } }) => {
         await addArticle(formData);
         return;
       }
-
-      // code edit article here
+      
+      // Edit article
+      const formData = new FormData();
+      formData.append("title", inputState.title);
+      formData.append("content", inputState.content);
+      formData.append("image", inputState.image);
+      formData.append("user_id", "1"); // don't forget to change it when api's ready
+      formData.append("category_id", inputState.category);
+      await addArticle(formData);
     }
   };
   return (
     <div className="bg-white text-dark-green mx-auto max-w-screen min-h-screen px-4 py-4 sm:px-6 lg:px-8">
       <Breadcrumb click={false} customPath={["form", params.slug, params.id]} />
 
-      <Form inputs={inputs} handleSubmit={handleSubmit} cancelButton />
+      <Form defaultForm={defaultForm} inputs={inputs} handleSubmit={handleSubmit} cancelButton />
     </div>
   );
 };

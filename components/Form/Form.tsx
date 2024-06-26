@@ -13,7 +13,7 @@ export type formInput = {
 };
 
 export type radioInput = {
-  values?: {id: string, value: string}[];
+  values?: { id: string; value: string }[];
 } & formInput;
 
 export type formInputs = formInput[] | radioInput[];
@@ -25,6 +25,7 @@ type FormProps = {
   inputs: formInputs;
   buttonName?: string;
   cancelButton?: boolean;
+  defaultForm?: any;
   handleSubmit: (inputState: InputState, event: React.FormEvent<HTMLFormElement>) => void;
 } & React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>;
 
@@ -34,6 +35,7 @@ const Form = ({
   title = "Form",
   buttonName = "Submit",
   cancelButton,
+  defaultForm,
   ...props
 }: FormProps) => {
   const [inputState, setInputState] = useState<InputState>({});
@@ -98,6 +100,8 @@ const Form = ({
   };
 
   const handleInputTypes = (e: formInput | radioInput) => {
+    const defInput = defaultForm && defaultForm[e.name.charAt(0).toUpperCase() + e.name.slice(1)];
+    const defInputCategoryId = defaultForm && defaultForm[e.name.charAt(0).toUpperCase() + e.name.slice(1) + "ID"];
     if (e.type === "radio") {
       if ("values" in e) {
         return (
@@ -115,7 +119,7 @@ const Form = ({
                 <label
                   htmlFor={each.id}
                   className={`text-xs font-medium px-2.5 py-0.5 rounded border cursor-pointer ${
-                    inputState[e.name] === each.id
+                    inputState[e.name] === each.id || defInputCategoryId == each.id
                       ? "text-gray-100 bg-dark-green"
                       : "border-dark-green text-dark-green bg-gray-100 bg-opacity-20 hover:text-gray-600 hover:bg-transparent"
                   }`}
@@ -141,9 +145,43 @@ const Form = ({
           name={e.name}
           required={e.require}
           onChange={createHandleChange(e)}
+          defaultValue={defInput ? defInput : ""}
         ></textarea>
       );
     }
+    if (e.type === "file")
+      return (
+        <>
+          <input
+            className={`border-input bg-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-10 w-full rounded-md border px-3 py-2 text-sm file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 ${
+              e.require && "invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500 peer"
+            } ${(ErrMessageInputs[e.name] as string)?.length && "border-red-500"}`}
+            type={e.type}
+            id={e.name}
+            placeholder={e.placeholder}
+            name={e.name}
+            autoComplete="on"
+            required={e.require}
+            formNoValidate
+            pattern={e.pattern}
+            onChange={createHandleChange(e)}
+          />
+          {defInput && (
+            <div>
+              <img
+                src={
+                  inputState[e.name]
+                    ? URL.createObjectURL(inputState[e.name] as File)
+                    : defInput && defInput
+                }
+                alt="image-input"
+                style={{ width: "100%", height: "100%", maxHeight: "178px" }}
+                className="h-full w-full object-contain"
+              />
+            </div>
+          )}
+        </>
+      );
     return (
       <input
         className={`border-input bg-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-10 w-full rounded-md border px-3 py-2 text-sm file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 ${
@@ -158,6 +196,7 @@ const Form = ({
         formNoValidate
         pattern={e.pattern}
         onChange={createHandleChange(e)}
+        defaultValue={defInput ? defInput : ""}
       />
     );
   };

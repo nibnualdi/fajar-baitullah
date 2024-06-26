@@ -16,8 +16,13 @@ const getArticle = async (): Promise<articleType[]> => {
   return articles;
 };
 
+const getArticleByID = async (id: string): Promise<articleType[]> => {
+  const articles = await FetchAPI({ endpoint: `/api/article/get/${id}` });
+  return articles;
+};
+
 const addArticle = async (data: BodyInit) => {
   await FetchAPI({ endpoint: "/api/article/add", body: data, method: "POST" })
 }
 
-export { getArticle, addArticle };
+export { getArticle, getArticleByID, addArticle };
