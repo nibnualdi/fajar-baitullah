@@ -31,7 +31,7 @@ const DetailPage = ({ params }: { params: { id: string } }) => {
   const scroll = useTransform(scrollYProgress, [0, 1], [0, 100]);
   const [number, setNumber] = useState(0);
 
-  const selectedActivity = articles.filter((item) => item.id === params.id);
+  const selectedActivity = articles.filter((item) => item.ID === params.id);
 
   useEffect(() => {
     scroll.on("change", (v) => setNumber(Math.round(v)));
@@ -48,7 +48,7 @@ const DetailPage = ({ params }: { params: { id: string } }) => {
       <motion.div variants={childVariants}>
         <Image
           alt="activity-image-detail"
-          src={selectedActivity[0].image}
+          src={selectedActivity[0].Image}
           layout="fill"
           objectFit="cover"
           className="w-full max-h-[575px] !static"
@@ -66,11 +66,11 @@ const DetailPage = ({ params }: { params: { id: string } }) => {
         </motion.div>
         <div className="w-full mt-[10px] pr-9 sm:pl-0 pl-9">
           <AnimatedLetters
-            letters={selectedActivity[0].title}
+            letters={selectedActivity[0].Title}
             className={`${philosopher700.className} md:text-[96px] text-[40px] md:leading-[100px] leading-[-1000px] mb-[32px]`}
           />
           <motion.p variants={childVariants} className={`${openSans400.className} md:text-[24px] text-[20px] whitespace-pre-wrap`}>
-            {selectedActivity[0].desc}
+            {selectedActivity[0].Desc}
           </motion.p>
         </div>
       </div>

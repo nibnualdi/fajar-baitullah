@@ -22,13 +22,13 @@ type DetailPageProps = {
 // };
 
 export const generateMetadata = async ({ params: { id } }: DetailPageProps): Promise<Metadata> => {
-  const selectedActivity = articles.filter((item) => item.id === id);
+  const selectedActivity = articles.filter((item) => item.ID === id);
 
   return {
-    title: selectedActivity[0].title,
-    description: selectedActivity[0].desc,
+    title: selectedActivity[0].Title,
+    description: selectedActivity[0].Desc,
     openGraph: {
-      images: selectedActivity[0].image,
+      images: selectedActivity[0].Image,
     },
   };
 };
