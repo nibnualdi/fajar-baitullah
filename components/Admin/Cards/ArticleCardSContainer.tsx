@@ -12,22 +12,22 @@ type PropsArticleCardSContainer = {
 
 const ArticleCardSContainer = ({ limit }: PropsArticleCardSContainer) => {
   if (!limit) {
-    return articles.map(({ image, category, desc, title, id }) => (
-      <ArticleCard image={image} category={category} desc={desc} title={title} id={id} key={id} />
+    return articles.map(({ Image, CategoryID, Desc, Title, ID }) => (
+      <ArticleCard image={Image} category={CategoryID} desc={Desc} title={Title} id={ID} key={ID} />
     ));
   }
   return (
     <div>
-      {articles.map(({ image, category, desc, title, id }, index) => {
+      {articles.map(({ Image, CategoryID, Desc, Title, ID }, index) => {
         return (
           index < limit && (
             <ArticleCard
-              image={image}
-              category={category}
-              desc={desc}
-              title={title}
-              id={id}
-              key={id}
+              image={Image}
+              category={CategoryID}
+              desc={Desc}
+              title={Title}
+              id={ID}
+              key={ID}
             />
           )
         );
