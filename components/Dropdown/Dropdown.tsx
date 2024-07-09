@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { MouseEventHandler, useEffect, useState } from "react";
 
 export type menus = {
   name: string;
@@ -10,6 +10,7 @@ export type menus = {
   icon?: () => React.JSX.Element;
   closeDropdownInAction?: boolean;
   CustomElement?: () => React.JSX.Element;
+  handleClick?: MouseEventHandler<HTMLAnchorElement> | undefined
 };
 
 type PropsDropdown = {
@@ -73,6 +74,7 @@ const Dropdown = ({ name, menus, Icon, onOpen = "click" }: PropsDropdown) => {
               className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dropdown"
               onBlur={handleblur}
               onMouseLeave={handleMouseLeave}
+              onClick={item.handleClick}
               key={`${item.name} ${index}`}
             >
               {item.CustomElement ? (

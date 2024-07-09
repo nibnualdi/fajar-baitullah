@@ -4,6 +4,10 @@ import { AvatarIcon } from "@/assets/icons/admin";
 import Dropdown, { menus } from "@/components/Dropdown/Dropdown";
 import { toggleSidebar } from "@/lib/features/util/utilSlice";
 import { useAppDispatch } from "@/lib/hooks";
+import { jwtFunc } from "@/lib/utils/jwtDecode";
+import { useEffect, useState } from "react";
+import Cookies from "js-cookie";
+import { JWTPayload } from "jose";
 
 const ButtonAccountOwner = () => {
   return (
@@ -14,10 +18,28 @@ const ButtonAccountOwner = () => {
 };
 
 const AccountOwner = () => {
+  const [user, setUser] = useState<JWTPayload>();
+  const token = Cookies.get("session_token") || "";
+
+  useEffect(() => {
+    console.log(user, "user topbar");
+  }, [user]);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const payload = await jwtFunc({ token });
+        setUser(payload);
+      } catch (err) {
+        console.log(err);
+      }
+    })();
+  }, []);
+
   return (
     <>
-      <div>Bonnie Green</div>
-      <div className="font-medium truncate">name@flowbite.com</div>
+      {/* <div>Bonnie Green</div> */}
+      <div className="font-medium truncate">{user?.email}</div>
     </>
   );
 };
@@ -25,7 +47,14 @@ const AccountOwner = () => {
 function TopBar() {
   const MENUS: menus[] = [
     { name: "account owner", CustomElement: AccountOwner },
-    { name: "Sign out", href: "/admin/auth/login", closeDropdownInAction: true },
+    {
+      name: "Sign out",
+      href: "/admin/auth/login",
+      closeDropdownInAction: true,
+      handleClick: () => {
+        Cookies.remove("session_token");
+      },
+    },
   ];
   const dispatch = useAppDispatch();
 
