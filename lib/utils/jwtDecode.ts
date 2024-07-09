@@ -1,11 +1,18 @@
 import * as jose from "jose";
 
+declare module "jose" {
+  export interface JWTPayload {
+    id: number;
+    email: string;
+  }
+}
+
 type jwtFuncProps = {
   token: string;
 };
 
 export const jwtFunc = async ({ token }: jwtFuncProps) => {
-  const secretKey = new TextEncoder().encode(process.env.JWT_SECRET as string);
+  const secretKey = new TextEncoder().encode(process.env.NEXT_PUBLIC_JWT_SECRET as string);
   let isAuthenticated;
 
   try {
@@ -22,6 +29,7 @@ export const jwtFunc = async ({ token }: jwtFuncProps) => {
         isAuthenticated = "Token is not Valid!";
         throw "Token is not Valid!";
       }
+      throw err;
     }
   }
 };
