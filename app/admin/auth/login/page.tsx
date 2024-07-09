@@ -3,13 +3,18 @@
 import { InputState, formInputs } from "@/components/Form/Form";
 import { FetchAPI } from "@/lib/api";
 import dynamic from "next/dynamic";
-import React from "react";
+import React, { useEffect } from "react";
+import Cookies from "js-cookie";
+import { useRouter } from "next/navigation";
+import { jwtFunc } from "@/lib/utils/jwtDecode";
 
 const Form = dynamic(() => import("@/components/Form/Form"), {
   ssr: false,
 });
 
 const Login = () => {
+  const router = useRouter();
+  const token = Cookies.get("session_token") as string;
   const inputs: formInputs = [
     {
       name: "email",
@@ -28,14 +33,28 @@ const Login = () => {
     },
   ];
 
+  useEffect(() => {
+    (async () => {
+      try {
+        const payload = await jwtFunc({ token });
+        console.log(payload);
+        router.push("/admin/dashboard");
+      } catch (err) {
+        console.log(err);
+      }
+    })();
+  }, []);
+
   const handleSubmit = async (inputState: InputState, e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    await FetchAPI({
+    const { token } = await FetchAPI({
       endpoint: "/api/user/login",
       method: "POST",
       body: JSON.stringify(inputState),
     });
+    Cookies.set("session_token", token);
+    router.push("/admin/dashboard");
   };
   return (
     <div className="bg-white text-dark-green flex h-screen flex-col items-center justify-center">
