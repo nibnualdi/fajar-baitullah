@@ -23,6 +23,8 @@ import Form from "./Form/Form";
 import SpeedDial from "./SpeedDial/SpeedDial";
 import Dropdown from "./Dropdown/Dropdown";
 import OverlayAboutRef from "./OverlayAbout/OverlayAbout";
+import Toast from "./Toast/Toast";
+import ShowToastFromCookie from "./ShowToastFromCookie/ShowToastFromCookie";
 
 export {
   SectionOne,
@@ -50,4 +52,6 @@ export {
   SpeedDial,
   Dropdown,
   OverlayAboutRef,
+  Toast,
+  ShowToastFromCookie,
 };

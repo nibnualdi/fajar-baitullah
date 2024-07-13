@@ -4,13 +4,20 @@ import { jwtFunc } from "./lib/utils/jwtDecode";
 
 export default async function middleware(req: NextRequest) {
   const token = cookies().get("session_token")?.value as string;
+  const res = NextResponse.next();
+
   try {
     const payload = await jwtFunc({ token });
     console.log(payload, "payload dari midd");
+    res.cookies.set("showToast", `success_Success to Login`, { httpOnly: false });
   } catch (err) {
+    const res = NextResponse.redirect(new URL("/admin/auth/login", req.url));
     console.log(err, "err dari midd");
-    return NextResponse.redirect(new URL("/admin/auth/login", req.url));
+    res.cookies.set("showToast", `error_${err}`, { httpOnly: false });
+    return res;
   }
+
+  return res;
 }
 
 export const config = {

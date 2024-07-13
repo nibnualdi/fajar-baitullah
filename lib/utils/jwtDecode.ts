@@ -22,12 +22,12 @@ export const jwtFunc = async ({ token }: jwtFuncProps) => {
   } catch (err) {
     if (err instanceof Error) {
       if (err.name === "JWTExpired") {
-        isAuthenticated = "Token is Expired!";
-        throw "Token is Expired!";
+        isAuthenticated = "Login is Failed! Token is Expired!";
+        throw isAuthenticated;
       }
       if (err.name === "JWSInvalid") {
-        isAuthenticated = "Token is not Valid!";
-        throw "Token is not Valid!";
+        isAuthenticated = "Login is Failed! Token is not Valid!";
+        throw isAuthenticated;
       }
       throw err;
     }
