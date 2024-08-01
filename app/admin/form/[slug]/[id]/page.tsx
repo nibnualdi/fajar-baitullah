@@ -2,6 +2,7 @@
 
 import { InputState, formInputs, radioInput } from "@/components/Form/Form";
 import { addArticle, getArticleByID } from "@/lib/api/articlesAPI";
+import { useAppSelector } from "@/lib/hooks";
 import dynamic from "next/dynamic";
 import React, { useEffect, useState } from "react";
 
@@ -10,6 +11,8 @@ const Breadcrumb = dynamic(() => import("@/components/Breadcrumb/Breadcrumb"), {
 
 const Page = ({ params }: { params: { slug: string; id: string } }) => {
   const [defaultForm, setDefaultForm] = useState<any>()
+  const { email, id } = useAppSelector((state) => state.rootReducer.userData)
+  console.log(email, id, "email, id")
 
   const inputs: formInputs | radioInput = [
     {
@@ -61,7 +64,7 @@ const Page = ({ params }: { params: { slug: string; id: string } }) => {
         formData.append("title", inputState.title);
         formData.append("content", inputState.content);
         formData.append("image", inputState.image);
-        formData.append("user_id", "1"); // don't forget to change it when api's ready
+        formData.append("user_id", id as string);
         formData.append("category_id", inputState.category);
         await addArticle(formData);
         return;
@@ -72,7 +75,7 @@ const Page = ({ params }: { params: { slug: string; id: string } }) => {
       formData.append("title", inputState.title);
       formData.append("content", inputState.content);
       formData.append("image", inputState.image);
-      formData.append("user_id", "1"); // don't forget to change it when api's ready
+      formData.append("user_id", id as string);
       formData.append("category_id", inputState.category);
       await addArticle(formData);
     }
