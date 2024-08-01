@@ -22,10 +22,6 @@ const AccountOwner = () => {
   const token = Cookies.get("session_token") || "";
 
   useEffect(() => {
-    console.log(user, "user topbar");
-  }, [user]);
-
-  useEffect(() => {
     (async () => {
       try {
         const payload = await jwtFunc({ token });
