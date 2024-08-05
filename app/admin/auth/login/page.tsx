@@ -1,6 +1,6 @@
 "use client";
 
-import { InputState, formInputs } from "@/components/Form/Form";
+import { InputState } from "@/components/Form/Form";
 import { FetchAPI } from "@/lib/api";
 import dynamic from "next/dynamic";
 import React, { useEffect, useState } from "react";
@@ -35,10 +35,6 @@ const Login = () => {
       }
     })();
   }, []);
-
-  useEffect(() => {
-    console.log(inputState, "asdhjgakjs");
-  }, [inputState]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
