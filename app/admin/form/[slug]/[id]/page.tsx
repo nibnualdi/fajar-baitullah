@@ -1,6 +1,5 @@
 "use client";
 
-import { InputState } from "@/components/Form/Form";
 import { addArticle, articleType, getArticleByID } from "@/lib/api/articlesAPI";
 import { categoryType, getCategory } from "@/lib/api/categoriesAPI";
 import { useAppSelector } from "@/lib/hooks";
@@ -8,6 +7,7 @@ import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import Cookies from "js-cookie";
+import { InputState } from "@/components/Form/Input";
 
 const Button = dynamic(() => import("@/components/Form/Button"), {
   ssr: false,
@@ -42,7 +42,7 @@ const Page = ({ params }: { params: { slug: string; id: string } }) => {
     category: "",
   });
   const [defaultForm, setDefaultForm] = useState<articleType>();
-  const { email, id } = useAppSelector((state) => state.rootReducer.userData);
+  const { id } = useAppSelector((state) => state.rootReducer.userData);
 
   useEffect(() => {
     const getCategories = async () => {
@@ -77,10 +77,6 @@ const Page = ({ params }: { params: { slug: string; id: string } }) => {
 
     setInputState((input) => ({ ...input, [e.target.name]: file }));
   };
-
-  useEffect(() => {
-    console.log(inputState, "lalalalalala");
-  }, [inputState]);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

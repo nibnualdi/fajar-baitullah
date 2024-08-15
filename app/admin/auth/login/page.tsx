@@ -1,6 +1,5 @@
 "use client";
 
-import { InputState } from "@/components/Form/Form";
 import { FetchAPI } from "@/lib/api";
 import dynamic from "next/dynamic";
 import React, { useEffect, useState } from "react";
@@ -9,6 +8,7 @@ import { useRouter } from "next/navigation";
 import { jwtFunc } from "@/lib/utils/jwtDecode";
 import { useAppDispatch } from "@/lib/hooks";
 import { setUser } from "@/lib/features/userSlice";
+import { InputState } from "@/components/Form/Input";
 
 const Button = dynamic(() => import("@/components/Form/Button"), {
   ssr: false,

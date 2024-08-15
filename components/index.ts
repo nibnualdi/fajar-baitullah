@@ -19,7 +19,6 @@ import Mosque from "./Mosque/Mosque";
 import Scene from "./Scene/Scene";
 import ArticleCard from "./Admin/Cards/ArticleCard";
 import ArticleCardSContainer from "./Admin/Cards/ArticleCardSContainer";
-import Form from "./Form/Form";
 import SpeedDial from "./SpeedDial/SpeedDial";
 import Dropdown from "./Dropdown/Dropdown";
 import OverlayAboutRef from "./OverlayAbout/OverlayAbout";
@@ -54,7 +53,6 @@ export {
   Scene,
   ArticleCard,
   ArticleCardSContainer,
-  Form,
   SpeedDial,
   Dropdown,
   OverlayAboutRef,
