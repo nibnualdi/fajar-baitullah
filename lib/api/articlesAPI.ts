@@ -16,7 +16,7 @@ const getArticle = async (): Promise<articleType[]> => {
   return articles;
 };
 
-const getArticleByID = async (id: string): Promise<articleType[]> => {
+const getArticleByID = async (id: string): Promise<articleType> => {
   const articles = await FetchAPI({ endpoint: `/api/article/get/${id}` });
   return articles;
 };

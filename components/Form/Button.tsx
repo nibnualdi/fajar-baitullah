@@ -1,12 +1,24 @@
+import dynamic from "next/dynamic";
 import React from "react";
+
+const Spinner = dynamic(() => import("@/components/Spinner/Spinner"), {
+  ssr: false,
+});
 
 export type PropsTypeButton = {
   name: string;
   type?: "submit" | "reset" | "button";
   variant?: "solid" | "outline";
+  isLoading?: boolean;
 } & React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>;
 
-const Button = ({ name, type = "button", variant = "solid", ...props }: PropsTypeButton) => {
+const Button = ({
+  name,
+  type = "button",
+  variant = "solid",
+  isLoading = false,
+  ...props
+}: PropsTypeButton) => {
   return (
     <button
       className={`${
@@ -17,7 +29,7 @@ const Button = ({ name, type = "button", variant = "solid", ...props }: PropsTyp
       type={type}
       {...props}
     >
-      {name}
+      {isLoading ? <Spinner size="medium" /> : name}
     </button>
   );
 };
