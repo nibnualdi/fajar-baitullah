@@ -5,14 +5,16 @@ import { addArticle, getArticleByID } from "@/lib/api/articlesAPI";
 import { useAppSelector } from "@/lib/hooks";
 import dynamic from "next/dynamic";
 import React, { useEffect, useState } from "react";
+import Cookies from "js-cookie";
 
 const Form = dynamic(() => import("@/components/Form/Form"), { ssr: false });
 const Breadcrumb = dynamic(() => import("@/components/Breadcrumb/Breadcrumb"), { ssr: false });
 
 const Page = ({ params }: { params: { slug: string; id: string } }) => {
-  const [defaultForm, setDefaultForm] = useState<any>()
-  const { email, id } = useAppSelector((state) => state.rootReducer.userData)
-  console.log(email, id, "email, id")
+  const [defaultForm, setDefaultForm] = useState<any>();
+  const token = Cookies.get("session_token") as string;
+  const { email, id } = useAppSelector((state) => state.rootReducer.userData);
+  console.log(email, id, "email, id");
 
   const inputs: formInputs | radioInput = [
     {
@@ -45,14 +47,14 @@ const Page = ({ params }: { params: { slug: string; id: string } }) => {
     },
   ];
 
-  useEffect(()=>{
-    if(params.id === "create") return
+  useEffect(() => {
+    if (params.id === "create") return;
     const getArticle = async () => {
-      const article = await getArticleByID(params.id)
-      setDefaultForm(article)
-    }
-    getArticle()
-  }, [])
+      const article = await getArticleByID(params.id);
+      setDefaultForm(article);
+    };
+    getArticle();
+  }, []);
 
   const handleSubmit = async (inputState: InputState, e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -66,10 +68,10 @@ const Page = ({ params }: { params: { slug: string; id: string } }) => {
         formData.append("image", inputState.image);
         formData.append("user_id", id as string);
         formData.append("category_id", inputState.category);
-        await addArticle(formData);
+        await addArticle(formData, { authorization: `Bearer ${token}` });
         return;
       }
-      
+
       // Edit article
       const formData = new FormData();
       formData.append("title", inputState.title);
@@ -77,7 +79,7 @@ const Page = ({ params }: { params: { slug: string; id: string } }) => {
       formData.append("image", inputState.image);
       formData.append("user_id", id as string);
       formData.append("category_id", inputState.category);
-      await addArticle(formData);
+      await addArticle(formData, { authorization: `Bearer ${token}` });
     }
   };
   return (
