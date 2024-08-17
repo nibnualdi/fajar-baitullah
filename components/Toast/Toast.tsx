@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 
 export type ToastType = "success" | "error" | "warning";
 
-type ToastProps = {
+export type ToastProps = {
   type: ToastType;
   message?: string;
   timeout?: number;

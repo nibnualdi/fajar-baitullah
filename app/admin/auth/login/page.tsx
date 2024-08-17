@@ -9,6 +9,7 @@ import { jwtFunc } from "@/lib/utils/jwtDecode";
 import { useAppDispatch } from "@/lib/hooks";
 import { setUser } from "@/lib/features/userSlice";
 import { InputState } from "@/components/Form/Input";
+import { ToastProps } from "@/components/Toast/Toast";
 
 const Button = dynamic(() => import("@/components/Form/Button"), {
   ssr: false,
@@ -16,9 +17,14 @@ const Button = dynamic(() => import("@/components/Form/Button"), {
 const Input = dynamic(() => import("@/components/Form/Input"), {
   ssr: false,
 });
+const Toast = dynamic(() => import("@/components/Toast/Toast"), {
+  ssr: false,
+});
 
 const Login = () => {
   const [inputState, setInputState] = useState<InputState>({ email: "", password: "" });
+  const [showToast, setShowToast] = useState(false);
+  const [toast, setToast] = useState<ToastProps>({ type: "success" });
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
   const dispatch = useAppDispatch();
@@ -64,6 +70,14 @@ const Login = () => {
       router.push("/admin/dashboard");
       setIsLoading(false);
     } catch (err) {
+      // show toast
+      setShowToast(true);
+      setToast({ ...toast, type: "error", message: "user is not found" });
+      setInterval(() => {
+        setShowToast(false);
+        setToast({ ...toast, message: "" });
+      }, 5000);
+
       setIsLoading(false);
       console.log(err);
     }
@@ -75,6 +89,7 @@ const Login = () => {
         <div className="mb-8 space-y-3">
           <p className="text-xl font-semibold">Login</p>
         </div>
+        {showToast && <Toast type={toast?.type} message={toast?.message} />}
 
         <form className="w-full group" onSubmit={handleSubmit} noValidate>
           <div className="mb-10 space-y-3">
