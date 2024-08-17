@@ -19,6 +19,7 @@ const Input = dynamic(() => import("@/components/Form/Input"), {
 
 const Login = () => {
   const [inputState, setInputState] = useState<InputState>({ email: "", password: "" });
+  const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
   const dispatch = useAppDispatch();
   const token = Cookies.get("session_token") as string;
@@ -45,6 +46,7 @@ const Login = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setIsLoading(true);
 
     try {
       // login
@@ -60,7 +62,9 @@ const Login = () => {
       dispatch(setUser(payload));
 
       router.push("/admin/dashboard");
+      setIsLoading(false);
     } catch (err) {
+      setIsLoading(false);
       console.log(err);
     }
   };
@@ -96,7 +100,7 @@ const Login = () => {
                 onChange={handleChange}
               />
             </div>
-            <Button name="Login" type="submit" />
+            <Button name="Login" type="submit" isLoading={isLoading} />
           </div>
         </form>
       </div>
