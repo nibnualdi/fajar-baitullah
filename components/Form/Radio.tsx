@@ -45,9 +45,9 @@ const Radio = ({
         htmlFor={id ? id : label}
         className={`text-xs font-medium px-2.5 py-0.5 rounded border cursor-pointer ${
           selectedValue === label ||
-          defaultValue == label ||
           selectedValue === id ||
-          defaultValue == id
+          (!selectedValue && defaultValue == label) ||
+          (!selectedValue && defaultValue == id)
             ? "text-gray-100 bg-dark-green"
             : "border-dark-green text-dark-green bg-gray-100 bg-opacity-20 hover:text-gray-600 hover:bg-transparent"
         }`}
