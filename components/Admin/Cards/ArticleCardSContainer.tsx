@@ -13,26 +13,33 @@ type PropsArticleCardSContainer = {
 
 const ArticleCardSContainer = async ({ limit }: PropsArticleCardSContainer) => {
   const articles = await getArticle();
-  // console.log(articles, "lalalala")
+  console.log(articles, "lalalala")
 
   if (!limit) {
-    return articles.map(({ ID, Title, Content, Image, CategoryID }) => (
-      <ArticleCard image={Image} category={CategoryID} desc={Content} title={Title} id={ID} key={ID} />
+    return articles.map(({ id, title, content, image, category_id }) => (
+      <ArticleCard
+        image={image}
+        category_id={category_id}
+        desc={content}
+        title={title}
+        id={id}
+        key={id}
+      />
     ));
   }
 
   return (
     <div>
-      {articles.map(({ ID, Title, Content, Image, CategoryID }, index) => {
+      {articles.map(({ id, title, content, image, category_id }, index) => {
         return (
           index < limit && (
             <ArticleCard
-              image={Image}
-              category={CategoryID}
-              desc={Content}
-              title={Title}
-              id={ID}
-              key={ID}
+              image={image}
+              category_id={category_id}
+              desc={content}
+              title={title}
+              id={id}
+              key={id}
             />
           )
         );

@@ -1,6 +1,6 @@
 import { Metadata } from "next";
-import { articles } from "@/constans/dummyData";
 import DetailPage from "../DetailPage";
+import { getArticleByID } from "@/lib/api/articlesAPI";
 
 type DetailPageProps = {
   params: { id: string };
@@ -22,19 +22,20 @@ type DetailPageProps = {
 // };
 
 export const generateMetadata = async ({ params: { id } }: DetailPageProps): Promise<Metadata> => {
-  const selectedActivity = articles.filter((item) => item.id === id);
+  const article = await getArticleByID(id);
 
   return {
-    title: selectedActivity[0].title,
-    description: selectedActivity[0].desc,
+    title: article.title,
+    description: article.content,
     openGraph: {
-      images: selectedActivity[0].image,
+      images: article.image,
     },
   };
 };
 
-const Page = ({ params }: { params: { id: string } }) => {
-  return <DetailPage params={params} />;
+const Page = async ({ params: { id } }: DetailPageProps) => {
+  const article = await getArticleByID(id);
+  return <DetailPage article={article} />;
 };
 
 export default Page;

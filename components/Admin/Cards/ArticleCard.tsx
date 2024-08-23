@@ -1,17 +1,21 @@
 import { EditIcon } from "@/assets/icons/admin";
+import { getCategoryByID } from "@/lib/api/categoriesAPI";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
 type PropsArticleCard = {
-  id: number;
+  id: string;
   image: string;
   title: string;
-  category: number;
+  category_id: string;
   desc: string;
 };
 
-const ArticleCard = ({ id, image, category, desc, title }: PropsArticleCard) => {
+const ArticleCard = async ({ id, image, category_id, desc, title }: PropsArticleCard) => {
+  const category = await getCategoryByID(category_id);
+  console.log(category, "dari yg baru");
+
   return (
     <div className="relative flex flex-col bg-clip-border rounded-xl bg-transparent text-gray-700 shadow p-5 mb-5">
       <div className="relative bg-clip-border rounded-xl overflow-hidden bg-gray-900 text-white shadow-gray-900/20 shadow-lg mx-0 mt-0 mb-4 h-64 xl:h-40">
@@ -27,7 +31,7 @@ const ArticleCard = ({ id, image, category, desc, title }: PropsArticleCard) => 
       </div>
       <div className="p-6 py-0 px-1">
         <p className="block antialiased font-sans text-sm leading-normal font-normal text-blue-gray-500">
-          {category}
+          {category.name}
         </p>
         <h5 className="antialiased tracking-normal font-sans text-xl font-semibold leading-snug text-blue-gray-900 mt-1 mb-2 line-clamp-2">
           {title}

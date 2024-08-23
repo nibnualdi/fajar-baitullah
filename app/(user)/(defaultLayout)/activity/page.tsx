@@ -1,14 +1,16 @@
 import { openSans700, openSans400 } from "@/assets/fonts";
 import { Card, Swiper } from "@/components";
 
-import { articles } from "@/constans/dummyData";
+import { getArticle } from "@/lib/api/articlesAPI";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Artikel",
 };
 
-export default function Activity() {
+export default async function Activity() {
+  const articles = await getArticle();
+
   return (
     <main className="bg-white py-[141px]">
       <div className="relative mid-xl:max-w-[1278px] mid-lg:max-w-[840px] max-w-[401px] w-full h-[712px] m-auto mb-[59px]">
@@ -23,7 +25,7 @@ export default function Activity() {
 
       <div className="max-w-[1278px] w-full m-auto flex flex-wrap justify-center gap-[37px] md:px-0 px-4">
         {articles.map((item) => (
-          <Card item={item} key={item.id} />
+          <Card article={item} key={item.id} />
         ))}
       </div>
     </main>

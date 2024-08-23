@@ -140,7 +140,7 @@ const Page = ({ params }: { params: { slug: string; id: string } }) => {
                   pattern=".{1,}"
                   require={true}
                   onChange={handleChange}
-                  defaultValue={defaultForm?.Title}
+                  defaultValue={defaultForm?.title}
                 />
               </div>
               <div className="space-y-2">
@@ -149,7 +149,7 @@ const Page = ({ params }: { params: { slug: string; id: string } }) => {
                   label="content"
                   placeholder="description"
                   onChange={handleChange}
-                  defaultValue={defaultForm?.Content}
+                  defaultValue={defaultForm?.content}
                 />
               </div>
               <div className="space-y-2">
@@ -158,7 +158,7 @@ const Page = ({ params }: { params: { slug: string; id: string } }) => {
                   className="flex flex-col gap-3"
                   containerRadioClassName="flex gap-3 flex-wrap w-full"
                   onChange={handleChange}
-                  defaultValue={defaultForm?.CategoryID}
+                  defaultValue={defaultForm?.category_id}
                 >
                   {categories?.map((e) => <Radio label={e.name} id={String(e.id)} key={e.id} />)}
                 </RadioGroup>
@@ -190,7 +190,7 @@ const Page = ({ params }: { params: { slug: string; id: string } }) => {
                 <File
                   name="image"
                   label="image"
-                  defaultValue={defaultForm?.Image}
+                  defaultValue={defaultForm?.image}
                   onChange={handleFileChange}
                 />
               </div>

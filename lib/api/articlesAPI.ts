@@ -1,14 +1,14 @@
 import { FetchAPI } from ".";
 
 export type articleType = {
-  ID: number;
-  Title: string;
-  Content: string;
-  Image: string;
-  CategoryID: number;
-  UserID: number;
-  CreatedAt: string;
-  UpdatedAt: string;
+  id: number;
+  title: string;
+  content: string;
+  image: string;
+  category_id: number;
+  user_id: number;
+  created_at: string;
+  updated_at: string;
 };
 
 const getArticle = async (): Promise<articleType[]> => {

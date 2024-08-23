@@ -9,13 +9,14 @@ import arrow from "@/assets/icons/arrow.json";
 import Image from "next/legacy/image";
 // import { articles } from "@/constans/dummyData";
 import Link from "next/link";
+import { articleType } from "@/lib/api/articlesAPI";
 
 const AnimatedIcon = dynamic(() => import("@/components/AnimatedIcon/AnimatedIcon"), {
   ssr: false,
 });
 
 type SwiperProps = React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement> & {
-  articles: any;
+  articles: articleType[];
   containerClassName: string;
   overlayClassName: string;
   h1ClassName: string;
@@ -96,7 +97,7 @@ const Swiper = (props: SwiperProps) => {
           }}
         >
           <div className={`absolute z-20 w-full h-full ${props.overlayClassName}`}>
-            <Link href={`activity/detail/${props.articles[contentIndex].Id}`}>
+            <Link href={`activity/detail/${props.articles[contentIndex].id}`}>
               <motion.h1
                 className={props.h1ClassName}
                 initial={{ y: 100, opacity: 0 }}
@@ -104,10 +105,10 @@ const Swiper = (props: SwiperProps) => {
                 transition={{ duration: 1.5, type: "spring" }}
                 key={`h1 ${page}`}
               >
-                {props.articles[contentIndex].Title}
+                {props.articles[contentIndex].title}
               </motion.h1>
             </Link>
-            <Link href={`activity/detail/${props.articles[contentIndex].Id}`}>
+            <Link href={`activity/detail/${props.articles[contentIndex].id}`}>
               <motion.p
                 className={props.pClassName}
                 initial={{ y: 100, opacity: 0 }}
@@ -115,7 +116,7 @@ const Swiper = (props: SwiperProps) => {
                 transition={{ duration: 1.5, type: "spring" }}
                 key={`p ${page}`}
               >
-                {props.articles[contentIndex].Content}
+                {props.articles[contentIndex].content}
               </motion.p>
             </Link>
           </div>
@@ -125,9 +126,9 @@ const Swiper = (props: SwiperProps) => {
             // height={487}
             layout="fill"
             objectFit="cover"
-            src={props.articles[contentIndex].Image}
+            src={props.articles[contentIndex].image}
             loader={({ src, width, quality }) => `${src}?w=${width}&q=${quality || 75}`}
-            alt={props.articles[contentIndex].Image}
+            alt={props.articles[contentIndex].image}
             className="absolute top-0 left-0 w-full h-full"
           />
         </motion.div>
