@@ -1,7 +1,7 @@
 "use client";
 
 import { addArticle, articleType, getArticleByID } from "@/lib/api/articlesAPI";
-import { categoryType, getCategory } from "@/lib/api/categoriesAPI";
+import { addCategory, categoryType, getCategory } from "@/lib/api/categoriesAPI";
 import { useAppSelector } from "@/lib/hooks";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
@@ -35,6 +35,8 @@ const Page = ({ params }: { params: { slug: string; id: string } }) => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const [categories, setCategories] = useState<categoryType[]>();
+  const [openAddCategory, setOpenAddCategory] = useState(false);
+  const [inputNewCategory, setInputNewCategory] = useState("");
   const [inputState, setInputState] = useState<InputState>({
     title: "",
     content: "",
@@ -80,6 +82,7 @@ const Page = ({ params }: { params: { slug: string; id: string } }) => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (openAddCategory) return;
     console.log("inputState :", inputState);
     setIsLoading(true);
     if (params.slug === "article") {
@@ -107,6 +110,16 @@ const Page = ({ params }: { params: { slug: string; id: string } }) => {
       setIsLoading(false);
     }
   };
+
+  const handleAddCategory = async () => {
+    if (!inputNewCategory) return;
+    await addCategory(JSON.stringify({ name: inputNewCategory }), {
+      authorization: `Bearer ${token}`,
+    });
+    setOpenAddCategory(false);
+    setInputNewCategory("");
+  };
+
   return (
     <div className="bg-white text-dark-green mx-auto max-w-screen min-h-screen px-4 py-4 sm:px-6 lg:px-8">
       <Breadcrumb click={false} customPath={["form", params.slug, params.id]} />
@@ -147,8 +160,31 @@ const Page = ({ params }: { params: { slug: string; id: string } }) => {
                   onChange={handleChange}
                   defaultValue={defaultForm?.CategoryID}
                 >
-                  {categories?.map((e) => <Radio label={e.name} id={String(e.id)} />)}
+                  {categories?.map((e) => <Radio label={e.name} id={String(e.id)} key={e.id} />)}
                 </RadioGroup>
+                <span className="mt-5">
+                  {!openAddCategory ? (
+                    <Radio
+                      label="+ Add Category"
+                      id="add category"
+                      onClick={() => setOpenAddCategory(true)}
+                    />
+                  ) : (
+                    <input
+                      type="text"
+                      className="text-xs font-medium px-2.5 py-0.5 rounded border border-dark-green text-dark-green bg-gray-100 bg-opacity-20 hover:text-gray-600 hover:bg-transparent outline-none"
+                      autoFocus
+                      onKeyDown={(e) => {
+                        console.log(e.key === "Enter", "dari key");
+                        if (e.key === "Enter") {
+                          handleAddCategory();
+                        }
+                      }}
+                      onChange={(e) => setInputNewCategory(e.target.value)}
+                      onBlur={() => setOpenAddCategory(false)}
+                    ></input>
+                  )}
+                </span>
               </div>
               <div className="space-y-2">
                 <File

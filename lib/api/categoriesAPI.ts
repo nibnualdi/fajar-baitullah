@@ -10,4 +10,8 @@ const getCategory = async (): Promise<categoryType[]> => {
   return articles;
 };
 
-export { getCategory };
+const addCategory = async (data: BodyInit, headers?: HeadersInit) => {
+  await FetchAPI({ endpoint: "/api/category/add", body: data, method: "POST", headers });
+};
+
+export { getCategory, addCategory };
