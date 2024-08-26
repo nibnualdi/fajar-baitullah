@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import { InputState } from "@/components/Form/Input";
+import { handleRevalidateTag } from "@/lib/actions";
 
 const Button = dynamic(() => import("@/components/Form/Button"), {
   ssr: false,
@@ -96,6 +97,8 @@ const Page = ({ params }: { params: { slug: string; id: string } }) => {
         formData.append("category_id", inputState.category);
         await addArticle(formData, { authorization: `Bearer ${token}` });
         setIsLoading(false);
+        handleRevalidateTag("list_article");
+        router.back();
         return;
       }
 

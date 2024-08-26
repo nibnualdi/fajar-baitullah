@@ -1,12 +1,16 @@
 type PropsFetchAPI = {
   endpoint: string;
-  method?: "GET" | "POST" | "PUT" | "DELETE";
   APIUrl?: string;
-  body?: BodyInit | null | undefined;
-  headers?: HeadersInit | undefined;
-};
+} & RequestInit;
 
-export async function FetchAPI({ endpoint, APIUrl, method, body, headers }: PropsFetchAPI) {
+export async function FetchAPI({
+  endpoint,
+  APIUrl,
+  method,
+  body,
+  headers,
+  ...rest
+}: PropsFetchAPI) {
   const API = process.env.NEXT_PUBLIC_API_URL;
 
   try {
@@ -14,6 +18,7 @@ export async function FetchAPI({ endpoint, APIUrl, method, body, headers }: Prop
       method: method ? method : "GET",
       body,
       headers,
+      ...rest,
     });
     const json = await result.json();
 

@@ -12,7 +12,10 @@ export type articleType = {
 };
 
 const getArticle = async (): Promise<articleType[]> => {
-  const articles = await FetchAPI({ endpoint: "/api/article/list" });
+  const articles = await FetchAPI({
+    endpoint: "/api/article/list",
+    next: { tags: ["list_article"] },
+  });
   return articles;
 };
 
