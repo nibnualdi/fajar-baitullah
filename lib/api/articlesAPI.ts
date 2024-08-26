@@ -1,12 +1,12 @@
 import { FetchAPI } from ".";
 
 export type articleType = {
-  id: number;
+  id: string;
   title: string;
   content: string;
   image: string;
-  category_id: number;
-  user_id: number;
+  category_id: string;
+  user_id: string;
   created_at: string;
   updated_at: string;
 };
