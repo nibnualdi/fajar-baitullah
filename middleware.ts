@@ -25,6 +25,7 @@ export const config = {
     "/admin/dashboard/:path*",
     "/admin/activity/:path*",
     "/admin/user/:path*",
+    "/admin/category/:path*",
     "/admin/form/:path*",
   ],
 };

@@ -1,4 +1,4 @@
-import { ArticleIcon, DashboardIcon, UserIcon } from "@/assets/icons/admin";
+import { ArticleIcon, CategoryIcon, DashboardIcon, UserIcon } from "@/assets/icons/admin";
 
 export const routes = [
   {
@@ -12,10 +12,16 @@ export const routes = [
     link: "/admin/activity",
     speedDial: true,
   },
+  // {
+  //   title: "User",
+  //   icon: <UserIcon />,
+  //   link: "/admin/user",
+  //   speedDial: true,
+  // },
   {
-    title: "User",
-    icon: <UserIcon />,
-    link: "/admin/user",
+    title: "Category",
+    icon: <CategoryIcon />,
+    link: "/admin/category",
     speedDial: true,
   },
 ];
