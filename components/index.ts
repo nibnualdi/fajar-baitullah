@@ -30,6 +30,7 @@ import RadioGroup from "./Form/RadioGroup";
 import Radio from "./Form/Radio";
 import File from "./Form/File";
 import Spinner from "./Spinner/Spinner";
+import Modal from "./Modal/Modal";
 
 export {
   SectionOne,
@@ -64,4 +65,5 @@ export {
   Radio,
   File,
   Spinner,
+  Modal,
 };

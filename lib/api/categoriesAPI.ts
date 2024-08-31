@@ -26,4 +26,8 @@ const updateCategory = async (id: string, data: BodyInit, headers?: HeadersInit)
   await FetchAPI({ endpoint: `/api/category/update/${id}`, body: data, method: "PUT", headers });
 };
 
-export { getCategory, getCategoryByID, addCategory, updateCategory };
+const deleteCategory = async (id: string, headers?: HeadersInit) => {
+  await FetchAPI({ endpoint: `/api/category/delete/${id}`, method: "DELETE", headers });
+};
+
+export { getCategory, getCategoryByID, addCategory, updateCategory, deleteCategory };

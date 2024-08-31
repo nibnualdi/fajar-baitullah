@@ -1,7 +1,7 @@
 "use client";
 
 import { EditIcon, TrashcanIcon } from "@/assets/icons/admin";
-import { categoryType, updateCategory } from "@/lib/api/categoriesAPI";
+import { categoryType, deleteCategory, updateCategory } from "@/lib/api/categoriesAPI";
 import React, { useState } from "react";
 import Cookies from "js-cookie";
 import dynamic from "next/dynamic";
@@ -9,6 +9,7 @@ import dynamic from "next/dynamic";
 import check from "@/assets/icons/check-dark-green.json";
 import { handleRevalidateTag } from "@/lib/actions";
 import { useRouter } from "next/navigation";
+import Modal from "@/components/Modal/Modal";
 
 const AnimatedIcon = dynamic(() => import("@/components/AnimatedIcon/AnimatedIcon"), {
   ssr: false,
@@ -24,6 +25,7 @@ const CategoryCard = ({ category, index }: { category: categoryType; index: numb
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [openinputCategory, setOpeninputCategory] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
 
   const handleEditCategory = async () => {
     if (!input) return;
@@ -47,8 +49,31 @@ const CategoryCard = ({ category, index }: { category: categoryType; index: numb
     }
   };
 
+  const handleDeleteCategory = async () => {
+    try {
+      await deleteCategory(category.id, {
+        authorization: `Bearer ${token}`,
+      });
+      handleRevalidateTag("list_category");
+      router.refresh();
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <div className="text-sm font-medium leading-none border border-white border-t-0 border-l-0 border-r-0 p-4 flex justify-between items-center">
+      {openModal && (
+        <Modal
+          message={
+            <p>
+              Are you sure you want to delete <b>{category.name}</b> category?
+            </p>
+          }
+          setIsOpen={setOpenModal}
+          onClick={handleDeleteCategory}
+        />
+      )}
       {openinputCategory ? (
         <>
           <input
@@ -98,7 +123,7 @@ const CategoryCard = ({ category, index }: { category: categoryType; index: numb
               <button
                 className="text-gray-400"
                 onClick={() => {
-                  setOpeninputCategory(true);
+                  setOpenModal(true);
                 }}
               >
                 <TrashcanIcon />
