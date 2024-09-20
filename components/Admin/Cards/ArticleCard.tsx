@@ -1,8 +1,10 @@
+"use client";
+
 import { EditIcon } from "@/assets/icons/admin";
-import { getCategoryByID } from "@/lib/api/categoriesAPI";
+import { categoryType, getCategoryByID } from "@/lib/api/categoriesAPI";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 type PropsArticleCard = {
   id: string;
@@ -12,8 +14,15 @@ type PropsArticleCard = {
   desc: string;
 };
 
-const ArticleCard = async ({ id, image, category_id, desc, title }: PropsArticleCard) => {
-  const category = await getCategoryByID(category_id);
+const ArticleCard = ({ id, image, category_id, desc, title }: PropsArticleCard) => {
+  const [category, setCategory] = useState<categoryType | null>(null);
+  useEffect(() => {
+    const fetchCategory = async () => {
+      const category = await getCategoryByID(category_id);
+      setCategory(category);
+    };
+    fetchCategory();
+  }, [category_id]);
   console.log(category, "dari yg baru");
 
   return (
@@ -31,7 +40,7 @@ const ArticleCard = async ({ id, image, category_id, desc, title }: PropsArticle
       </div>
       <div className="p-6 py-0 px-1">
         <p className="block antialiased font-sans text-sm leading-normal font-normal text-blue-gray-500">
-          {category.name}
+          {category?.name ? category?.name : "Something is wrong in category"}
         </p>
         <h5 className="antialiased tracking-normal font-sans text-xl font-semibold leading-snug text-blue-gray-900 mt-1 mb-2 line-clamp-2">
           {title}

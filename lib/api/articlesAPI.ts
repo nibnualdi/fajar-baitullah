@@ -16,12 +16,12 @@ const getArticle = async (): Promise<articleType[]> => {
     endpoint: "/api/article/list",
     next: { tags: ["list_article"] },
   });
-  return articles;
+  return await articles;
 };
 
 const getArticleByID = async (id: string): Promise<articleType> => {
   const articles = await FetchAPI({ endpoint: `/api/article/get/${id}` });
-  return articles;
+  return await articles;
 };
 
 const addArticle = async (data: BodyInit, headers?: HeadersInit) => {

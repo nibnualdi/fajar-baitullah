@@ -10,12 +10,20 @@ const getCategory = async (): Promise<categoryType[]> => {
     endpoint: "/api/category/list",
     next: { tags: ["list_category"] },
   });
-  return categories;
+  return await categories;
 };
 
-const getCategoryByID = async (id: string): Promise<categoryType> => {
-  const category = await FetchAPI({ endpoint: `/api/category/get/${id}` });
-  return category;
+const getCategoryByID = async (id: string): Promise<categoryType | any> => {
+  try {
+    const category = await FetchAPI({ endpoint: `/api/category/get/${id}` });
+    if (category.error) {
+      throw new Error(`Request failed with status ${category.error}`);
+    }
+    return category;
+  } catch (err) {
+    console.log("Error in getCategoryByID:", err);
+    return { error: true, message: err || 'Unknown error' };
+  }
 };
 
 const addCategory = async (data: BodyInit, headers?: HeadersInit) => {
