@@ -23,7 +23,7 @@ const content: { title: string; desc?: string; image?: string; overlay?: boolean
   {
     title: "Struktur Organisasi",
     image:
-      "https://d33wubrfki0l68.cloudfront.net/dd23708ebc4053551bb33e18b7174e73b6e1710b/dea24/static/images/wallpapers/shared-colors@2x.png",
+      "https://templatelab.com/wp-content/uploads/2018/10/Free-Organizational-Chart-3-TemplateLab.com_-e1539503242343.jpg",
     overlay: true,
   },
   {

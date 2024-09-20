@@ -14,6 +14,11 @@ const nextConfig = {
       },
       {
         protocol: "https",
+        hostname: "templatelab.com",
+        port: "",
+      },
+      {
+        protocol: "https",
         hostname: "i1.wp.com",
         port: "",
       },
