@@ -11,6 +11,10 @@ export type articleType = {
   updated_at: string;
 };
 
+export type imageArticleType = {
+  signedURL: string;
+};
+
 export type responseArticleType<TData> = {
   status: "success" | "error";
   massage: string;
@@ -34,4 +38,17 @@ const addArticle = async (data: BodyInit, headers?: HeadersInit) => {
   await FetchAPI({ endpoint: "/api/article/add", body: data, method: "POST", headers });
 };
 
-export { getArticle, getArticleByID, addArticle };
+const addImageArticle = async (
+  data: BodyInit,
+  headers?: HeadersInit
+): Promise<responseArticleType<imageArticleType>> => {
+  const image = await FetchAPI({
+    endpoint: "/api/article/image/add",
+    body: data,
+    method: "POST",
+    headers,
+  });
+  return image;
+};
+
+export { getArticle, getArticleByID, addArticle, addImageArticle };

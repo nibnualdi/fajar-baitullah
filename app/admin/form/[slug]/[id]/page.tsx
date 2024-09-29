@@ -1,6 +1,6 @@
 "use client";
 
-import { addArticle, articleType, getArticleByID } from "@/lib/api/articlesAPI";
+import { addArticle, addImageArticle, articleType, getArticleByID } from "@/lib/api/articlesAPI";
 import { addCategory, categoryType, getCategory } from "@/lib/api/categoriesAPI";
 import { useAppSelector } from "@/lib/hooks";
 import dynamic from "next/dynamic";
@@ -72,13 +72,18 @@ const Page = ({ params }: { params: { slug: string; id: string } }) => {
     setInputState((input) => ({ ...input, [e.target.name]: e.target.value }));
   };
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
 
     const targetInput = e.target as HTMLInputElement;
     const file = (targetInput.files as FileList)[0];
 
-    setInputState((input) => ({ ...input, [e.target.name]: file }));
+    const formdata = new FormData();
+    formdata.append("image", file);
+
+    const image = await addImageArticle(formdata, { authorization: `Bearer ${token}` });
+
+    setInputState((input) => ({ ...input, [e.target.name]: image.data.signedURL }));
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -89,13 +94,15 @@ const Page = ({ params }: { params: { slug: string; id: string } }) => {
     if (params.slug === "article") {
       // Add article
       if (params.id === "create") {
-        const formData = new FormData();
-        formData.append("title", inputState.title);
-        formData.append("content", inputState.content);
-        formData.append("image", inputState.image);
-        formData.append("user_id", id as string);
-        formData.append("category_id", inputState.category);
-        await addArticle(formData, { authorization: `Bearer ${token}` });
+        const data = {
+          title: inputState.title,
+          content: inputState.content,
+          image: inputState.image,
+          user_id: id as string,
+          category_id: inputState.category,
+        };
+
+        await addArticle(JSON.stringify(data), { authorization: `Bearer ${token}` });
         setIsLoading(false);
         handleRevalidateTag("list_article");
         router.back();
