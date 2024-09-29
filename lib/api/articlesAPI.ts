@@ -11,7 +11,13 @@ export type articleType = {
   updated_at: string;
 };
 
-const getArticle = async (): Promise<articleType[]> => {
+export type responseArticleType<TData> = {
+  status: "success" | "error";
+  massage: string;
+  data: TData;
+};
+
+const getArticle = async (): Promise<responseArticleType<articleType[]>> => {
   const articles = await FetchAPI({
     endpoint: "/api/article/list",
     next: { tags: ["list_article"] },
@@ -19,7 +25,7 @@ const getArticle = async (): Promise<articleType[]> => {
   return await articles;
 };
 
-const getArticleByID = async (id: string): Promise<articleType> => {
+const getArticleByID = async (id: string): Promise<responseArticleType<articleType>> => {
   const articles = await FetchAPI({ endpoint: `/api/article/get/${id}` });
   return await articles;
 };

@@ -17,7 +17,7 @@ const ArticleCardSContainer = ({ limit }: PropsArticleCardSContainer) => {
   useEffect(() => {
     const fetchArticles = async () => {
       const articles = await getArticle();
-      setArticles(articles);
+      setArticles(articles.data);
     };
     fetchArticles();
   }, []);

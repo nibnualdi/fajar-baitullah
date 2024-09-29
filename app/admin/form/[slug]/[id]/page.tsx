@@ -50,7 +50,7 @@ const Page = ({ params }: { params: { slug: string; id: string } }) => {
   useEffect(() => {
     const getCategories = async () => {
       const category = await getCategory();
-      setCategories(category);
+      setCategories(category.data);
     };
     getCategories();
 
@@ -58,7 +58,7 @@ const Page = ({ params }: { params: { slug: string; id: string } }) => {
 
     const getArticle = async () => {
       const article = await getArticleByID(params.id);
-      setDefaultForm(article);
+      setDefaultForm(article.data);
     };
     getArticle();
   }, []);

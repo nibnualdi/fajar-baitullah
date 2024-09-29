@@ -14,7 +14,7 @@ const CategoryCardsContainer = () => {
   useEffect(() => {
     const fetchArticles = async () => {
       const categories = await getCategory();
-      setCategories(categories);
+      setCategories(categories.data);
     };
     fetchArticles();
   }, []);

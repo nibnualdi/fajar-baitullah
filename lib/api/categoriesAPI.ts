@@ -5,7 +5,13 @@ export type categoryType = {
   name: string;
 };
 
-const getCategory = async (): Promise<categoryType[]> => {
+export type responseCategoryType = {
+  status: "success" | "error";
+  massage: string;
+  data: categoryType[];
+};
+
+const getCategory = async (): Promise<responseCategoryType> => {
   const categories = await FetchAPI({
     endpoint: "/api/category/list",
     next: { tags: ["list_category"] },
@@ -22,7 +28,7 @@ const getCategoryByID = async (id: string): Promise<categoryType | any> => {
     return category;
   } catch (err) {
     console.log("Error in getCategoryByID:", err);
-    return { error: true, message: err || 'Unknown error' };
+    return { error: true, message: err || "Unknown error" };
   }
 };
 

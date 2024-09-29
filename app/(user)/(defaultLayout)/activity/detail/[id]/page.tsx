@@ -25,17 +25,17 @@ export const generateMetadata = async ({ params: { id } }: DetailPageProps): Pro
   const article = await getArticleByID(id);
 
   return {
-    title: article.title,
-    description: article.content,
+    title: article.data.title,
+    description: article.data.content,
     openGraph: {
-      images: article.image,
+      images: article.data.image,
     },
   };
 };
 
 const Page = async ({ params: { id } }: DetailPageProps) => {
   const article = await getArticleByID(id);
-  return <DetailPage article={article} />;
+  return <DetailPage article={article.data} />;
 };
 
 export default Page;
