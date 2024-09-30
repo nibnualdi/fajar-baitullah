@@ -1,6 +1,6 @@
 "use client";
 
-import { addArticle, addImageArticle, articleType, getArticleByID } from "@/lib/api/articlesAPI";
+import { addArticle, addImageArticle, articleType, getArticleByID, updateArticle } from "@/lib/api/articlesAPI";
 import { addCategory, categoryType, getCategory } from "@/lib/api/categoriesAPI";
 import { useAppSelector } from "@/lib/hooks";
 import dynamic from "next/dynamic";
@@ -44,7 +44,7 @@ const Page = ({ params }: { params: { slug: string; id: string } }) => {
     image: "",
     category: "",
   });
-  const [defaultForm, setDefaultForm] = useState<articleType>();
+  const [defaultForm, setDefaultForm] = useState<InputState>();
   const { id } = useAppSelector((state) => state.rootReducer.userData);
 
   useEffect(() => {
@@ -66,9 +66,13 @@ const Page = ({ params }: { params: { slug: string; id: string } }) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     e.preventDefault();
 
-    if (e.target.type === "radio")
-      return setInputState((input) => ({ ...input, [e.target.name]: e.target.id }));
+    if (e.target.type === "radio") {
+      setDefaultForm((input) => ({ ...input, [e.target.name]: e.target.id }));
+      setInputState((input) => ({ ...input, [e.target.name]: e.target.id }));
+      return;
+    }
     // set value by name
+    setDefaultForm((input) => ({ ...input, [e.target.name]: e.target.value }));
     setInputState((input) => ({ ...input, [e.target.name]: e.target.value }));
   };
 
@@ -83,6 +87,7 @@ const Page = ({ params }: { params: { slug: string; id: string } }) => {
 
     const image = await addImageArticle(formdata, { authorization: `Bearer ${token}` });
 
+    setDefaultForm((input) => ({ ...input, [e.target.name]: image.data.signedURL }));
     setInputState((input) => ({ ...input, [e.target.name]: image.data.signedURL }));
   };
 
@@ -110,13 +115,24 @@ const Page = ({ params }: { params: { slug: string; id: string } }) => {
       }
 
       // Edit article
-      const formData = new FormData();
-      formData.append("title", inputState.title);
-      formData.append("content", inputState.content);
-      formData.append("image", inputState.image);
-      formData.append("user_id", id as string);
-      formData.append("category_id", inputState.category);
-      await addArticle(formData, { authorization: `Bearer ${token}` });
+      const data = {
+        title: defaultForm?.title,
+        content: defaultForm?.content,
+        image: defaultForm?.image,
+        user_id: id as string,
+        category_id: defaultForm?.category_id,
+      };
+
+
+      // const formData = new FormData();
+      // formData.append("title", inputState.title);
+      // formData.append("content", inputState.content);
+      // formData.append("image", inputState.image);
+      // formData.append("user_id", id as string);
+      // formData.append("category_id", inputState.category);
+
+      // here the update article
+      await updateArticle(params.id, JSON.stringify(data), { authorization: `Bearer ${token}` });
       setIsLoading(false);
     }
   };

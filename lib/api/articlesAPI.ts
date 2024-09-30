@@ -51,4 +51,8 @@ const addImageArticle = async (
   return image;
 };
 
-export { getArticle, getArticleByID, addArticle, addImageArticle };
+const updateArticle = async (id:string , data: BodyInit, headers?: HeadersInit) => {
+  await FetchAPI({ endpoint: `/api/article/update/${id}`, body: data, method: "PUT", headers });
+};
+
+export { getArticle, getArticleByID, addArticle, addImageArticle, updateArticle };

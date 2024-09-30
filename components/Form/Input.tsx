@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 
-export type InputState = { [x: string]: string | File };
+export type InputState = { [x: string]: string };
 
 export type PropsTypeInput = {
   name: string;
