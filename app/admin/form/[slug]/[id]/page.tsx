@@ -3,7 +3,6 @@
 import {
   addArticle,
   addImageArticle,
-  articleType,
   getArticleByID,
   updateArticle,
 } from "@/lib/api/articlesAPI";
