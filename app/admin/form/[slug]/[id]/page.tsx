@@ -137,6 +137,8 @@ const Page = ({ params }: { params: { slug: string; id: string } }) => {
         "Content-Type": "application/json",
       });
       setIsLoading(false);
+      handleRevalidateTag("list_article");
+      router.back();
     }
   };
 
