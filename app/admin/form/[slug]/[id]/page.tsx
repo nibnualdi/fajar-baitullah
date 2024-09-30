@@ -1,6 +1,12 @@
 "use client";
 
-import { addArticle, addImageArticle, articleType, getArticleByID, updateArticle } from "@/lib/api/articlesAPI";
+import {
+  addArticle,
+  addImageArticle,
+  articleType,
+  getArticleByID,
+  updateArticle,
+} from "@/lib/api/articlesAPI";
 import { addCategory, categoryType, getCategory } from "@/lib/api/categoriesAPI";
 import { useAppSelector } from "@/lib/hooks";
 import dynamic from "next/dynamic";
@@ -107,7 +113,10 @@ const Page = ({ params }: { params: { slug: string; id: string } }) => {
           category_id: inputState.category,
         };
 
-        await addArticle(JSON.stringify(data), { authorization: `Bearer ${token}` });
+        await addArticle(JSON.stringify(data), {
+          authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        });
         setIsLoading(false);
         handleRevalidateTag("list_article");
         router.back();
@@ -123,16 +132,10 @@ const Page = ({ params }: { params: { slug: string; id: string } }) => {
         category_id: defaultForm?.category_id,
       };
 
-
-      // const formData = new FormData();
-      // formData.append("title", inputState.title);
-      // formData.append("content", inputState.content);
-      // formData.append("image", inputState.image);
-      // formData.append("user_id", id as string);
-      // formData.append("category_id", inputState.category);
-
-      // here the update article
-      await updateArticle(params.id, JSON.stringify(data), { authorization: `Bearer ${token}` });
+      await updateArticle(params.id, JSON.stringify(data), {
+        authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      });
       setIsLoading(false);
     }
   };
