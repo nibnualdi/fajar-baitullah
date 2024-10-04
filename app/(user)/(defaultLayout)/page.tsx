@@ -7,7 +7,7 @@ export default async function Home() {
   return (
     <main>
       <SectionOne />
-      <SectionTwo articles={articles} />
+      <SectionTwo articles={articles.data} />
     </main>
   );
 }
