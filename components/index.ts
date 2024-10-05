@@ -31,6 +31,7 @@ import Radio from "./Form/Radio";
 import File from "./Form/File";
 import Spinner from "./Spinner/Spinner";
 import Modal from "./Modal/Modal";
+import MimbarArticle from "./home/MimbarArticle/MimbarArticle";
 
 export {
   SectionOne,
@@ -66,4 +67,5 @@ export {
   File,
   Spinner,
   Modal,
+  MimbarArticle,
 };

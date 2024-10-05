@@ -7,6 +7,7 @@ type AnimatedIconProps = {
   icon: any;
   className?: string;
   children?: React.ReactNode;
+  containerHover?: boolean;
 };
 
 const AnimatedIcon = (props: AnimatedIconProps) => {
@@ -18,7 +19,7 @@ const AnimatedIcon = (props: AnimatedIconProps) => {
     if (playerRef.current?.isPlaying) return;
     playerRef.current?.playFromBeginning();
     if (!playerRef.current?.isPlaying) return setHover(false);
-  }, [hover]);
+  }, [hover, props.containerHover]);
 
   return (
     <div
