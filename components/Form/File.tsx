@@ -87,11 +87,7 @@ const File = ({
       {defaultValue && (
         <div>
           <img
-            src={
-              inputState[name]
-                ? URL.createObjectURL(inputState[name] as File)
-                : defaultValue && defaultValue
-            }
+            src={defaultValue}
             alt="image-input"
             style={{ width: "100%", height: "100%", maxHeight: "178px" }}
             className="h-full w-full object-contain"
