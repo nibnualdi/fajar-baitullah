@@ -32,6 +32,7 @@ import File from "./Form/File";
 import Spinner from "./Spinner/Spinner";
 import Modal from "./Modal/Modal";
 import MimbarArticle from "./home/MimbarArticle/MimbarArticle";
+import GalerySection from "./home/GalerySection/GalerySection";
 
 export {
   SectionOne,
@@ -68,4 +69,5 @@ export {
   Spinner,
   Modal,
   MimbarArticle,
+  GalerySection,
 };
