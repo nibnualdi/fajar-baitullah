@@ -32,6 +32,7 @@ const MimbarArticle = ({ articles }: MimbarArticleProps) => {
           <div
             className="relative group overflow-hidden cursor-pointer"
             onMouseEnter={() => setArticleHover(!articleHover)}
+            key={e.id}
           >
             <div className="absolute z-10 bg-gradient-to-t from-black to-zinc-900/50 w-full h-full" />
             <Image

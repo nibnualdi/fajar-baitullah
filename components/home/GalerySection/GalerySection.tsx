@@ -41,6 +41,7 @@ const GalerySection = ({ articles }: GalerySectionProps) => {
                   selectedHover === index ? "!w-full shadow-inner" : "w-[96px]"
                 } transition-all ease-out duration-200 min-w-24 h-56 cursor-pointer relative`}
                 onMouseEnter={() => setSelectedHover(index)}
+                key={e.id}
               >
                 <div className="absolute z-10 bg-gradient-to-t from-black/30 to-zinc-900/30 w-full h-full" />
                 <h2 className="absolute z-10 bottom-6 left-6 text-base font-semibold capitalize line-clamp-1">
