@@ -8,12 +8,16 @@ const MimbarArticle = dynamic(() => import("@/components/home/MimbarArticle/Mimb
 const GalerySection = dynamic(() => import("@/components/home/GalerySection/GalerySection"), {
   ssr: false,
 });
+const ReminderOverlay = dynamic(() => import("@/components/ReminderOverlay/ReminderOverlay"), {
+  ssr: false,
+});
 
 export default async function Home() {
   const articles = await getArticle();
 
   return (
-    <main>
+    <main className="relative">
+      <ReminderOverlay />
       <SectionOne />
       <GalerySection articles={articles.data} />
       <MimbarArticle articles={articles.data} />

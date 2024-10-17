@@ -33,6 +33,7 @@ import Spinner from "./Spinner/Spinner";
 import Modal from "./Modal/Modal";
 import MimbarArticle from "./home/MimbarArticle/MimbarArticle";
 import GalerySection from "./home/GalerySection/GalerySection";
+import ReminderOverlay from "./ReminderOverlay/ReminderOverlay";
 
 export {
   SectionOne,
@@ -70,4 +71,5 @@ export {
   Modal,
   MimbarArticle,
   GalerySection,
+  ReminderOverlay,
 };
