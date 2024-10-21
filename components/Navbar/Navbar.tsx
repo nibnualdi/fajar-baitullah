@@ -11,6 +11,7 @@ import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 import logo from "@/assets/logo2.png";
 import Dropdown, { menus } from "../Dropdown/Dropdown";
+import { pages } from "@/constans/othersPage";
 
 const AnimatedIcon = dynamic(() => import("@/components/AnimatedIcon/AnimatedIcon"), {
   ssr: false,
@@ -33,6 +34,19 @@ const AboutMenu = () => {
     <p className="hover:scale-95 duration-75 font-semibold capitalize cursor-pointer">About</p>
   );
 };
+const OthersMenu = () => {
+  return (
+    <p className="hover:scale-95 duration-75 font-semibold capitalize cursor-pointer">Others</p>
+  );
+};
+
+const othersMenuState = pages.map((page) => {
+  return {
+    name: page.name,
+    href: `/others/${page.name.toLocaleLowerCase()}`,
+    closeDropdownInAction: true,
+  };
+});
 
 const nav: navType[] = [
   { name: "home", icon: home, to: "/" },
@@ -55,6 +69,7 @@ const nav: navType[] = [
       { name: "Lorem ipsum", href: "/about#lorem-ipsum", closeDropdownInAction: true },
     ],
   },
+  { name: "others", to: "/others", icon: OthersMenu, menuDropdown: true, childMenus: othersMenuState },
   // { name: "contact", icon: cellPhone, to: "/contact" },
 ];
 
@@ -82,7 +97,9 @@ const Navbar = () => {
             <Link
               href={item.to}
               key={item.name}
-              className={`my-auto drop-shadow opacity-50 hover:opacity-100 ${pathname === item.to && "!opacity-100"}`}
+              className={`my-auto drop-shadow opacity-50 hover:opacity-100 ${
+                pathname === item.to && "!opacity-100"
+              }`}
             >
               {item.icon ? (
                 <AnimatedIcon
@@ -105,7 +122,7 @@ const Navbar = () => {
                   pathname === item.to && "!opacity-100"
                 }`}
               >
-                <Dropdown name="about" menus={item.childMenus} Icon={item.icon} onOpen="hover" />
+                <Dropdown name={item.name} menus={item.childMenus} Icon={item.icon} onOpen="hover" />
               </div>
             )
           );

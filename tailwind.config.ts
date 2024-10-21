@@ -23,6 +23,9 @@ const config: Config = {
         header: "0px 4px 4px rgba(0, 0, 0, 0.25)",
         image: "0px 4px 35px rgba(0, 0, 0, 0.50)",
       },
+      boxShadow: {
+        'coverage': '0 4px 25px 5px rgba(0, 0, 0, 0.25)',
+      }
     },
     screens: {
       sm: "640px",
