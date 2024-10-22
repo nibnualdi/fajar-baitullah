@@ -24,14 +24,14 @@ const Page = async ({ params: { name } }: OthersPageProps) => {
   });
 
   return (
-    <div className="min-h-[calc(100%+800px)] p-56 bg-white text-black">
-      <div className="relative p-32 rounded-3xl shadow-coverage">
+    <div className="min-h-[calc(100%+800px)] p-0 lg:p-56 bg-white text-black">
+      <div className="relative p-10 pt-40 md:p-32 rounded-3xl shadow-coverage">
         <Image
           alt="tape2"
           src={tape2}
           className="absolute -left-10 -top-28 drop-shadow-sm rotate-45"
         />
-        <Image alt="tape3" src={tape3} className="absolute -bottom-24 -right-24 drop-shadow-sm" />
+        <Image alt="tape3" src={tape3} className="absolute -bottom-24 -right-24 drop-shadow-sm hidden lg:block" />
         <h1 className={`mb-9 text-5xl capitalize ${roboto700.className}`}>
           {decodeURIComponent(name)}
         </h1>
