@@ -6,7 +6,7 @@ import { MouseEventHandler, useEffect, useState } from "react";
 
 export type menus = {
   name: string;
-  href?: string;
+  href: string;
   icon?: () => React.JSX.Element;
   closeDropdownInAction?: boolean;
   CustomElement?: () => React.JSX.Element;

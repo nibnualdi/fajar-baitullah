@@ -1,16 +1,12 @@
 "use client";
 
-import * as React from "react";
 import { AnimatePresence, HTMLMotionProps, motion, SVGMotionProps } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { useCycle } from "framer-motion";
 import Link from "next/link";
+import { navType } from "./Navbar";
+import { ArrowIcon } from "@/assets/icons/admin";
 
-type navType = {
-  name: string;
-  icon?: any;
-  to: string;
-};
 
 type MenuToggleNavProps = HTMLMotionProps<"nav"> & {
   navItem: navType[];
@@ -106,6 +102,8 @@ const sidebar = {
 
 const MenuToggleNav = ({ navItem, pathname, ...props }: MenuToggleNavProps) => {
   const [isOpen, toggleOpen] = useCycle(false, true);
+  const [isMenuDropdownOpen, toggleMenuDropdownOpen] = useCycle(false, true);
+  const [selectedMenus, setSelectedMenus] = useState("");
   const containerRef = useRef(null);
 
   return (
@@ -126,29 +124,97 @@ const MenuToggleNav = ({ navItem, pathname, ...props }: MenuToggleNavProps) => {
               exit="closed"
               className="fixed text-black top-0 left-0 bg-transparent w-screen h-screen lg:hidden flex flex-col justify-center items-center"
             >
-              {navItem.map((item) => (
-                <Link
-                  href={item.to}
-                  className="w-full"
-                  key={item.name}
-                  onClick={() => toggleOpen()}
-                >
-                  <motion.li
-                    variants={variantsMenuItem}
-                    whileHover={{ backgroundColor: "rgba(1,1,1,.2)" }}
-                    className={`w-full p-3 cursor-pointer text-center ${
-                      pathname === item.to ? "bg-[rgba(1,1,1,.2)]" : "bg-white"
-                    }`}
+              {navItem.map((item) => {
+                return !item.menuDropdown ? (
+                  <Link
+                    href={item.to}
+                    className="w-full"
+                    key={item.name}
+                    onClick={() => toggleOpen()}
                   >
-                    {item.name}
-                  </motion.li>
-                </Link>
-              ))}
+                    <motion.li
+                      variants={variantsMenuItem}
+                      whileHover={{ backgroundColor: "rgba(1,1,1,.2)" }}
+                      className={`w-full p-3 cursor-pointer text-center ${
+                        pathname === item.to ? "bg-[rgba(1,1,1,.2)]" : "bg-white"
+                      }`}
+                    >
+                      {item.name}
+                    </motion.li>
+                  </Link>
+                ) : (
+                  <>
+                    <div
+                      className="w-full flex justify-center items-center"
+                      key={item.name}
+                      onClick={() => {
+                        toggleMenuDropdownOpen();
+                        setSelectedMenus(item.name);
+                      }}
+                    >
+                      <motion.li
+                        variants={variantsMenuItem}
+                        whileHover={{ backgroundColor: "rgba(1,1,1,.2)" }}
+                        className={`p-3 cursor-pointer text-center ${
+                          pathname === item.to ? "bg-[rgba(1,1,1,.2)]" : "bg-white"
+                        }`}
+                      >
+                        {item.name}
+                      </motion.li>
+                      <motion.div
+                        animate={{
+                          rotate: isMenuDropdownOpen && selectedMenus === item.name ? 270 : 90,
+                        }}
+                      >
+                        <ArrowIcon />
+                      </motion.div>
+                    </div>
+                    {isMenuDropdownOpen && item.childMenus && selectedMenus === item.name && (
+                      <AnimatePresence>
+                        <motion.div
+                          initial={{ opacity: 0, scaleY: 0 }}
+                          animate={{ opacity: 1, scaleY: 1 }}
+                          exit={{ opacity: 0, scaleY: 0 }}
+                          className="w-full shadow-inner bg-[rgba(1,1,1,.2)]"
+                        >
+                          {item.childMenus.map((menu) => (
+                            <Link
+                              href={menu.href}
+                              className="w-full"
+                              key={menu.name}
+                              onClick={() => {
+                                toggleOpen();
+                                setSelectedMenus("");
+                              }}
+                            >
+                              <motion.li
+                                variants={variantsMenuItem}
+                                whileHover={{ backgroundColor: "rgba(1,1,1,.2)" }}
+                                // className={`w-full p-3 cursor-pointer text-center ${
+                                //   pathname === item.to ? "bg-[rgba(1,1,1,.2)]" : "bg-white"
+                                // }`}
+                                className={`w-full p-3 cursor-pointer text-center`}
+                              >
+                                {menu.name}
+                              </motion.li>
+                            </Link>
+                          ))}
+                        </motion.div>
+                      </AnimatePresence>
+                    )}
+                  </>
+                );
+              })}
             </motion.ul>
           </>
         )}
       </AnimatePresence>
-      <motion.nav initial={false} animate={isOpen ? "open" : "closed"} ref={containerRef} {...props}>
+      <motion.nav
+        initial={false}
+        animate={isOpen ? "open" : "closed"}
+        ref={containerRef}
+        {...props}
+      >
         <MenuToggle toggle={() => toggleOpen()} />
       </motion.nav>
     </>

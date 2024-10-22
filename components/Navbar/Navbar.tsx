@@ -21,7 +21,7 @@ const MenuToggleNav = dynamic(() => import("@/components/Navbar/MenuToggle"), {
   ssr: false,
 });
 
-type navType = {
+export type navType = {
   name: string;
   icon?: any;
   to: string;
