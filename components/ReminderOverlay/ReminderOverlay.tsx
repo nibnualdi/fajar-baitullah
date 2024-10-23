@@ -171,13 +171,13 @@ const ReminderOverlay = ({ recurringSchedules, specialEventSchedules }: Reminder
       >
         <div
           id="window-content"
-          className="relative w-2/4 p-40 flex flex-col justify-center items-center gap-8 text-xl"
+          className="relative w-4/5 mid-xl:w-2/4 p-4 md:p-16 lg:p-40 flex flex-col justify-center items-center gap-8 text-xl"
         >
-          <span className="bg-white w-1 h-32 absolute z-50 right-0 top-0"></span>
-          <span className="bg-white w-32 h-1 absolute z-50 right-0 top-0"></span>
-          <span className="bg-white w-1 h-32 absolute z-50 left-0 bottom-0"></span>
-          <span className="bg-white w-32 h-1 absolute z-50 left-0 bottom-0"></span>
-          <h1 className="text-7xl font-bold">REMINDER!</h1>
+          <span className="bg-white w-1 h-32 absolute z-50 right-0 top-0 hidden lg:block"></span>
+          <span className="bg-white w-32 h-1 absolute z-50 right-0 top-0 hidden lg:block"></span>
+          <span className="bg-white w-1 h-32 absolute z-50 left-0 bottom-0 hidden lg:block"></span>
+          <span className="bg-white w-32 h-1 absolute z-50 left-0 bottom-0 hidden lg:block"></span>
+          <h1 className="text-5xl md:text-7xl font-bold">REMINDER!</h1>
           <div className="w-full">
             {specialEventSchedules.length && <h1 className="w-full border-dotted border-b-2 border-white">SPECIAL EVENTS!!</h1>}
             {specialEventSchedules?.map((schedule) => (
@@ -218,7 +218,7 @@ const ReminderOverlay = ({ recurringSchedules, specialEventSchedules }: Reminder
             ))}
           </div>
           <ScrollIcons
-            className="absolute left-1/2 transform -translate-x-1/2 bottom-2"
+            className="absolute left-1/2 transform -translate-x-1/2 -bottom-24 lg:bottom-2"
             iconClassname="scale-50"
             textClassname="text-base text-center max-w-[150px]"
           />
