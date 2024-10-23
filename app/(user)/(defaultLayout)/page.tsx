@@ -1,5 +1,7 @@
 import { SectionOne, SectionTwo } from "@/components";
 import { getArticle } from "@/lib/api/articlesAPI";
+import { getRecurringSchedule } from "@/lib/api/schedules/recurringScheduleAPI";
+import { getSpecialEvent } from "@/lib/api/schedules/specialEventAPI";
 import dynamic from "next/dynamic";
 
 const MimbarArticle = dynamic(() => import("@/components/home/MimbarArticle/MimbarArticle"), {
@@ -14,10 +16,17 @@ const ReminderOverlay = dynamic(() => import("@/components/ReminderOverlay/Remin
 
 export default async function Home() {
   const articles = await getArticle();
+  const recurringSchedules = await getRecurringSchedule();
+  const specialEventSchedules = await getSpecialEvent();
 
   return (
     <main className="relative">
-      <ReminderOverlay />
+      {(Boolean(recurringSchedules.data.length) || Boolean(specialEventSchedules.data.length)) && (
+        <ReminderOverlay
+          recurringSchedules={recurringSchedules.data}
+          specialEventSchedules={specialEventSchedules.data}
+        />
+      )}
       <SectionOne />
       <GalerySection articles={articles.data} />
       <MimbarArticle articles={articles.data} />

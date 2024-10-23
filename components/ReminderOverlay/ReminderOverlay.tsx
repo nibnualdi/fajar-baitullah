@@ -4,10 +4,18 @@ import dynamic from "next/dynamic";
 import { useEffect, useRef, useState } from "react";
 import { AnimationSequence, motion, useAnimate } from "framer-motion";
 import { ArrowIcon } from "@/assets/icons/admin";
+import { recurringScheduleType } from "@/lib/api/schedules/recurringScheduleAPI";
+import { specialEventScheduleType } from "@/lib/api/schedules/specialEventAPI";
+import { days, months } from "@/constans/time";
 
 const ScrollIcons = dynamic(() => import("@/assets/icons/customIcons/ScrollIcons"), {
   ssr: false,
 });
+
+type ReminderOverlayProps = {
+  recurringSchedules: recurringScheduleType[];
+  specialEventSchedules: specialEventScheduleType[];
+};
 
 function useAnimation({ minimize, hide }: { minimize: boolean; hide: boolean }) {
   const [scope, animate] = useAnimate();
@@ -111,7 +119,7 @@ const RunningText = ({ text }: { text: string }) => {
   );
 };
 
-const ReminderOverlay = () => {
+const ReminderOverlay = ({ recurringSchedules, specialEventSchedules }: ReminderOverlayProps) => {
   const [minimize, setMinimize] = useState(false);
   const [hide, setHide] = useState(false);
   const scope = useAnimation({ minimize, hide });
@@ -125,6 +133,35 @@ const ReminderOverlay = () => {
 
     return () => document.removeEventListener("scroll", handleScroll);
   }, [minimize, hide]);
+
+  const handleHorizontalString = () => {
+    let recurringJoined: string[] = [];
+    let specialEventJoined: string[] = [];
+
+    recurringSchedules?.forEach((schedule) => {
+      if (!schedule.is_active) return;
+      const string = `${schedule.event_name} ${
+        schedule.frequency_type.toLocaleLowerCase() === "weekly"
+          ? `${schedule.day_of_week && `setiap ${days.in[schedule.day_of_week]}`}`
+          : `setiap bulan, tanggal ${schedule.day_of_month}`
+      } (at ${schedule.start_time}-${schedule.end_time})`;
+      recurringJoined.push(string);
+    });
+
+    specialEventSchedules.forEach((schedule) => {
+      const date = new Date(schedule.event_date);
+      const string = `${schedule.event_name} (${days.in[date.getDay()]}, ${date.getDate()} ${
+        months.in[date.getMonth()]
+      } ${date.getFullYear()}, ${schedule.start_time}-${schedule.end_time})`;
+      specialEventJoined.push(string);
+    });
+
+    const stringReminder = `REMINDER!! || ${specialEventJoined.join(
+      " || "
+    )} || ${recurringJoined.join(" || ")}`;
+
+    return stringReminder;
+  };
 
   return (
     <div ref={scope}>
@@ -141,11 +178,41 @@ const ReminderOverlay = () => {
           <span className="bg-white w-1 h-32 absolute z-50 left-0 bottom-0"></span>
           <span className="bg-white w-32 h-1 absolute z-50 left-0 bottom-0"></span>
           <h1 className="text-7xl font-bold">REMINDER!</h1>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente deserunt quae nam
-            quisquam, quam officia cupiditate aliquid quod fuga nisi, obcaecati deleniti saepe amet
-            natus! Doloribus amet debitis quo perferendis!
-          </p>
+          {specialEventSchedules.length && <h1>SPECIAL EVENTS!!</h1>}
+          {specialEventSchedules?.map((schedule) => (
+            <div className="flex justify-between items-center gap-10 capitalize">
+              <p>
+                <b>{schedule.event_name}</b>
+                <p>
+                  ({days.in[new Date(schedule.event_date).getDay()]},{" "}
+                  {new Date(schedule.event_date).getDate()}{" "}
+                  {months.in[new Date(schedule.event_date).getMonth()]}{" "}
+                  {new Date(schedule.event_date).getFullYear()})
+                </p>
+              </p>
+              <p>
+                {schedule.start_time}-{schedule.end_time}
+              </p>
+            </div>
+          ))}
+          {recurringSchedules.length && <h1>WEEKLY EVENTS!!</h1>}
+          {recurringSchedules?.map((schedule) => (
+            <div className="flex justify-between items-center gap-10 capitalize">
+              <p>
+                <b>{schedule.event_name}</b>
+                <p>
+                  (
+                  {schedule.frequency_type.toLocaleLowerCase() === "weekly"
+                    ? `${schedule.day_of_week && `setiap ${days.in[schedule.day_of_week]}`}`
+                    : `${`setiap bulan, tanggal ${schedule.day_of_month}`}`}
+                  )
+                </p>
+              </p>
+              <p>
+                {schedule.start_time}-{schedule.end_time}
+              </p>
+            </div>
+          ))}
           <ScrollIcons
             className="absolute left-1/2 transform -translate-x-1/2 bottom-2"
             iconClassname="scale-50"
@@ -191,7 +258,7 @@ const ReminderOverlay = () => {
             id="window-content-minimize"
             className="relative w-full py-4 flex justify-center items-center gap-8 text-xl"
           >
-            <RunningText text="Lorem ipsum" />
+            <RunningText text={handleHorizontalString()} />
           </div>
         </div>
       </div>
