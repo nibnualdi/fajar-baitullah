@@ -178,41 +178,45 @@ const ReminderOverlay = ({ recurringSchedules, specialEventSchedules }: Reminder
           <span className="bg-white w-1 h-32 absolute z-50 left-0 bottom-0"></span>
           <span className="bg-white w-32 h-1 absolute z-50 left-0 bottom-0"></span>
           <h1 className="text-7xl font-bold">REMINDER!</h1>
-          {specialEventSchedules.length && <h1>SPECIAL EVENTS!!</h1>}
-          {specialEventSchedules?.map((schedule) => (
-            <div className="flex justify-between items-center gap-10 capitalize">
-              <p>
-                <b>{schedule.event_name}</b>
-                <p>
-                  ({days.in[new Date(schedule.event_date).getDay()]},{" "}
-                  {new Date(schedule.event_date).getDate()}{" "}
-                  {months.in[new Date(schedule.event_date).getMonth()]}{" "}
-                  {new Date(schedule.event_date).getFullYear()})
+          <div className="w-full">
+            {specialEventSchedules.length && <h1 className="w-full border-dotted border-b-2 border-white">SPECIAL EVENTS!!</h1>}
+            {specialEventSchedules?.map((schedule) => (
+              <div className="w-full flex justify-between items-center gap-10 capitalize">
+                <p className="w-full text-left">
+                  <b>{schedule.event_name}</b>
+                  <p>
+                    ({days.in[new Date(schedule.event_date).getDay()]},{" "}
+                    {new Date(schedule.event_date).getDate()}{" "}
+                    {months.in[new Date(schedule.event_date).getMonth()]}{" "}
+                    {new Date(schedule.event_date).getFullYear()})
+                  </p>
                 </p>
-              </p>
-              <p>
-                {schedule.start_time}-{schedule.end_time}
-              </p>
-            </div>
-          ))}
-          {recurringSchedules.length && <h1>WEEKLY EVENTS!!</h1>}
-          {recurringSchedules?.map((schedule) => (
-            <div className="flex justify-between items-center gap-10 capitalize">
-              <p>
-                <b>{schedule.event_name}</b>
                 <p>
-                  (
-                  {schedule.frequency_type.toLocaleLowerCase() === "weekly"
-                    ? `${schedule.day_of_week && `setiap ${days.in[schedule.day_of_week]}`}`
-                    : `${`setiap bulan, tanggal ${schedule.day_of_month}`}`}
-                  )
+                  {schedule.start_time}-{schedule.end_time}
                 </p>
-              </p>
-              <p>
-                {schedule.start_time}-{schedule.end_time}
-              </p>
-            </div>
-          ))}
+              </div>
+            ))}
+          </div>
+          <div className="w-full">
+            {recurringSchedules.length && <h1 className="w-full border-dotted border-b-2 border-white">WEEKLY EVENTS!!</h1>}
+            {recurringSchedules?.map((schedule) => (
+              <div className="w-full flex justify-between items-center gap-10 capitalize">
+                <p className="w-full text-left">
+                  <b>{schedule.event_name}</b>
+                  <p>
+                    (
+                    {schedule.frequency_type.toLocaleLowerCase() === "weekly"
+                      ? `${schedule.day_of_week && `setiap ${days.in[schedule.day_of_week]}`}`
+                      : `${`setiap bulan, tanggal ${schedule.day_of_month}`}`}
+                    )
+                  </p>
+                </p>
+                <p>
+                  {schedule.start_time}-{schedule.end_time}
+                </p>
+              </div>
+            ))}
+          </div>
           <ScrollIcons
             className="absolute left-1/2 transform -translate-x-1/2 bottom-2"
             iconClassname="scale-50"
