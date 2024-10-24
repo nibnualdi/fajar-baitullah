@@ -35,6 +35,7 @@ import MimbarArticle from "./home/MimbarArticle/MimbarArticle";
 import GalerySection from "./home/GalerySection/GalerySection";
 import ReminderOverlay from "./ReminderOverlay/ReminderOverlay";
 import ScheduleCard from "./Admin/Cards/ScheduleCard";
+import ScheduleCardSContainer from "./Admin/Cards/ScheduleCardSContainer";
 
 export {
   SectionOne,
@@ -74,4 +75,5 @@ export {
   GalerySection,
   ReminderOverlay,
   ScheduleCard,
+  ScheduleCardSContainer,
 };

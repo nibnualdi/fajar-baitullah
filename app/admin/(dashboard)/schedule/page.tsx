@@ -1,6 +1,13 @@
 import { ReminderIcon } from "@/assets/icons/admin";
-import { ScheduleCard } from "@/components";
+import dynamic from "next/dynamic";
 import React from "react";
+
+const ScheduleCardSContainer = dynamic(
+  () => import("@/components/Admin/Cards/ScheduleCardSContainer"),
+  {
+    ssr: false,
+  }
+);
 
 const page = () => {
   return (
@@ -18,7 +25,7 @@ const page = () => {
           </div>
         </div>
 
-        <ScheduleCard />
+        <ScheduleCardSContainer />
       </div>
     </div>
   );
