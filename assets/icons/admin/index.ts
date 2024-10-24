@@ -8,6 +8,7 @@ import ArrowIcon from "./ArrowIcon";
 import CategoryIcon from "./CategoryIcon";
 import TrashcanIcon from "./TrashcanIcon";
 import HamburgerIcon from "./HamburgerIcon";
+import ReminderIcon from "./ReminderIcon";
 
 export {
   DashboardIcon,
@@ -20,4 +21,5 @@ export {
   CategoryIcon,
   TrashcanIcon,
   HamburgerIcon,
+  ReminderIcon,
 };

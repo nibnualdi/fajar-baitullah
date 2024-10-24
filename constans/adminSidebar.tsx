@@ -1,5 +1,6 @@
-import { ArticleIcon, CategoryIcon, DashboardIcon, UserIcon } from "@/assets/icons/admin";
+import { ArticleIcon, CategoryIcon, DashboardIcon, ReminderIcon, UserIcon } from "@/assets/icons/admin";
 
+/** if speedDial is true, then the route's included to the flying button on bottom right side (speed dial)  */
 export const routes = [
   {
     title: "Dashboard",
@@ -23,5 +24,10 @@ export const routes = [
     icon: <CategoryIcon />,
     link: "/admin/category",
     speedDial: true,
+  },
+  {
+    title: "Schedule",
+    icon: <ReminderIcon />,
+    link: "/admin/schedule",
   },
 ];

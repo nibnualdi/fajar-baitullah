@@ -34,6 +34,7 @@ import Modal from "./Modal/Modal";
 import MimbarArticle from "./home/MimbarArticle/MimbarArticle";
 import GalerySection from "./home/GalerySection/GalerySection";
 import ReminderOverlay from "./ReminderOverlay/ReminderOverlay";
+import ScheduleCard from "./Admin/Cards/ScheduleCard";
 
 export {
   SectionOne,
@@ -72,4 +73,5 @@ export {
   MimbarArticle,
   GalerySection,
   ReminderOverlay,
+  ScheduleCard,
 };
