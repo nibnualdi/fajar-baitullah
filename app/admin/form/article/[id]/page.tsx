@@ -1,11 +1,6 @@
 "use client";
 
-import {
-  addArticle,
-  addImageArticle,
-  getArticleByID,
-  updateArticle,
-} from "@/lib/api/articlesAPI";
+import { addArticle, addImageArticle, getArticleByID, updateArticle } from "@/lib/api/articlesAPI";
 import { addCategory, categoryType, getCategory } from "@/lib/api/categoriesAPI";
 import { useAppSelector } from "@/lib/hooks";
 import dynamic from "next/dynamic";
@@ -36,7 +31,7 @@ const File = dynamic(() => import("@/components/Form/File"), {
 
 const Breadcrumb = dynamic(() => import("@/components/Breadcrumb/Breadcrumb"), { ssr: false });
 
-const Page = ({ params }: { params: { slug: string; id: string } }) => {
+const Page = ({ params }: { params: { id: string } }) => {
   const token = Cookies.get("session_token") as string;
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
@@ -101,44 +96,43 @@ const Page = ({ params }: { params: { slug: string; id: string } }) => {
     if (openAddCategory) return;
     console.log("inputState :", inputState);
     setIsLoading(true);
-    if (params.slug === "article") {
-      // Add article
-      if (params.id === "create") {
-        const data = {
-          title: inputState.title,
-          content: inputState.content,
-          image: inputState.image,
-          user_id: id as string,
-          category_id: inputState.category,
-        };
 
-        await addArticle(JSON.stringify(data), {
-          authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        });
-        setIsLoading(false);
-        handleRevalidateTag("list_article");
-        router.back();
-        return;
-      }
-
-      // Edit article
+    // Add article
+    if (params.id === "create") {
       const data = {
-        title: defaultForm?.title,
-        content: defaultForm?.content,
-        image: defaultForm?.image,
+        title: inputState.title,
+        content: inputState.content,
+        image: inputState.image,
         user_id: id as string,
-        category_id: defaultForm?.category_id,
+        category_id: inputState.category,
       };
 
-      await updateArticle(params.id, JSON.stringify(data), {
+      await addArticle(JSON.stringify(data), {
         authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       });
       setIsLoading(false);
       handleRevalidateTag("list_article");
       router.back();
+      return;
     }
+
+    // Edit article
+    const data = {
+      title: defaultForm?.title,
+      content: defaultForm?.content,
+      image: defaultForm?.image,
+      user_id: id as string,
+      category_id: defaultForm?.category_id,
+    };
+
+    await updateArticle(params.id, JSON.stringify(data), {
+      authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    });
+    setIsLoading(false);
+    handleRevalidateTag("list_article");
+    router.back();
   };
 
   const handleAddCategory = async () => {
@@ -152,7 +146,7 @@ const Page = ({ params }: { params: { slug: string; id: string } }) => {
 
   return (
     <div className="bg-white text-dark-green mx-auto max-w-screen min-h-screen px-4 py-4 sm:px-6 lg:px-8">
-      <Breadcrumb click={false} customPath={["form", params.slug, params.id]} />
+      <Breadcrumb click={false} customPath={["form", "article", params.id]} />
 
       <div>
         <div className="mb-8 space-y-3">
