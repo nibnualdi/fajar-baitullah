@@ -22,7 +22,7 @@ const Input = ({
   placeholder = "",
   defaultValue = "",
   require = false,
-  pattern = "",
+  pattern = ".{1,}",
   errMessage = "Something is wrong!",
   label,
   onChange,

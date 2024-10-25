@@ -110,8 +110,8 @@ const Login = () => {
                 type="password"
                 placeholder="********"
                 require={true}
-                pattern=".{6,}"
-                errMessage="Please input Password at least 8 character"
+                pattern=".{1,}"
+                errMessage="Please input Password at least 1 character"
                 onChange={handleChange}
               />
             </div>
