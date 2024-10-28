@@ -29,6 +29,7 @@ import Button from "./Form/Button";
 import RadioGroup from "./Form/RadioGroup";
 import Radio from "./Form/Radio";
 import File from "./Form/File";
+import Switch from "./Form/Switch";
 import Spinner from "./Spinner/Spinner";
 import Modal from "./Modal/Modal";
 import MimbarArticle from "./home/MimbarArticle/MimbarArticle";
@@ -69,6 +70,7 @@ export {
   RadioGroup,
   Radio,
   File,
+  Switch,
   Spinner,
   Modal,
   MimbarArticle,
