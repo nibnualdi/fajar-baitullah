@@ -1,0 +1,18 @@
+.calendar {
+  /* border-radius: 10px;
+  background-color: #fff;
+  box-shadow: lightslategray;
+  color: black; */
+}
+
+.input {
+  /* border: none;
+  cursor: pointer; */
+  /* display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  text-align: center;
+  max-width: 110px; */
+  width: 100%;
+}
