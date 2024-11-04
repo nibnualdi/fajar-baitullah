@@ -31,6 +31,8 @@ import Radio from "./Form/Radio";
 import File from "./Form/File";
 import Switch from "./Form/Switch";
 import TimeCalendar from "./Form/TimeCalendar/TimeCalendar";
+import SelectInputGroup from "./Form/SelectInput/SelectInputGroup";
+import SelectInput from "./Form/SelectInput/SelectInput";
 import Spinner from "./Spinner/Spinner";
 import Modal from "./Modal/Modal";
 import MimbarArticle from "./home/MimbarArticle/MimbarArticle";
@@ -73,6 +75,8 @@ export {
   File,
   Switch,
   TimeCalendar,
+  SelectInputGroup,
+  SelectInput,
   Spinner,
   Modal,
   MimbarArticle,

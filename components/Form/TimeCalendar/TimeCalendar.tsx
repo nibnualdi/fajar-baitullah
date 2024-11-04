@@ -12,11 +12,18 @@ import TimeIcon from "@/assets/icons/customIcons/TimeIcon";
 type PropsTypeTimeCalendar = {
   name: string;
   value: Date;
-  setValue: React.Dispatch<React.SetStateAction<Date>>;
+  // setValue: React.Dispatch<React.SetStateAction<Date>>;
   type?: "calendar" | "time";
+  onChange?: (date: Date | null) => void;
 };
 
-const TimeCalendar = ({ name, value, setValue, type = "time" }: PropsTypeTimeCalendar) => {
+const TimeCalendar = ({
+  name,
+  value,
+  // setValue,
+  type = "time",
+  onChange,
+}: PropsTypeTimeCalendar) => {
   const CustomInput = forwardRef(
     (
       {
@@ -51,13 +58,17 @@ const TimeCalendar = ({ name, value, setValue, type = "time" }: PropsTypeTimeCal
     )
   );
 
+  const handleOnClick = (date: Date | null) => {
+    onChange && onChange(date);
+  };
+
   return (
     <div className="flex items-center w-full">
       {type === "calendar" ? (
         <DatePicker
           toggleCalendarOnIconClick
           selected={value}
-          onChange={(date) => setValue(date as Date)}
+          onChange={handleOnClick}
           dateFormat="d/MM/yyyy"
           className={styles.input}
           wrapperClassName="w-full"
@@ -67,7 +78,8 @@ const TimeCalendar = ({ name, value, setValue, type = "time" }: PropsTypeTimeCal
       ) : (
         <DatePicker
           selected={value}
-          onChange={(date) => setValue(date as Date)}
+          onChange={handleOnClick}
+          // onChange={(date) => setValue(date as Date)}
           showTimeSelect
           showTimeSelectOnly
           timeIntervals={10}
