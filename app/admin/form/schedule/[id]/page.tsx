@@ -1,14 +1,18 @@
 "use client";
 
+import { addArticle, addImageArticle, getArticleByID, updateArticle } from "@/lib/api/articlesAPI";
+import { addCategory, categoryType, getCategory } from "@/lib/api/categoriesAPI";
 import { useAppSelector } from "@/lib/hooks";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Cookies from "js-cookie";
+import { handleRevalidateTag } from "@/lib/actions";
 import { SelectInput, SelectInputGroup } from "@/components";
 import CalendarIcon from "@/assets/icons/customIcons/CalendarIcon";
 import { days } from "@/constans/time";
 import { formattedDate } from "@/lib/utils/formattedDate";
+import { addRecurringSchedule } from "@/lib/api/schedules/recurringScheduleAPI";
 
 const Button = dynamic(() => import("@/components/Form/Button"), {
   ssr: false,
@@ -40,6 +44,7 @@ const Page = ({ params }: { params: { id: string } }) => {
     { length: new Date(today.getFullYear(), today.getMonth(), 0).getDate() },
     (_, v) => v
   );
+  const token = Cookies.get("session_token") as string;
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const [inputState, setInputState] = useState<InputState>({
@@ -52,6 +57,27 @@ const Page = ({ params }: { params: { id: string } }) => {
   const [startTime, setStartTime] = useState(today);
   const [endTime, setEndTime] = useState(today);
   const [defaultForm, setDefaultForm] = useState<InputState>();
+  const { id } = useAppSelector((state) => state.rootReducer.userData);
+
+  // useEffect(() => {
+  //   const getCategories = async () => {
+  //     const category = await getCategory();
+  //     setCategories(category.data);
+  //   };
+  //   getCategories();
+
+  //   if (params.id === "create") return;
+
+  //   const getArticle = async () => {
+  //     const article = await getArticleByID(params.id);
+  //     setDefaultForm(article.data);
+  //   };
+  //   getArticle();
+  // }, []);
+
+  useEffect(() => {
+    console.log(inputState, "inputState");
+  }, [inputState]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     e.preventDefault();
@@ -73,6 +99,7 @@ const Page = ({ params }: { params: { id: string } }) => {
     e.preventDefault();
 
     const id = e.target.id;
+    console.log(e.target.selectedOptions[0].index, id, "lalal");
 
     if (id.includes(" ")) {
       const joinedId = id.split(" ").join("_");
@@ -92,8 +119,53 @@ const Page = ({ params }: { params: { id: string } }) => {
     const start_time = String(startTime.toLocaleTimeString("en-US", { hour12: false }));
     const end_time = String(endTime.toLocaleTimeString("en-US", { hour12: false }));
 
-    const data = { ...inputState, event_date, start_time, end_time };
+    setIsLoading(true);
+
+    // Add schedule
+    if (params.id === "create") {
+      const data = { ...inputState, event_date, start_time, end_time };
+      console.log("data :", data);
+
+      await addRecurringSchedule(JSON.stringify(data), {
+        authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      });
+      setIsLoading(false);
+      handleRevalidateTag("list_recurring_schedule");
+      router.back();
+      return;
+    }
+
+    // Edit article
+    // const data = {
+    //   title: defaultForm?.title,
+    //   content: defaultForm?.content,
+    //   image: defaultForm?.image,
+    //   user_id: id as string,
+    //   category_id: defaultForm?.category_id,
+    // };
+
+    // await updateArticle(params.id, JSON.stringify(data), {
+    //   authorization: `Bearer ${token}`,
+    //   "Content-Type": "application/json",
+    // });
+    // setIsLoading(false);
+    // handleRevalidateTag("list_article");
+    // router.back();
   };
+
+  // const handleAddCategory = async () => {
+  //   if (!inputNewCategory) return;
+  //   await addCategory(JSON.stringify({ name: inputNewCategory }), {
+  //     authorization: `Bearer ${token}`,
+  //   });
+  //   setOpenAddCategory(false);
+  //   setInputNewCategory("");
+  // };
+
+  // useEffect(() => {
+  //   console.log(defaultForm?.type, "defaultForm.type");
+  // }, [defaultForm?.type]);
 
   return (
     <div className="bg-white text-dark-green mx-auto max-w-screen min-h-screen px-4 py-4 sm:px-6 lg:px-8">
@@ -116,6 +188,7 @@ const Page = ({ params }: { params: { id: string } }) => {
                     pattern=".{1,}"
                     require={true}
                     onChange={handleChange}
+                    // defaultValue={defaultForm?.title}
                   />
                 </div>
                 <div className="space-y-2">
@@ -162,6 +235,7 @@ const Page = ({ params }: { params: { id: string } }) => {
                         noLabel={true}
                         icon={<CalendarIcon />}
                         onChange={handleChangeInputSelect}
+                        // defaultValue={defaultForm?.type ? (defaultForm.type as string) : "monthly"}
                       >
                         {dates.map((date) => (
                           <SelectInput
@@ -178,6 +252,7 @@ const Page = ({ params }: { params: { id: string } }) => {
                       noLabel={true}
                       icon={<CalendarIcon />}
                       onChange={handleChangeInputSelect}
+                      // defaultValue={defaultForm?.type ? (defaultForm.type as string) : "monthly"}
                     >
                       {days.en.map((day) => (
                         <SelectInput label={day} id={day} key={day} />

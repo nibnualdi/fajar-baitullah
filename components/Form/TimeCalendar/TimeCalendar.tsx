@@ -17,7 +17,7 @@ type PropsTypeTimeCalendar = {
   onChange?: (date: Date | null) => void;
 };
 
-const TimeCalendar = ({
+const TimeCalendar = ({ 
   name,
   value,
   // setValue,
@@ -57,6 +57,8 @@ const TimeCalendar = ({
       </div>
     )
   );
+
+  CustomInput.displayName = 'CustomInput';
 
   const handleOnClick = (date: Date | null) => {
     onChange && onChange(date);

@@ -42,7 +42,7 @@ const AccountOwner = () => {
 
 function TopBar() {
   const MENUS: menus[] = [
-    { name: "account owner", CustomElement: AccountOwner },
+    { name: "account owner", href: "#", CustomElement: AccountOwner },
     {
       name: "Sign out",
       href: "/admin/auth/login",

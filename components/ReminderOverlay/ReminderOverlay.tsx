@@ -181,7 +181,7 @@ const ReminderOverlay = ({ recurringSchedules, specialEventSchedules }: Reminder
           <div className="w-full">
             {specialEventSchedules.length && <h1 className="w-full border-dotted border-b-2 border-white">SPECIAL EVENTS!!</h1>}
             {specialEventSchedules?.map((schedule) => (
-              <div className="w-full flex justify-between items-center gap-10 capitalize">
+              <div className="w-full flex justify-between items-center gap-10 capitalize" key={schedule.id}>
                 <p className="w-full text-left">
                   <b>{schedule.event_name}</b>
                   <p>
@@ -200,7 +200,7 @@ const ReminderOverlay = ({ recurringSchedules, specialEventSchedules }: Reminder
           <div className="w-full">
             {recurringSchedules.length && <h1 className="w-full border-dotted border-b-2 border-white">WEEKLY EVENTS!!</h1>}
             {recurringSchedules?.map((schedule) => (
-              <div className="w-full flex justify-between items-center gap-10 capitalize">
+              <div className="w-full flex justify-between items-center gap-10 capitalize" key={schedule.id}>
                 <p className="w-full text-left">
                   <b>{schedule.event_name}</b>
                   <p>

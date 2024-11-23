@@ -36,13 +36,13 @@ const getRecurringSchedule = async (): Promise<
 //   return await RecurringSchedules;
 // };
 
-// const addRecurringSchedule = async (data: BodyInit, headers?: HeadersInit) => {
-//   await FetchAPI({ endpoint: "/api/RecurringSchedule/add", body: data, method: "POST", headers });
-// };
+const addRecurringSchedule = async (data: BodyInit, headers?: HeadersInit) => {
+  await FetchAPI({ endpoint: "/api/recurring-schedule/add", body: data, method: "POST", headers });
+};
 
 // const updateRecurringSchedule = async (id: string, data: BodyInit, headers?: HeadersInit) => {
 //   await FetchAPI({ endpoint: `/api/RecurringSchedule/update/${id}`, body: data, method: "PUT", headers });
 // };
 
 // export { getRecurringSchedule, getRecurringScheduleByID, addRecurringSchedule, updateRecurringSchedule };
-export { getRecurringSchedule };
+export { getRecurringSchedule, addRecurringSchedule };
